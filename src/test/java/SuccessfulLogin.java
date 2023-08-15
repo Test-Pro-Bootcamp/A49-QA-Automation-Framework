@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 import java.time.Duration;
 
-public class LoginTests extends BaseTest {
+public class SuccessfulLogin extends BaseTest {
     @Test
     public void LoginEmptyEmailPassword() {
 
@@ -20,7 +20,7 @@ public class LoginTests extends BaseTest {
         String url = "https://testpro.io/";
         driver.get(url);
         Assert.assertEquals(driver.getCurrentUrl(), url);
-        //driver.quit();
+        driver.quit();
 
     }
 }
