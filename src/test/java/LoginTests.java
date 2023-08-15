@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 import java.time.Duration;
 
-public class LoginTests extends BaseTest {
+public class  LoginTests extends BaseTest {
     @Test
     public void LoginEmptyEmailPassword() {
 
@@ -21,5 +21,8 @@ public class LoginTests extends BaseTest {
         driver.get(url);
         Assert.assertEquals(driver.getCurrentUrl(), url);
         driver.quit();
+        I'm Mavis
+
+
     }
 }
