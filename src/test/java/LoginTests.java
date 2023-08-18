@@ -23,4 +23,31 @@ public class LoginTests extends BaseTest {
         Assert.assertEquals(driver.getCurrentUrl(), url);
         driver.quit();
     }
+
+
+    @Test
+    public void registrationNavigation() {
+//Given Open the browser
+        //      Added ChromeOptions argument below to fix websocket error
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--remote-allow-origins=*");
+
+        WebDriver driver = new ChromeDriver(options);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+// When I open my url link
+        String url = "https://qa.koel.app/";
+        driver.get(url);
+
+        // AND navigate to the registration button
+        WebElement registrationLink = driver.findElement(By.cssSelector("[href='registration']"));
+
+        //AND I click on "registration"
+        registrationLink.click();
+
+        // THEN registration page displayed
+        String registrationUrl = "https://qa.koel.app/registration";
+
+        Assert.assertEquals(driver.getCurrentUrl(), registrationUrl);
+        //driver.quit();
+    }
 }
