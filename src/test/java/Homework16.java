@@ -8,10 +8,9 @@ import org.testng.annotations.Test;
 
 import java.time.Duration;
 
-public class LoginTests extends BaseTest {
+public class Homework16 {
     @Test
-    public void loginEmptyEmailPassword() {
-//      Added ChromeOptions argument below to fix websocket error
+    public void registrationNavigation(){
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
 
@@ -20,8 +19,13 @@ public class LoginTests extends BaseTest {
 
         String url = "https://qa.koel.app/";
         driver.get(url);
-        Assert.assertEquals(driver.getCurrentUrl(), url);
-        driver.quit();
 
+        WebElement registrationLink = driver.findElement(By.xpath("//a[contains(text(),'Registration')]"));
+        registrationLink.click();
+
+        WebElement registerMessage = driver.findElement(By.xpath("//h2[contains(text(),'Register new account')]"));
+        //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
+        Assert.assertTrue(registerMessage.isDisplayed());
+        driver.quit();
     }
 }
