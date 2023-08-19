@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 
 import java.time.Duration;
 
-public class Homework16 {
+public class Homework16 extends BaseTest{
 
     @Test
     public static void registrationNavigation() {
@@ -22,7 +22,7 @@ public class Homework16 {
         String url = "https://qa.koel.app/";
         driver.get(url);
 
-        WebElement regLink = driver.findElement(By.cssSelector("[href='registration'}"));
+        WebElement regLink = driver.findElement(By.cssSelector("[href='registration']"));
         regLink.click();
 
         String regUrl = "https://qa.koel.app/registration";

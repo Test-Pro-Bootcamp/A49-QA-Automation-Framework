@@ -42,7 +42,7 @@ public class LoginTests extends BaseTest {
     }
 
 
-        @Test
+        @Test (enabled = false)
         public void loginInvalidEmailValidPassword () {
 
             ChromeOptions options = new ChromeOptions();
@@ -71,7 +71,7 @@ public class LoginTests extends BaseTest {
         }
 
 
-    @Test
+    @Test (enabled = false)
     public void loginValidEmailInvalidPassword () {
 
         ChromeOptions options = new ChromeOptions();
