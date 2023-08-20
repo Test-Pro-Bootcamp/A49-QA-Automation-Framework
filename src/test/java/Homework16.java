@@ -7,8 +7,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import java.time.Duration;
 public class Homework16 extends BaseTest {
-
-    
 @Test
 
 public void registrationNavigation() { {
