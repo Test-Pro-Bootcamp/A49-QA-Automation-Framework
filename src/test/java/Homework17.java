@@ -15,7 +15,7 @@ String newSongAddedNotification = "Added 1 song into";
     provideEmail("bhakti.damle@testpro.io");
     providePassword("Mangodesk234!");
     clickSubmit();
-    searchSong("Epic Song");
+    searchSong("Reactor");
     clickViewAllButton();
     selectFirstSong();
     clickAddToButton();

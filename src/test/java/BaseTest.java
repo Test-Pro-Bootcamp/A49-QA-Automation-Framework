@@ -26,6 +26,8 @@ public class BaseTest {
         //      Added ChromeOptions argument below to fix websocket error
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
+        options.addArguments("--disable-popup-blocking");
+        options.addArguments("--disable-notifications");
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
@@ -68,7 +70,7 @@ public class BaseTest {
         Thread.sleep(2000);
     }
     public void clickViewAllButton() throws InterruptedException {
-        WebElement viewAllWebelement = driver.findElement(By.xpath("//button[@data-test='view-all-songs-btn]"));
+        WebElement viewAllWebelement = driver.findElement(By.cssSelector("div.results section.songs h1 button"));
         viewAllWebelement .click();
         Thread.sleep(2000);
     }
