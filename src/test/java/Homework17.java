@@ -9,7 +9,7 @@ public class Homework17 extends BaseTest {
 @Test
     public void addSongToPlaylist() throws InterruptedException{
 
-    String newSongAddedNotification = "Added 1 song into";
+String newSongAddedNotification = "Added 1 song into";
 
     navigateToPage();
     provideEmail("bhakti.damle@testpro.io");

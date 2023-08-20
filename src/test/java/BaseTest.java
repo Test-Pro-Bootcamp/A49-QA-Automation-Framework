@@ -23,10 +23,18 @@ public class BaseTest {
     @BeforeMethod
 
     public static void launchBrowser() {
-        driver = new ChromeDriver();
+        //      Added ChromeOptions argument below to fix websocket error
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--remote-allow-origins=*");
+        driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
+    @AfterMethod
+
+    public static void closeBrowser() {
+        driver.quit();
+    }
 
     public static void navigateToPage() {
         String url = "https://qa.koel.app/";
@@ -36,8 +44,8 @@ public class BaseTest {
 
     public static void provideEmail(String email){
         WebElement emailField = driver.findElement(By.xpath("//input[@type='email']"));
-emailField.clear();
-emailField.sendKeys(email);
+        emailField.clear();
+        emailField.sendKeys(email);
     }
 
     public static void providePassword(String password){
@@ -46,43 +54,43 @@ emailField.sendKeys(email);
         passwordField.sendKeys(password);
     }
 
-public static void clickSubmit() throws InterruptedException {
+    public static void clickSubmit() throws InterruptedException {
         WebElement submitButton = driver.findElement(By.xpath("//button[@type='submit']"));
-submitButton.click();
-Thread.sleep(2000);
+        submitButton.click();
+        Thread.sleep(2000);
 
     }
 
     public void searchSong(String song) throws InterruptedException{
-WebElement searchField = driver.findElement(By.xpath("//input[@type='search']"));
-searchField.sendKeys(song);
-searchField.click();
+        WebElement searchField = driver.findElement(By.xpath("//input[@type='search']"));
+        searchField.sendKeys(song);
+        searchField.click();
         Thread.sleep(2000);
     }
-public void clickViewAllButton() throws InterruptedException {
-    WebElement viewAllWebelement = driver.findElement(By.xpath("//button[@data-test='view-all-songs-btn]"));
-    viewAllWebelement .click();
-    Thread.sleep(2000);
-}
+    public void clickViewAllButton() throws InterruptedException {
+        WebElement viewAllWebelement = driver.findElement(By.xpath("//button[@data-test='view-all-songs-btn]"));
+        viewAllWebelement .click();
+        Thread.sleep(2000);
+    }
 
-public static void selectFirstSong()throws InterruptedException{
-    WebElement firstSong = driver.findElement(By.xpath("//*[@id='queueWrapper']/div/div/div[1]/table/tr[1]/td[2]"));
-firstSong.click();
-    Thread.sleep(2000);
-}
+    public static void selectFirstSong()throws InterruptedException{
+        WebElement firstSong = driver.findElement(By.cssSelector("section#songResultsWrapper tr.song-item td.title"));
+        firstSong.click();
+        Thread.sleep(2000);
+    }
 
-public void clickAddToButton() throws InterruptedException{
+    public void clickAddToButton() throws InterruptedException{
 
         WebElement addToButton = driver.findElement(By.xpath("//button[@data-test='add-to-btn']"));
 
-    addToButton.click();
-    Thread.sleep(2000);
+        addToButton.click();
+        Thread.sleep(2000);
     }
 
     public void choosePlaylist() throws InterruptedException{
 
-        WebElement addToPlaylist = driver.findElement(By.xpath("*//section[@id='songsWrapper']//li[contains(text(),'Old Songs'"));
-  addToPlaylist.click();
+        WebElement addToPlaylist = driver.findElement(By.xpath("*//section[@id='songResultsWrapper']//li[contains(text(),'Old Songs')]"));
+        addToPlaylist.click();
         Thread.sleep(2000);
 
     }
@@ -90,17 +98,11 @@ public void clickAddToButton() throws InterruptedException{
     public String getNotification(){
 
         WebElement notificationElement = driver.findElement(By.cssSelector("div.success.show"));
-   return notificationElement.getText();
+        return notificationElement.getText();
 
     }
 
 
-
-    @AfterMethod
-
-    public static void closeBrowser() {
-        driver.quit();
-    }
 
 
 
