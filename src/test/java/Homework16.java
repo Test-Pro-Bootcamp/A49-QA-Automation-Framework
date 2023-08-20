@@ -12,7 +12,8 @@ public class Homework16 extends BaseTest{
     @Test
     public void registrationNavigation(){
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins+*");
+        options.addArguments("--disable-notifications","--remote-allow-origins=*","--incognito","--start-maximized");
+        options.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
 
         WebDriver driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
@@ -24,6 +25,16 @@ public class Homework16 extends BaseTest{
         registrationLink.click();
 
         String registrationUrl = "https://qa.koel.app/registration";
+
+
+
+
+
+
+
+
+
+
         Assert.assertEquals(driver.getCurrentUrl(), registrationUrl);
 
         driver.quit();
