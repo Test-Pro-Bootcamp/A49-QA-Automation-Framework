@@ -10,6 +10,7 @@ import org.openqa.selenium.WebElement;
 import java.time.Duration;
 import java.time.Duration;
 
+
 public class LoginTests extends BaseTest {
     @Test
     public void loginEmptyEmailPassword() {
