@@ -15,7 +15,7 @@ public class Homework17 extends BaseTest {
         provideEmail("bhakti.damle@testpro.io");
         providePassword("Mangodesk234!");
         clickSubmit();
-        searchSong("Saxophonian March");
+        searchSong("For the Poor");
         clickViewAllButton();
         selectFirstSong();
         clickAddToButton();
