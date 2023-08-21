@@ -62,8 +62,8 @@ public class BaseTest {
 
     public void loginToKoel() {
         navigateToPage();
-        provideEmail("demo@testpro.io");
-        providePassword("te$t$tudent");
+        provideEmail("alina.nikolaienko@testpro.io");
+        providePassword("OPJKDUhA");
         clickSubmitButton();
     }
 

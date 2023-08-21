@@ -11,6 +11,7 @@
             <class name="SuccessfulLoginTask01"/>
             <class name="LoginUpdated"/>
             <class name="ProfileTest"/>
+            <class name="Homework17"/>
         </classes>
     </test>
 </suite>
