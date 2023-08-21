@@ -1,4 +1,6 @@
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
@@ -7,6 +9,18 @@ import org.testng.annotations.Test;
 import java.time.Duration;
 
 public class LoginTests extends BaseTest {
+    @Test
+    public void LoginValidEmailPassword() {
+        enterEmail("demo@class.com");
+        enterPassword("te$t$tudent");
+        clickLogin();
+
+        WebElement avatar = theDriver.findElement(By.cssSelector(".avatar"));
+        Assert.assertTrue(avatar.isDisplayed());
+
+    }
+
+
     @Test
     public void loginEmptyEmailPassword() {
 
@@ -17,7 +31,7 @@ public class LoginTests extends BaseTest {
         WebDriver driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
-        String url = "https://testpro.io/";
+        String url = "https://qa.koel.app/";
         driver.get(url);
         Assert.assertEquals(driver.getCurrentUrl(), url);
         driver.quit();
