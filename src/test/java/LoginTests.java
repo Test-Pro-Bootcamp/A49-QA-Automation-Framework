@@ -26,34 +26,37 @@ public class LoginTests extends BaseTest {
         Assert.assertEquals(driver.getCurrentUrl(), url);
         driver.quit();
     }
-
-    ChromeOptions options = new ChromeOptions();
+    @Test
+    public void loginValidLoginAndPassword() throws InterruptedException {
+        ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
         options.addArguments("--start-maximized");
 
-    WebDriver driver = new ChromeDriver(options);
+        WebDriver driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
-    String url = "https://qa.koel.app/";
+        String url = "https://qa.koel.app/";
         driver.get(url);
 
 
-    WebElement loginInput = driver.findElement(By.cssSelector("[type='email']"));
+        WebElement loginInput = driver.findElement(By.cssSelector("[type='email']"));
         loginInput.click();
         loginInput.clear();
         loginInput.sendKeys("natalia.gorbunova@testpro.io");
 
-    WebElement passwordInput = driver.findElement(By.cssSelector("[type='password']"));
+        WebElement passwordInput = driver.findElement(By.cssSelector("[type='password']"));
         passwordInput.click();
         passwordInput.clear();
         passwordInput.sendKeys("tester2023");
 
-    WebElement loginBtn = driver.findElement(By.cssSelector("[type='submit']"));
+        WebElement loginBtn = driver.findElement(By.cssSelector("[type='submit']"));
         loginBtn.click();
         Thread.sleep(2000);
 
-        Assert.assertEquals(driver.getCurrentUrl(),"00");
+
+        Assert.assertEquals(driver.getCurrentUrl(), "https://qa.koel.app/#!/home");
         driver.quit();
 
 
+    }
 }

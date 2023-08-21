@@ -21,10 +21,11 @@ public void registrationNavigation() { {
     String url = "https://qa.koel.app/";
     driver.get(url);
 
-    WebElement registrationLink = driver.findElement(By.cssSelector("//a[@href='registration']"));
+    WebElement registrationLink = driver.findElement(By.cssSelector("[href='registration']"));
     registrationLink.click();
 
-    Assert.assertEquals(driver.getCurrentUrl(), url);
+    String registrationURL = "https://qa.koel.app/registration";
+    Assert.assertEquals(driver.getCurrentUrl(), registrationURL);
     driver.quit();
 
 
