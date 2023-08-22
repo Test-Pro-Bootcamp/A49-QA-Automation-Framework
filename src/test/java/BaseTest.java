@@ -63,7 +63,7 @@ public class BaseTest {
         Thread.sleep(2000);
     }
     public void clickFirstSong() throws InterruptedException {
-        WebElement firstSong = driver.findElement(By.cssSelector("#songResultsWrapper>div>div>div.item-container>table>tr:first-child"));
+        WebElement firstSong = driver.findElement(By.cssSelector("#songResultsWrapper tr.song-item:first-child"));
         firstSong.click();
         Thread.sleep(2000);
     }
