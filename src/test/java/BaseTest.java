@@ -83,4 +83,28 @@ public class BaseTest {
     public String generateRandomName () {
         return UUID.randomUUID().toString().replace("-", "");
     }
+    //Homework 17
+    public void searchForSong (){
+        WebElement searchField = driver.findElement(By.cssSelector("input[type='search']"));
+        searchField.clear();
+        searchField.sendKeys("Dark Days");
+    }
+    public void clickViewAll () {
+        WebElement viewAllBtn = driver.findElement(By.cssSelector("#searchExcerptsWrapper > div > div > section.songs > h1 > button"));
+        viewAllBtn.click();
+    }
+    public void clickFirstSong () {
+        WebElement firstSong = driver.findElement(By.xpath("//*[@id='songResultsWrapper']/div/div/div[1]/table/tr[1]/td[2]"));
+        firstSong.click();
+    }
+    public void addToo () {
+        WebElement addTooBtn = driver.findElement(By.cssSelector("[title='Add selected songs to…']"));
+        addTooBtn.click();
+    }
+    public void addToPlayList() {
+        WebElement addToPlaylistNice = driver.findElement(By.cssSelector("#songResultsWrapper > header > div.song-list-controls > div > section.existing-playlists > ul > li:nth-child(6)"));
+        addToPlaylistNice.click();
+
+    }
+
 }
