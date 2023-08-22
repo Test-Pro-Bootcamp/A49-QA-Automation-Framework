@@ -1,5 +1,6 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -17,6 +18,7 @@ public class Homework17 extends BaseTest {
 
         createNewPlaylist();
 
+
         String expectedMessageForListCreated = "Created playlist \"Rock.\"";
         Assert.assertEquals(verifyListIsCreated(), expectedMessageForListCreated);
 
@@ -28,7 +30,10 @@ public class Homework17 extends BaseTest {
 
         selectCreatedPlaylist();
 
-        verifySongIsAddedToList();
+        //verifySongIsAddedToList();
+        String expectedMsgForSongAdded = "Added 1 song into \"Rock.\"";
+        Assert.assertEquals(verifySongIsAddedToList(), expectedMsgForSongAdded);
+
 
         driver.navigate().refresh();
         Thread.sleep(5000);
@@ -74,6 +79,7 @@ public class Homework17 extends BaseTest {
     public void createNewPlaylist() throws InterruptedException {
         WebElement playlistName = driver.findElement(By.xpath("//*[@id='songResultsWrapper']/header/div[3]/div/section[2]/form/input"));
         playlistName.clear();
+        //playlistName.sendKeys(myPlayList);
         playlistName.sendKeys("Rock");
         WebElement createPlaylistButton = driver.findElement(By.xpath("//*[@id='songResultsWrapper']/header/div[3]/div/section[2]/form/button"));
         createPlaylistButton.click();
@@ -88,10 +94,10 @@ public class Homework17 extends BaseTest {
     }
 
 
-    public void verifySongIsAddedToList() throws InterruptedException {
+    public String verifySongIsAddedToList() throws InterruptedException {
         WebElement notificationMessage = driver.findElement(By.cssSelector("div.success.show"));
-        Assert.assertEquals(notificationMessage.getText(), "Added 1 song into \"Rock.\"");
-        Thread.sleep(2000);
+        return notificationMessage.getText();
+        //Thread.sleep(2000);
     }
 
     /*
@@ -100,9 +106,12 @@ public class Homework17 extends BaseTest {
         return notificationMessage.getText();
     }*/
 
-    public void selectCreatedPlaylist() {
+    public void selectCreatedPlaylist() throws InterruptedException {
         WebElement listWhereToAdd = driver.findElement(By.xpath("//*[@id='songResultsWrapper']/header/div[3]/div/section[1]/ul/li[5]"));
+        Actions action = new Actions(driver);
+        action.moveToElement(listWhereToAdd);
         listWhereToAdd.click();
+        Thread.sleep(2000);
     }
 
     private void verifyPlaylistIsCreated() throws InterruptedException {
