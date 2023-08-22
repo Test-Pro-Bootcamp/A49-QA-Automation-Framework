@@ -53,6 +53,11 @@ public class BaseTest {
         WebElement submit = driver.findElement(By.cssSelector("button[type='submit']"));
         submit.click();
     }
+    public void logIn() {
+        provideEmail("camden.bertrand@testpro.io");
+        providePassword("te$t$tudent");
+        clickSubmit();
+    }
     public void searchSong() throws InterruptedException {
         WebElement searchField = driver.findElement(By.cssSelector("input[type='search']"));
         searchField.clear();
