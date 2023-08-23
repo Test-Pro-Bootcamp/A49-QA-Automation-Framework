@@ -1,5 +1,8 @@
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -7,6 +10,10 @@ public class Homework17 extends BaseTest{
 
     @Test
     public void addSongToPlaylist() throws InterruptedException {
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--remote-allow-origins=*");
+
+        WebDriver driver = new ChromeDriver(options);
 
         String expectedSongAddedMessage = "Added 1 Song into \"Test Pro Playlist.\"";
 
@@ -41,7 +48,7 @@ public class Homework17 extends BaseTest{
     }
 
     private void selectFirstSong() {
-        WebElement firstUp = driver.findElement(By.xpath("//tr[@class='song-item selected']"));
+        WebElement firstUp = driver.findElement(By.xpath("//section[@id='songResultsWrapper']//tr[@class='song-item selected']"));
         firstUp.click();
     }
 
@@ -52,7 +59,7 @@ public class Homework17 extends BaseTest{
     }
 
     private void searchASong(String name) throws InterruptedException {
-        WebElement searchBar = driver.findElement(By.cssSelector("div#searchForm input[type='search]"));
+        WebElement searchBar = driver.findElement(By.cssSelector("div#searchForm>input[type='search]"));
         searchBar.sendKeys(name);
         Thread.sleep(1500);
     }
