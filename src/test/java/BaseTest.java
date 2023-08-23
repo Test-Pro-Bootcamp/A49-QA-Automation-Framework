@@ -123,4 +123,24 @@ public class BaseTest {
 
     }
 
+    //Homework18
+    public void clickSong() {
+        WebElement clickAllSongsTab = driver.findElement(By.cssSelector(".music .songs"));
+        clickAllSongsTab.click();
+    }
+    public void selectASong() throws InterruptedException {
+        WebElement selectSong = driver.findElement(By.cssSelector("#songsWrapper tr.song-item"));
+        selectSong.click();
+        Thread.sleep(3000);
+    }
+    public void playNextBtn() throws InterruptedException{
+        WebElement playNextSong = driver.findElement(By.cssSelector("[data-testid='play-next-btn']"));
+        playNextSong.click();
+        Thread.sleep(3000);
+    }
+    public void playBtn() throws InterruptedException {
+        WebElement clickPlayBtn = driver.findElement(By.cssSelector("[data-testid='play-btn']"));
+        clickPlayBtn.click();
+        Thread.sleep(3000);
+    }
 }
