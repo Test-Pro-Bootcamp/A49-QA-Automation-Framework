@@ -19,7 +19,6 @@ public class Homework17 extends BaseTest{
         addToo();
         addToPlayList();
 
-        Thread.sleep(2000);
         WebElement verifyMessage = driver.findElement(By.cssSelector(".alertify-logs"));
         Assert.assertEquals(verifyMessage.getText(), "Added 1 song into \"NICE.\"");
         Thread.sleep(2000);

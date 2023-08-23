@@ -98,7 +98,7 @@ public class BaseTest {
         firstSong.click();
     }
     public void addToo () {
-        WebElement addTooBtn = driver.findElement(By.cssSelector("[title='Add selected songs to…']"));
+        WebElement addTooBtn = driver.findElement(By.cssSelector("#songResultsWrapper [data-test='add-to-btn']"));
         addTooBtn.click();
     }
     public void addToPlayList() {
