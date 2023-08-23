@@ -8,7 +8,6 @@ public class ProfileTest extends BaseTest {
     public void changeProfileNameTest() throws InterruptedException {
 
         openLoginUrl();
-
         enterEmail("emiliano.castillo@testpro.io");
         enterPassword("te$t$tudent");
         clickSubmit();

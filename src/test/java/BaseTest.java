@@ -59,6 +59,14 @@ public class BaseTest {
         submitBtn.click();
     }
 
+    //Login method
+    public void loginWithCorrectCred() {
+        openLoginUrl();
+        enterEmail("emiliano.castillo@testpro.io");
+        enterPassword("te$t$tudent");
+        clickSubmit();
+    }
+
 
 
     //Profile Test Helper Functions
@@ -83,14 +91,22 @@ public class BaseTest {
     public String generateRandomName () {
         return UUID.randomUUID().toString().replace("-", "");
     }
+
     //Homework 17
-    public void searchForSong (){
-        WebElement searchField = driver.findElement(By.cssSelector("input[type='search']"));
+
+    //This method will click on search field and search whatever inputText we choose
+    public void searchForSong (By inputLocator, String inputText) {
+        WebElement searchField = driver.findElement(inputLocator);
+        searchField.click();
         searchField.clear();
-        searchField.sendKeys("Dark Days");
+        searchField.sendKeys(inputText);
     }
+    public void enterSongIntoSearchField() {
+        searchForSong(By.cssSelector("input[type='search']"), "Dark Days");
+    }
+    //Click view all btn
     public void clickViewAll () {
-        WebElement viewAllBtn = driver.findElement(By.cssSelector("#searchExcerptsWrapper > div > div > section.songs > h1 > button"));
+        WebElement viewAllBtn = driver.findElement(By.cssSelector("[data-test='view-all-songs-btn']"));
         viewAllBtn.click();
     }
     public void clickFirstSong () {

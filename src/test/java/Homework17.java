@@ -7,12 +7,8 @@ public class Homework17 extends BaseTest{
     @Test
     public void addSongToPlaylist() throws InterruptedException{
         //Login Method
-        openLoginUrl();
-        enterEmail("emiliano.castillo@testpro.io");
-        enterPassword("te$t$tudent");
-        clickSubmit();
-
-        searchForSong();
+        loginWithCorrectCred();
+        enterSongIntoSearchField();
         Thread.sleep(1000);
         clickViewAll();
         clickFirstSong();
