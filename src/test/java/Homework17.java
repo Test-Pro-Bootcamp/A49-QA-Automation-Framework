@@ -6,6 +6,9 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+
+
+
 import java.time.Duration;
 
 public class Homework17 extends BaseTest {
@@ -42,8 +45,9 @@ public class Homework17 extends BaseTest {
         searchInput.clear();
         searchInput.sendKeys("Dark Days");
 
-        WebElement viewAllBtn = driver.findElement(By.cssSelector("[href='#!/artist/20']"));
+        WebElement viewAllBtn = driver.findElement(By.cssSelector("button[data-test='view-all-songs-btn']"));
         viewAllBtn.click();
+
 
         WebElement clickSong = driver.findElement(By.xpath("//*[@id='playlistWrapper']/div[3]/table/tr/td[2]"));
         clickSong.click();
