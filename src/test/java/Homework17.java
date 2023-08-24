@@ -18,9 +18,9 @@ public class Homework17 extends BaseTest{
         String expectedSongAddedMessage = "Added 1 Song into \"Test Pro Playlist.\"";
 
         navigateTopage();
-        provideEmail("dirzo@gmail.com");
-        providePassword("Te$ter1234");
-        clickSubmit();
+        castEmail("dirzo@gmail.com");
+        castPassword("Te$ter1234");
+        castSubmit();
         Thread.sleep(2000);
         searchASong("Way Of The Samurai");
         clickViewAll();
@@ -64,24 +64,24 @@ public class Homework17 extends BaseTest{
         Thread.sleep(1500);
     }
 
-    private void providePassword(String password) {
+    /*public void providePassword(String password) {
         WebElement passwordField = driver.findElement(By.cssSelector("input[type='password']"));
         passwordField.click();
-        passwordField.sendKeys(password);
+        passwordField.sendKeys(password);*/
     }
 
-    private void provideEmail(String email) {
+  /*  private void provideEmail(String email) {
         WebElement emailField = driver.findElement(By.cssSelector("input[type='email'"));
         emailField.click();
         emailField.sendKeys(email);
-    }
+    }*/
 
     private void navigateTopage() {
         driver.get(url);
     }
-    public void clickSubmit() {
+    /*public void clickSubmit() {
         WebElement submit = driver.findElement(By.cssSelector("button[type='submit']"));
-        submit.click();
+        submit.click();*/
 
     }
 }
