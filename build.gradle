@@ -20,3 +20,9 @@ test {
         suites "src/test/resources/TestNG.xml"
     }
 }
+
+task playingSongs(Type: Test){
+    useTestNG(){
+        suites "src/test/resources/SongsTest.xml"
+    }
+}

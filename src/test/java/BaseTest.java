@@ -36,7 +36,7 @@ public class BaseTest {
     }
     @AfterMethod()
     public void closeBrowser() {
-        driver.quit();
+        //driver.quit();
     }
     public void navigateToPage() {
         driver.get(url);
@@ -55,29 +55,5 @@ public class BaseTest {
         WebElement submit = driver.findElement(By.cssSelector("button[type='submit']"));
         submit.click();
     }
-    public void clickAvatarIcon() {
-        WebElement avatarIcon = driver.findElement(By.cssSelector("img.avatar"));
-        avatarIcon.click();
-    }
-    public void provideCurrentPassword(String password) {
-        WebElement currentPassword = driver.findElement(By.cssSelector("[name='current_password']"));
-        currentPassword.clear();
-        currentPassword.sendKeys(password);
-    }
-    public void clickSaveButton() {
-        WebElement saveButton = driver.findElement(By.cssSelector("button.btn-submit"));
-        saveButton.click();
-    }
-    public void provideProfileName(String randomName) {
-        WebElement profileName = driver.findElement(By.cssSelector("[name='name']"));
-        profileName.clear();
-        profileName.sendKeys(randomName);
-    }
-    public String generateRandomName() {
-        return UUID.randomUUID().toString().replace("-", "");
-    }
-    public void isAvatarDisplayed() {
-        WebElement avatarIcon = driver.findElement(By.cssSelector("img[class='avatar']"));
-        Assert.assertTrue(avatarIcon.isDisplayed());
-    }
+
 }
