@@ -23,7 +23,7 @@ public class Homework19 extends BaseTest {
 
     private void playlistIsDeleted() {
         WebElement playlistDeletedMsg = driver.findElement(By.xpath("//*[contains(text(),'Deleted playlist')]"));
-        
+
         Assert.assertTrue(playlistDeletedMsg.isDisplayed());
     }
 
