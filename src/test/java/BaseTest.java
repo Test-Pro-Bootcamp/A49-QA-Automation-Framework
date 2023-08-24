@@ -93,7 +93,6 @@ public class BaseTest {
     }
 
     //Homework 17
-
     //This method will click on search field and search whatever inputText we choose
     public void searchForSong (By inputLocator, String inputText) {
         WebElement searchField = driver.findElement(inputLocator);
@@ -120,7 +119,6 @@ public class BaseTest {
     public void addToPlayList() {
         WebElement addToPlaylistNice = driver.findElement(By.cssSelector("#songResultsWrapper > header > div.song-list-controls > div > section.existing-playlists > ul > li:nth-child(6)"));
         addToPlaylistNice.click();
-
     }
 
     //Homework18
