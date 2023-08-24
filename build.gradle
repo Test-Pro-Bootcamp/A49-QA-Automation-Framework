@@ -17,11 +17,11 @@ dependencies {
 
 test {
     useTestNG() {
-        suites "src/test/resources/TestNG.xml"
+        suites "src/test/resources/Homework18.xml"
     }
 }
 
-task playingSongs(Type: Test){
+task playingSongs(type: Test){
     useTestNG(){
         suites "src/test/resources/SongsTest.xml"
     }
