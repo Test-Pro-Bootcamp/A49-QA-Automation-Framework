@@ -4,10 +4,12 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.time.Duration;
+
 public class Homework19 extends BaseTest {
 
     @Test
-    public void deletePlaylist() {
+    public void deletePlaylist() throws InterruptedException {
 
         navigateToPage();
         provideEmail("svitlana.shkribliak@testpro.io");
@@ -18,6 +20,7 @@ public class Homework19 extends BaseTest {
         enterText(By.cssSelector("[name='name']"), getRandomString(10));
         clickPlaylist();
         clickDeletePlaylistBtn();
+        Thread.sleep(2000);
         playlistIsDeleted();
     }
 
