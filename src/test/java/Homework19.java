@@ -24,6 +24,10 @@ public class Homework19 extends BaseTest{
 
     }
 
+    public void enterText(By indicator, String ){
+
+    }
+
     private void clickInputPlaylistName() {
         WebElement inputField = driver.findElement(By.cssSelector("[name='name']"));
         inputField.click();

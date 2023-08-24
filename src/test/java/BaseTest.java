@@ -1,4 +1,5 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -60,8 +61,9 @@ public class BaseTest {
         submit.click();
     }
 
-    public String generateRandomString(int lettersAmount){
-        
+    public String getRandomString(int lettersAmount){
+        String randomString = RandomStringUtils.randomAlphabetic(lettersAmount);
+        return randomString;
     }
 
     @DataProvider(name = "IncorrectLoginData")
