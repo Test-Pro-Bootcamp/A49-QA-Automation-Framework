@@ -23,6 +23,6 @@ test {
 
 task playingSongs(type: Test){
     useTestNG(){
-        suites "src/test/resources/SongsTest.xml"
+        suites "src/test/resources/Homework18.xml"
     }
 }
