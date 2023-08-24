@@ -3,20 +3,21 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class Homework19 extends BaseTest{
+public class Homework19 extends BaseTest {
 
     @Test
-    public void deletePlaylist(){
+    public void deletePlaylist() {
 
         navigateToPage();
         provideEmail("svitlana.shkribliak@testpro.io");
         providePassword("te$t$tudent49");
         clickSubmit();
         clickPlaylist();
-        if(!deleteButtonExists()){
+        if (!deleteButtonExists()) {
             clickPlusIcon();
             clickNewPlaylistBtn();
-            clickInputPlaylistName();
+            enterText(By.cssSelector("[name='name']"), getRandomString(10));
+
 
         }
         clickDeletePlaylistBtn();
@@ -24,14 +25,17 @@ public class Homework19 extends BaseTest{
 
     }
 
-    public void enterText(By indicator, String ){
-
+    private void enterText(By inputLocator, String inputText) {
+        WebElement searchInput = driver.findElement(inputLocator);
+        searchInput.click();
+        searchInput.clear();
+        searchInput.sendKeys(inputText);
     }
 
-    private void clickInputPlaylistName() {
-        WebElement inputField = driver.findElement(By.cssSelector("[name='name']"));
-        inputField.click();
-    }
+//    private void clickInputPlaylistName() {
+//        WebElement inputField = driver.findElement(By.cssSelector("[name='name']"));
+//        inputField.click();
+//    }
 
     private void clickNewPlaylistBtn() {
         WebElement newPlaylist = driver.findElement(By.cssSelector("playlist-context-menu-create-simple"));
