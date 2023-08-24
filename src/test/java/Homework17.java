@@ -6,7 +6,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class Homework17 extends BaseTest{
+public class Homework17 extends BaseTest {
 
     @Test
     public void addSongToPlaylist() throws InterruptedException {
@@ -17,7 +17,7 @@ public class Homework17 extends BaseTest{
 
         String expectedSongAddedMessage = "Added 1 Song into \"Test Pro Playlist.\"";
 
-        navigateTopage();
+        //navigateTopage();
         castEmail("dirzo@gmail.com");
         castPassword("Te$ter1234");
         castSubmit();
@@ -63,25 +63,36 @@ public class Homework17 extends BaseTest{
         searchBar.sendKeys(name);
         Thread.sleep(1500);
     }
+}
+/*
 
-    /*public void providePassword(String password) {
+    */
+/*public void providePassword(String password) {
         WebElement passwordField = driver.findElement(By.cssSelector("input[type='password']"));
         passwordField.click();
-        passwordField.sendKeys(password);*/
+        passwordField.sendKeys(password);*//*
+
     }
 
-  /*  private void provideEmail(String email) {
+  */
+/*  private void provideEmail(String email) {
         WebElement emailField = driver.findElement(By.cssSelector("input[type='email'"));
         emailField.click();
         emailField.sendKeys(email);
-    }*/
+    }*//*
 
-    private void navigateTopage() {
-        driver.get(url);
+
+   */
+/* private void navigateTopage() {
+        driver.get(url);*//*
+
     }
-    /*public void clickSubmit() {
+    */
+/*public void clickSubmit() {
         WebElement submit = driver.findElement(By.cssSelector("button[type='submit']"));
-        submit.click();*/
+        submit.click();*//*
+
 
     }
 }
+*/
