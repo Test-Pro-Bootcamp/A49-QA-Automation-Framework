@@ -2,6 +2,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
@@ -9,16 +10,30 @@ import java.time.Duration;
 public class Homework18 extends BaseTest {
     @Test
     public void playSong()  {
+        //GIVEN
         loginToKoel();
+
+        //WHEN
         clickNextSongButton();
-        clickPlaySongButton();
-        verifySoundbarIsVisible();
-        clickPauseSongButton();
+        playSongButton().click(); // method returns WebElement
+        //clickPlaySongButton2(); // void method
+
+        //THEN
+        Assert.assertTrue(soundbarElement().isDisplayed());
+        //or
+        Assert.assertTrue(pauseSongButton().isDisplayed());
+
     }
 
-    public void clickPlaySongButton() {
+    public WebElement playSongButton() {
         WebElement playButton = driver.findElement(By.xpath("//*[@id=\"mainFooter\"]/div[1]/span/span[2]"));
-        playButton.click();
+        //playButton.click();
+        return playButton;
+    }
+
+    public void clickPlaySongButton2() {
+        WebElement playButton2 = driver.findElement(By.xpath("//*[@id=\"mainFooter\"]/div[1]/span/span[2]"));
+        playButton2.click();
     }
 
     public void clickNextSongButton() {
@@ -26,17 +41,19 @@ public class Homework18 extends BaseTest {
         nextSongButton.click();
     }
 
-    public void verifySoundbarIsVisible() {
+    public WebElement soundbarElement() {
         WebElement soundBar = driver.findElement(By.cssSelector(".wrapper .bars"));
         //WebElement soundBar = driver.findElement(By.xpath("//div[@data-testid='sound-bar-play']"));
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOf(soundBar));
-        soundBar.isDisplayed();
+        //soundBar.isDisplayed();
+        return soundBar;
     }
 
-    public void clickPauseSongButton() {
+    public WebElement pauseSongButton() {
         WebElement pauseButton = driver.findElement(By.cssSelector("[title='Pause']"));
-        pauseButton.click();
+        //pauseButton.click();
+        return pauseButton;
     }
 
 }

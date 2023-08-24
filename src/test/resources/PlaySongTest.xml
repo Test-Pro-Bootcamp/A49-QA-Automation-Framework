@@ -2,7 +2,6 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="PlaySongTests">
-
     <test name="Test for Playing song" preserve-order="false">
         <classes>
             <class name="Homework18">
