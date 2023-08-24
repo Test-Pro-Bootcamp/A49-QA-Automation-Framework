@@ -1,4 +1,5 @@
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -12,33 +13,29 @@ public class Homework19 extends BaseTest {
         provideEmail("svitlana.shkribliak@testpro.io");
         providePassword("te$t$tudent49");
         clickSubmit();
+        clickPlusIcon();
+        clickNewPlaylistBtn();
+        enterText(By.cssSelector("[name='name']"), getRandomString(10));
         clickPlaylist();
-        if (!deleteButtonExists()) {
-            clickPlusIcon();
-            clickNewPlaylistBtn();
-            enterText(By.cssSelector("[name='name']"), getRandomString(10));
-
-
-        }
         clickDeletePlaylistBtn();
+        playlistIsDeleted();
+    }
 
-
+    private void playlistIsDeleted() {
+        WebElement playlistDeletedMsg = driver.findElement(By.xpath("//*[contains(text(),'Deleted playlist')]"));
+        
+        Assert.assertTrue(playlistDeletedMsg.isDisplayed());
     }
 
     private void enterText(By inputLocator, String inputText) {
         WebElement searchInput = driver.findElement(inputLocator);
         searchInput.click();
         searchInput.clear();
-        searchInput.sendKeys(inputText);
+        searchInput.sendKeys(inputText, Keys.ENTER);
     }
 
-//    private void clickInputPlaylistName() {
-//        WebElement inputField = driver.findElement(By.cssSelector("[name='name']"));
-//        inputField.click();
-//    }
-
     private void clickNewPlaylistBtn() {
-        WebElement newPlaylist = driver.findElement(By.cssSelector("playlist-context-menu-create-simple"));
+        WebElement newPlaylist = driver.findElement(By.cssSelector("[data-testid='playlist-context-menu-create-simple']"));
         newPlaylist.click();
     }
 
@@ -47,20 +44,16 @@ public class Homework19 extends BaseTest {
         plusIcon.click();
     }
 
-    private Boolean deleteButtonExists() {
-        WebElement deleteBtn = driver.findElement(By.cssSelector("[title='Delete this playlist']"));
-        Assert.assertTrue(deleteBtn.isDisplayed());
-        return true;
-    }
-
     private void clickDeletePlaylistBtn() {
         WebElement deletePlaylist = driver.findElement(By.cssSelector("[title='Delete this playlist']"));
         deletePlaylist.click();
     }
 
-    private void clickPlaylist() {
+    private Boolean clickPlaylist() {
         WebElement playlist = driver.findElement(By.cssSelector("#playlists li:nth-child(3)"));
+        Assert.assertTrue(playlist.isDisplayed());
         playlist.click();
+        return true;
     }
 
 }
