@@ -4,13 +4,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.DataProvider;
 
 import java.time.Duration;
 
@@ -78,6 +75,21 @@ public class BaseTest {
         //providePassword("te$t$tudent");
         //WebDriverWait wait = new WebDriverWait(driver, 10);
         //WebElement submitButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[type = 'submit']")));
+        clickSubmitButton();
+    }
+
+    @DataProvider (name = "User Credentials")
+    public static Object[][] getDataFromDataProviders() {
+        return new Object[][]{
+                {"alina.nikolaienko@testpro.io", "OPJKDUhA"},
+                {"demo@testpro.io", "te$t$tudent"}
+        };
+    }
+
+    public void loginToKoelWithDataProvider(String email, String password){
+        navigateToPage();
+        provideEmail(email);
+        providePassword(password);
         clickSubmitButton();
     }
 
