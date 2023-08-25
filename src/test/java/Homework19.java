@@ -14,7 +14,7 @@ public class Homework19 extends BaseTest {
         //loginToKoel();
         loginToKoelWithDataProvider(email, password);
 
-        String myNewPlaylist = "My Playlist To Delete";
+        String myNewPlaylist = "My New Playlist";
         createPlaylist(myNewPlaylist);
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -30,6 +30,7 @@ public class Homework19 extends BaseTest {
         String expectedMsg = "Deleted playlist \"" + myNewPlaylist + ".\"";
         Assert.assertEquals(verifySuccessNotification(), expectedMsg);
     }
+
 
     public void createPlaylist(String myNewPlaylist) {
         WebElement newPlaylistButton = driver.findElement(By.cssSelector("#playlists .fa.fa-plus-circle.create"));
