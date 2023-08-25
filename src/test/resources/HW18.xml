@@ -10,6 +10,8 @@
                     <include name="playSong" />
                 </methods>
             </class>
+            <class name="Homework17"/>
+            <class name="BaseTest"/>
         </classes>
     </test>
 </suite>

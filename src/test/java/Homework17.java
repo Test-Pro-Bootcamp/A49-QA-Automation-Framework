@@ -10,10 +10,7 @@ public class Homework17 extends BaseTest {
 
     @Test
     public void addSongToPlaylist() throws InterruptedException {
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
 
-        WebDriver driver = new ChromeDriver(options);
 
         String expectedSongAddedMessage = "Added 1 Song into \"Test Pro Playlist.\"";
 
