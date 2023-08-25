@@ -22,7 +22,6 @@ public class Homework16 extends BaseTest {
         //Step 1. Open koel login page
         String url = "https://qa.koel.app/";
         driver.get(url);
-        
 
         //Step 2. Click the Registration link
         WebElement registrationButton = driver.findElement(By.xpath("//a[contains(text(), 'Registration / Forgot password')]"));
