@@ -14,7 +14,7 @@ public class Homework19 extends BaseTest {
         //loginToKoel();
         loginToKoelWithDataProvider(email, password);
 
-        String myNewPlaylist = "My New Playlist";
+        String myNewPlaylist = "My Playlist To Delete";
         createPlaylist(myNewPlaylist);
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
