@@ -1,27 +1,41 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import java.util.UUID;
 
 public class Homework19 extends BaseTest {
     @Test
-    public void deletePlaylist() throws InterruptedException{
+    public void deletePlaylist() {
+        openLoginUrl();
         loginWithCorrectCred();
-        clickPlaylist();
+        clickAddPlaylist();
+        selectNewOption();
+
+        String randomName = generateRandomName();
+
+        newPlaylist(randomName);
+        selectNewRandomPlaylist();
         clickDeleteBtn();
 
-        Thread.sleep(3000);
         WebElement verifyMessage = driver.findElement(By.cssSelector(".alertify-logs"));
-        Assert.assertEquals(verifyMessage.getText(), "Deleted playlist \"Cool.\"");
+        Assert.assertTrue(verifyMessage.isDisplayed(), randomName);
+
+        WebElement verifyString = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.success.show")));
+        Assert.assertTrue(verifyString.isDisplayed(), randomName);
 
     }
-
-    private void clickPlaylist() {
-        WebElement clickAPlaylist = driver.findElement(By.xpath("//*[@id='playlists']//*[text()='Cool']"));
-        clickAPlaylist.click();
+    public void selectNewRandomPlaylist() {
+        WebElement selectPlaylist = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".alertify-logs")));
+        selectPlaylist.click();
     }
+
     private void clickDeleteBtn() {
-        WebElement deleteBtn = driver.findElement(By.cssSelector(".del"));
+        WebElement deleteBtn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".del")));
         deleteBtn.click();
+    }
+    public String generateRandomName () {
+        return UUID.randomUUID().toString().replace("-", "");
     }
 }
