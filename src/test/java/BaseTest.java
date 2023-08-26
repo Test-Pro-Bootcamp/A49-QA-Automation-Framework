@@ -8,18 +8,21 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Parameters;
 
 import java.time.Duration;
 
 public class BaseTest {
-    WebDriver driver;
-
+    public WebDriver driver = null;
+//    public String url = "https://qa.koel.app/";
+    public String url;
     @BeforeMethod
-    public void setUpBrowser(){
+    @Parameters({"BaseURL"})
+    public void launchBrowser(String baseURL){
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
         options.addArguments("--disable-notifications");
-
+        url = baseURL;
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().window().maximize();
@@ -125,5 +128,20 @@ public class BaseTest {
         searchInput.click();
         searchInput.clear();
         searchInput.sendKeys(inputText);
+    }
+//Click on OK when deleting a Playlist
+    protected void clickOKPopUP() {
+        WebElement clickOk = driver.findElement(By.cssSelector(".ok"));
+        clickOk.click();
+    }
+//Click on the X Playlist to delete playlist
+    protected void clickDeletePlaylist() {
+        WebElement deletePlaylist = driver.findElement(By.cssSelector("button[title='Delete this playlist']"));
+        deletePlaylist.click();
+    }
+//Select a Playlist if there is one available
+    protected void clickPlaylist() {
+        WebElement selectPlaylist = driver.findElement(By.cssSelector("[class='playlist playlist']"));
+        selectPlaylist.click();
     }
 }

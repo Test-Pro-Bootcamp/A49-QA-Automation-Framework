@@ -13,9 +13,9 @@ public class LoginTests extends BaseTest {
         providePassword();
 
         clickSubmit();
-        clickSubmit();
 
-        String url = "https://qa.koel.app/";
+
+//        String url = "https://qa.koel.app/";
         driver.get(url);
         Assert.assertEquals(driver.getCurrentUrl(), url);
         driver.quit();
