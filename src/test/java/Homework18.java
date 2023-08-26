@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 public class Homework18 extends BaseTest {
 
     @Test
-    public void playSong () throws InterruptedException {
+    public void playSong() throws InterruptedException{
         loginWithCorrectCred();
         clickSong();
         selectASong();
@@ -15,4 +15,5 @@ public class Homework18 extends BaseTest {
         WebElement verifySongState = driver.findElement(By.cssSelector("[data-test=\"soundbars\"]"));
         Assert.assertTrue(verifySongState.isDisplayed());
     }
+
 }

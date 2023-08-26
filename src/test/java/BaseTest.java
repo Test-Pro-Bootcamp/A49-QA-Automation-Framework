@@ -4,14 +4,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Parameters;
-
 import java.util.UUID;
-
 import java.time.Duration;
 
 public class BaseTest {
@@ -19,6 +18,8 @@ public class BaseTest {
 
 //    public String url = "https://qa.koel.app/";
     public String url;
+
+    WebDriverWait wait;
 
     @BeforeSuite
     static void setupClass() {
@@ -31,48 +32,55 @@ public class BaseTest {
         //    Added ChromeOptions argument below to fix websocket error
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
+        options.addArguments("--disable-notifications");
+        options.addArguments("--start-maximized");
         url=baseURL;
         driver = new ChromeDriver(options);
+//        wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.manage().window().maximize();
     }
+    //After all methods close the browser
     @AfterMethod
     public void closeBrowser() {
         driver.quit();
     }
-
+    //Open "https://qa.koel.app/"
     public void openLoginUrl() {
         driver.get(url);
     }
-
+    //Enter Email as a string
     public void enterEmail(String email) {
         WebElement emailInput = driver.findElement(By.cssSelector("input[type='email']"));
         emailInput.click();
         emailInput.clear();
         emailInput.sendKeys(email);
     }
-
+    //Enter password as a string
     public void enterPassword(String password) {
         WebElement passwordInput = driver.findElement(By.cssSelector("input[type='password']"));
         passwordInput.click();
         passwordInput.clear();
         passwordInput.sendKeys(password);
     }
-
+    //Click Login Btn
     public void clickSubmit() {
         WebElement submitBtn = driver.findElement(By.cssSelector("button[type='submit']"));
         submitBtn.click();
     }
 
-    //Login method
+    //Login method for "Valid credentials"
     public void loginWithCorrectCred() {
-        openLoginUrl();
         enterEmail("emiliano.castillo@testpro.io");
         enterPassword("te$t$tudent");
         clickSubmit();
     }
-
-
+    //Login method for "Invalid credentials"
+    public void loginWithIncorrectCred() {
+        enterEmail("invalidemail@class.com");
+        enterPassword("te$t$tudent");
+        clickSubmit();
+    }
 
     //Profile Test Helper Functions
     public void clickAvatarIcon() {
@@ -126,24 +134,25 @@ public class BaseTest {
         addToPlaylistNice.click();
     }
 
-    //Homework18
-    public void clickSong() {
-        WebElement clickAllSongsTab = driver.findElement(By.cssSelector(".music .songs"));
-        clickAllSongsTab.click();
-    }
-    public void selectASong() throws InterruptedException {
-        WebElement selectSong = driver.findElement(By.cssSelector("#songsWrapper tr.song-item"));
-        selectSong.click();
-        Thread.sleep(3000);
-    }
-    public void playNextBtn() throws InterruptedException{
-        WebElement playNextSong = driver.findElement(By.cssSelector("[data-testid='play-next-btn']"));
-        playNextSong.click();
-        Thread.sleep(3000);
-    }
-    public void playBtn() throws InterruptedException {
-        WebElement clickPlayBtn = driver.findElement(By.cssSelector("[data-testid='play-btn']"));
-        clickPlayBtn.click();
-        Thread.sleep(3000);
-    }
+
+        //Homework18
+        public void clickSong() {
+            WebElement clickAllSongsTab = driver.findElement(By.cssSelector(".music .songs"));
+            clickAllSongsTab.click();
+        }
+        public void selectASong() throws InterruptedException {
+            WebElement selectSong = driver.findElement(By.cssSelector("#songsWrapper tr.song-item"));
+            selectSong.click();
+            Thread.sleep(3000);
+        }
+        public void playNextBtn() throws InterruptedException{
+            WebElement playNextSong = driver.findElement(By.cssSelector("[data-testid='play-next-btn']"));
+            playNextSong.click();
+            Thread.sleep(3000);
+        }
+        public void playBtn() throws InterruptedException {
+            WebElement clickPlayBtn = driver.findElement(By.cssSelector("[data-testid='play-btn']"));
+            clickPlayBtn.click();
+            Thread.sleep(3000);
+        }
 }
