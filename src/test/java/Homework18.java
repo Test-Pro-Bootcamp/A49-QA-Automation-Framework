@@ -10,7 +10,7 @@ public class Homework18 extends BaseTest {
         clickNextSongBtn();
         clickPlaySong();
         verifySongIsPlaying();
-        
+
 
 
 
