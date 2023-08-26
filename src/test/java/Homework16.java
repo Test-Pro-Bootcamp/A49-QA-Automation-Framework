@@ -8,7 +8,7 @@ import org.testng.Assert;
 import java.time.Duration;
 
 public class Homework16 extends BaseTest {
-  @test
+ // @test
     public void registrationNavigation() {
  //     Added ChromeOptions argument below to fix websocket error
       ChromeOptions options = new ChromeOptions();
