@@ -33,11 +33,11 @@ public class BaseTest {
     static void setupClass() {
         WebDriverManager.chromedriver().setup();
     }
-
+//navigate to URL
     public void navigateToPage() {
         driver.get("https://qa.koel.app/");
     }
-
+//enter a Valid Email
     public void provideEmail() {
         WebElement loginInput = driver.findElement(By.cssSelector("[type='email']"));
         loginInput.click();
@@ -45,7 +45,7 @@ public class BaseTest {
         loginInput.sendKeys("xu_moua@hotmail.com");
 
     }
-
+//enter a Valid Password
     public void providePassword() {
         WebElement passwordInput = driver.findElement(By.cssSelector("[type='password']"));
         passwordInput.click();
@@ -53,55 +53,77 @@ public class BaseTest {
         passwordInput.sendKeys("TestStudent!1");
 
     }
-
+//click on Submit Button
     public void clickSubmit() {
         WebElement loginBtn = driver.findElement(By.cssSelector("button[type='submit']"));
         loginBtn.click();
     }
-
-    protected void clickSaveBtn() {
+//click on save button
+    public void clickSaveBtn() {
             WebElement saveBtn = driver.findElement(By.cssSelector("section[id='songResultsWrapper'] button[title='Save']"));
             saveBtn.click();
     }
-
-    protected void verifySuccessMessage() {
+//verify song is added to playlist
+    public void verifySuccessMessage() {
             WebElement popUpNotification = driver.findElement(By.cssSelector(".success.show"));
             Assert.assertTrue(popUpNotification.isDisplayed());
     }
-
-    protected void enterPlaylistName() {
+//enter a playlist name
+    public void enterPlaylistName() {
             WebElement newPlaylist = driver.findElement(By.cssSelector("section[id='songResultsWrapper'] input[placeholder='Playlist name']"));
             newPlaylist.click();
             newPlaylist.clear();
             newPlaylist.sendKeys("Greatest Hits");
     }
-
-    protected void clickAddToBtn() {
+//add a song to a location
+    public void clickAddToBtn() {
             WebElement addToBtn = driver.findElement(By.cssSelector("[data-test='add-to-btn']"));
             addToBtn.click();
     }
-
-    protected void clickSongTitle() {
+//click and highlight a song
+    public void clickSongTitle() {
             WebElement clickSong = driver.findElement(By.xpath("//*[@id='songResultsWrapper']/div/div/div[1]/table/tr[1]/td[2]"));
             clickSong.click();
     }
-
-    protected void clickViewAllBtn() {
+//click on view all button
+    public void clickViewAllBtn() {
             WebElement viewAllBtn = driver.findElement(By.cssSelector("button[data-test='view-all-songs-btn']"));
             viewAllBtn.click();
     }
-
-    protected void enterSongIntoSearchField() {
+//click on Search Field and enter a song title
+    public void enterSongIntoSearchField() {
             WebElement searchInput = driver.findElement(By.cssSelector("input[placeholder='Press F to search']"));
             searchInput.click();
             searchInput.clear();
             searchInput.sendKeys("Dark Days");
     }
+//Navigate to and login with valid credentials
     public void logInWithRightCredentials(){
         navigateToPage();
         provideEmail();
         providePassword();
         clickSubmit();
     }
-
+//Verify that the song is playing and the sound bar is moving
+    public void verifySongIsPlaying() {
+        WebElement soundBars = driver.findElement(By.cssSelector("[data-testid='sound-bar-play']"));
+        Assert.assertTrue(soundBars.isDisplayed());
+    }
+//Click on Play Button on Player Control
+    public void clickPlaySong() {
+        WebElement playSong = driver.findElement(By.cssSelector("[data-testid='play-btn']"));
+        playSong.click();
+    }
+//Click on the Next Song on Player Control
+    public void clickNextSongBtn() {
+        WebElement playNextSong = driver.findElement(By.cssSelector("[data-testid='play-next-btn']"));
+        playNextSong.click();
+    }
+//Enter a Song Name into Search Field
+    protected void enterSongTitle(By inputLocator, String inputText) {
+        WebElement searchInput = driver.findElement(inputLocator);
+        searchInput.click();
+        searchInput.clear();
+        searchInput.sendKeys(inputText);
+    }
 }
