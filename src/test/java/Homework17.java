@@ -3,7 +3,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 
-public class Homework17 extends BaseTest{
+public class Homework17 extends BaseTest {
 
     @Test
     public void addSongToPlaylist() throws InterruptedException {
@@ -12,20 +12,20 @@ public class Homework17 extends BaseTest{
 
         navigateToPage();
         provideEmail("demo@class.com");
-       providePassword("te$t$tudent");
+        providePassword("te$t$tudent");
         clickSubmit();
         Thread.sleep(2000);
         searchSong("Pluto");
         Thread.sleep(2000);
         clickViewAllBtn();
-       selectFirstSongResult();
-       clickAddToBtn();
+        selectFirstSongResult();
+        clickAddToBtn();
         choosePlaylist();
         Assert.assertEquals(getAddToPlaylistSuccessMessage(), expectedSongAddedMessage);
     }
 
 
-    }
+}
 
 
 
