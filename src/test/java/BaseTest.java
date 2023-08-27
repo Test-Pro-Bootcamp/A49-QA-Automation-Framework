@@ -4,24 +4,30 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Parameters;
 
+import java.security.PublicKey;
 import java.time.Duration;
 
 public class BaseTest {
     public WebDriver driver = null;
 //    public String url = "https://qa.koel.app/";
     public String url;
+
+//    WebDriverWait wait;
     @BeforeMethod
     @Parameters({"BaseURL"})
     public void launchBrowser(String baseURL){
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
         options.addArguments("--disable-notifications");
+//        wait = new WebDriverWait(driver,Duration.ofSeconds(20));
         url = baseURL;
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
