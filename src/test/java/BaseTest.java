@@ -123,7 +123,7 @@ public class BaseTest {
     }
     //Selects new playlist option
     public void selectNewOption () {
-        WebElement selectNewPlaylist = driver.findElement(By.cssSelector("[data-testid='playlist-context-menu-create-simple']"));
+        WebElement selectNewPlaylist = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[data-testid='playlist-context-menu-create-simple']")));
         selectNewPlaylist.click();
     }
     //Inputs random string as new playlist name, So when I delete it this test will function everytime no matter what
