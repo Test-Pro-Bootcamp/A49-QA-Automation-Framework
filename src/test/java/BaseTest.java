@@ -38,6 +38,7 @@ public class BaseTest {
         options.addArguments("--disable-popup-blocking");
         options.addArguments("--disable-notifications");
         driver = new ChromeDriver(options);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         url = BaseURL;
         driver.get(url);
         wait = new WebDriverWait(driver, Duration.ofSeconds(4));
