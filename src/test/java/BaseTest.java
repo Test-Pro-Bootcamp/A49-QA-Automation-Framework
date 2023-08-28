@@ -8,6 +8,7 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Parameters;
 
 import java.time.Duration;
 import java.util.UUID;
@@ -19,16 +20,17 @@ public class BaseTest {
         static void setupClass() {
             WebDriverManager.chromedriver().setup();
         }
-        @BeforeMethod
-        public void launchBrowser() {
+    @BeforeMethod
+    @Parameters({"BaseURL"})
+    public void launchBrowser(String baseURL) {
         //Added ChromeOptions argument below to fix websocket error
-            ChromeOptions options = new ChromeOptions();
-            options.addArguments("--remote-allow-origins=*");
-            options.addArguments("--disable-notifications");
-            options.addArguments("--start-maximized");
-
-            driver = new ChromeDriver(options);
-            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--remote-allow-origins=*");
+        options.addArguments("--disable-notifications");
+        options.addArguments("--start-maximized");
+        url=baseURL;
+        driver = new ChromeDriver(options);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
         @AfterMethod
