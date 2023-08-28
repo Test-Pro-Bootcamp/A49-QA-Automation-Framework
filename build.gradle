@@ -14,11 +14,12 @@ dependencies {
     implementation 'org.seleniumhq.selenium:selenium-java:4.5.0'
     testImplementation 'io.github.bonigarcia:webdrivermanager:5.4.1'
     implementation 'com.github.hemanthsridhar:testng-ext-dataprovider:14.3.0'
+}
 
 
 test {
     useTestNG() {
-        suites "src/test/resources/HM19.xml"
+        suites "src/test/resources/HM20.xml"
     }
 }
 /*
