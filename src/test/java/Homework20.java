@@ -7,7 +7,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class Homework20 extends BaseTest {
     @Test(description = "Homework 20 -  implementExplicitWaits")
 
-    public void deletePlaylist() {
+    public void deletePlaylist() throws InterruptedException{
 
 
 
@@ -22,7 +22,8 @@ public class Homework20 extends BaseTest {
 
 
 
-    }
 
+
+    }
 
 }
