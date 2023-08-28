@@ -63,10 +63,4 @@ public class Homework20 extends BaseTest {
         WebElement deletePlaylistButton = driver.findElement(By.cssSelector(".del.btn-delete-playlist"));
         deletePlaylistButton.click();
     }
-
-
-
-
-
-
 }
