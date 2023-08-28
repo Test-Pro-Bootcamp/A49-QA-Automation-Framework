@@ -42,7 +42,7 @@ public class BaseTest {
 
     @AfterMethod
     public void closeBrowser() {
-        //driver.quit();
+        driver.quit();
     }
 
     public void navigateToPage() {
@@ -70,14 +70,4 @@ public class BaseTest {
         String randomString = RandomStringUtils.randomAlphabetic(lettersAmount);
         return randomString;
     }
-
-    @DataProvider(name = "IncorrectLoginData")
-    public static Object[][] getDataFromDataProviders() {
-        return new Object[][]{
-                {"notExisting@email.com", "notExistingPassword"},
-                {"demo@class.com", ""},
-                {"", ""}
-        };
-    }
-
 }
