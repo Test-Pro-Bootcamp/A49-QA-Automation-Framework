@@ -27,9 +27,10 @@ public class BaseTest {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
         options.addArguments("--disable-notifications");
+        driver = new ChromeDriver(options);
         wait = new WebDriverWait(driver,Duration.ofSeconds(10));
         url = baseURL;
-        driver = new ChromeDriver(options);
+
 //        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().window().maximize();
 
