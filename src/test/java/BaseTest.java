@@ -5,6 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.*;
+import com.github.hemanthsridhar.CSVUtils;
+import com.github.hemanthsridhar.lib.ExtUtils;
 
 import java.time.Duration;
 
@@ -66,6 +68,12 @@ public class BaseTest {
 
     }
 
+    @DataProvider(name = "csvData")
+    public Object[][] csvDataRead() throws Exception {
+        String path ="src/test/resources/TestData.csv";
+        ExtUtils ext = new CSVUtils(path,false);
+        return ext.parseData();
+    }
 
     public void loginToKoel() {
         navigateToPage();
