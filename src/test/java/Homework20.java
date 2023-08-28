@@ -23,7 +23,6 @@ public class Homework20 extends BaseTest{
         provideEmail("bhakti.damle@testpro.io");
         providePassword("Mangodesk234!");
         clickSubmit();
-        wait = new WebDriverWait(driver, Duration.ofSeconds(4));
         clickMyPlaylist();
         clickDeleteMyPlaylist();
         Assert.assertTrue(getDeletedPlaylistNotification().contains(playlistDeletedMessage));

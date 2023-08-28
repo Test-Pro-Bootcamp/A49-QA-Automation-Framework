@@ -19,7 +19,7 @@ public class BaseTest {
 
     public static String url = "";
 
-   public static WebDriverWait wait;
+   public static  WebDriverWait wait;
 
 
 
@@ -54,20 +54,20 @@ public class BaseTest {
         passwordField.sendKeys(password);
     }
     public static void clickSubmit() throws InterruptedException {
-        WebElement submitButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@type='submit']")));
+        WebElement submitButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@type='submit']")));
         submitButton.click();
 
     }
     public void clickMyPlaylist() throws InterruptedException{
 
-        WebElement myPlayListElement = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='playlists']/ul/li[3]")));
+        WebElement myPlayListElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='playlists']/ul/li[3]")));
         myPlayListElement.click();
 
 
     }
     public void clickDeleteMyPlaylist(){
 
-        WebElement clickDeleteMyPlaylistElement = driver.findElement(By.xpath("//button[@class='del btn-delete-playlist']"));
+        WebElement clickDeleteMyPlaylistElement = driver.findElement(By.xpath("//button[@ title='Delete this playlist']"));
         clickDeleteMyPlaylistElement.click();
     }
 
