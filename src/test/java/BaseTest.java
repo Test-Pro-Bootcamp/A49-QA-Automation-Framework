@@ -21,7 +21,7 @@ public class BaseTest {
     @BeforeMethod
     public void launchBrowser() {
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remove-allow-origins=*");
+        options.addArguments("--remote-allow-origins=*");
 
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));

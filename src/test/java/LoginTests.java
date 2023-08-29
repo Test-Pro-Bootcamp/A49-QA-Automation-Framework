@@ -75,7 +75,7 @@ public class LoginTests extends BaseTest {
     public void loginValidEmailInvalidPassword () {
 
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
+        options.addArguments("--remove-allow-origins=*");
 
         WebDriver driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));

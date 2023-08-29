@@ -10,12 +10,9 @@ public class Homework17 extends BaseTest{
 
     @Test
     public void addSongToPlaylist() throws InterruptedException {
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
 
-        WebDriver driver = new ChromeDriver(options);
 
-        String expectedSongAddedMessage = "Added 1 Song into \"Test Pro Playlist.\"";
+        String expectedSongAddedMessage = "Added 1 Song into \"Prepare for battle.\"";
 
         navigateTopage();
         provideEmail("dirzo@gmail.com");
@@ -36,19 +33,19 @@ public class Homework17 extends BaseTest{
     }
 
     private void selectPlaylist() throws InterruptedException {
-        WebElement playlist = driver.findElement(By.xpath("//a[normalize-space()='Prepare for battle']"));
+        WebElement playlist = driver.findElement(By.xpath("//section[@id='songResultsWrapper']//li[contains(text(),'Prepare for battle')]"));
         playlist.click();
         Thread.sleep(2000);
     }
 
     private void clickAddtoBtn() throws InterruptedException {
-        WebElement addToBtn = driver.findElement(By.cssSelector("button[title='Add selected songs to…']"));
+        WebElement addToBtn = driver.findElement(By.xpath("//section[@id='songResultsWrapper']//button[@data-test='add-to-btn']"));
         addToBtn.click();
         Thread.sleep(2000);
     }
 
     private void selectFirstSong() {
-        WebElement firstUp = driver.findElement(By.xpath("//section[@id='songResultsWrapper']//tr[@class='song-item selected']"));
+        WebElement firstUp = driver.findElement(By.xpath("//section[@id='songResultsWrapper']//tr[@class='song-item'][1]"));
         firstUp.click();
     }
 
@@ -59,7 +56,7 @@ public class Homework17 extends BaseTest{
     }
 
     private void searchASong(String name) throws InterruptedException {
-        WebElement searchBar = driver.findElement(By.cssSelector("div#searchForm>input[type='search]"));
+        WebElement searchBar = driver.findElement(By.xpath("//input[@placeholder='Press F to search']"));
         searchBar.sendKeys(name);
         Thread.sleep(1500);
     }
