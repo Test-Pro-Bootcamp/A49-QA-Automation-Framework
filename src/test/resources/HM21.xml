@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="HM for waits">
+    <parameter name="BaseURL" value="https://qa.koel.app/"></parameter>
+<<<<<<< Updated upstream
+    <test name="Test for playing a song" preserve-order="false">
+        <classes>
+
+            <class name="practiceBeforeHM21"/>
+            <methods>
+                <include name="playingSongFromMostPlayed"/>
+                <include name="playingSongFromAllSongs"/>
+                <include name="hoverOverPlayButton" />
+                <include name="countSongsInPlaylist"/>
+            </methods>
+        </classes>
+    </test>
+</suite>
+
