@@ -12,8 +12,6 @@ public class Homework16 extends BaseTest {
     @Test
     public void registrationNavigation(){
 
-
-
         WebElement registrationButton = theDriver.findElement(new By.ByXPath("//*[@href='registration']"));
         registrationButton.click();
 

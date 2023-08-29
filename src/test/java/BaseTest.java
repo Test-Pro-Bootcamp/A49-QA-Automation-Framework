@@ -11,19 +11,22 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
-
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.time.Duration;
 import java.util.Objects;
 import java.util.List;
 
+
 public class BaseTest {
     public static WebDriver theDriver = null;
-    public static String url = "https://qa.koel.app/";
+    //public static String url = "https://qa.koel.app/";
     public static  String searchResultsTable = "#songResultsWrapper > div > div > div.item-container > table";
     public static  String playListResultsTable = "#playlistWrapper > div > div > div.item-container > table";
     public static  String queueTable = "#queueWrapper > div > div > div.item-container > table";
+
 
     @BeforeSuite
     static void setupClass() {
@@ -31,15 +34,16 @@ public class BaseTest {
     }
 
     @BeforeMethod
-    public void launchBrowser() {
+    @Parameters({"BaseUrl"})
+
+    public void launchBrowser(String BaseUrl) {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
 
         theDriver = new ChromeDriver(options);
         theDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         theDriver.manage().window().maximize();
-        //String url = "https://qa.koel.app/";
-        theDriver.get(url);
+        theDriver.get(BaseUrl);
     }
 
     @AfterMethod
@@ -111,8 +115,9 @@ public class BaseTest {
 
     public void clickAddTo() {
         try {
-            WebDriverWait wait = new WebDriverWait(theDriver, Duration.ofSeconds(5));
+            WebDriverWait wait = new WebDriverWait(theDriver, Duration.ofSeconds(3));
             WebElement clickAddTo = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#songResultsWrapper > header > div.song-list-controls > span > button.btn-add-to")));
+            //WebElement clickAddTo = theDriver.findElement(By.cssSelector("#songResultsWrapper > header > div.song-list-controls > span > button.btn-add-to"));
             clickAddTo.click();
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -131,7 +136,7 @@ public class BaseTest {
 
     public String showBanner(String textBanner) throws NoSuchElementException {
         try {
-            WebDriverWait wait = new WebDriverWait(theDriver, Duration.ofSeconds(3));
+            WebDriverWait wait = new WebDriverWait(theDriver, Duration.ofSeconds(5));
             WebElement notification = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("body > div.alertify-logs.top.right > div")));
 
             while (!Objects.equals(notification.getText(), textBanner)){
@@ -168,12 +173,30 @@ public class BaseTest {
         shuffleButton.click();
     }
     public void openPlaylist () {
-        WebElement clearMyPlaylist = theDriver.findElement(By.cssSelector("a[href*='#!/playlist/67352']"));
+        WebElement clearMyPlaylist = theDriver.findElement(By.cssSelector("a[href*='#!/playlist/']"));
         clearMyPlaylist.click();
     }
     public void openQueue() {
         WebElement currentQueue = theDriver.findElement(By.cssSelector("a[href*='#!/queue']"));
         currentQueue.click();
+    }
+    public void deleteMyPlaylist() {
+        WebElement existingPlaylist = theDriver.findElement(new By.ByCssSelector("[class='del btn-delete-playlist']"));
+        existingPlaylist.click();
+    }
+    public void confirmDeleting() {
+        WebElement popUpMessage = theDriver.findElement(new By.ByCssSelector("div.alertify >div >div>nav >button.ok"));
+        popUpMessage.click();
+    }
+    public void createSimplePlaylist (String playlistName) throws  InterruptedException{
+        WebElement playlistInput = theDriver.findElement(By.cssSelector("#songResultsWrapper > header > div  form.form-save > input:required"));
+        Thread.sleep(3000);
+        playlistInput.click();
+        Thread.sleep(3000);
+        playlistInput.clear();
+        playlistInput.sendKeys(playlistName);
+        WebElement submitPlaylistButton = theDriver.findElement(By.cssSelector("#songResultsWrapper > header > div.song-list-controls > div > section.new-playlist > form > button"));
+        submitPlaylistButton.click();
     }
 
 }
