@@ -54,12 +54,12 @@ public class BaseTest {
         passwordField.clear();
         passwordField.sendKeys(password);
     }
-    public static void clickSubmit() throws InterruptedException {
+    public static void clickSubmit()  {
         WebElement submitButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@type='submit']")));
         submitButton.click();
 
     }
-    public void clickMyPlaylist() throws InterruptedException{
+    public void clickMyPlaylist() {
 
         WebElement myPlayListElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='playlists']/ul/li[3]")));
         myPlayListElement.click();

@@ -17,7 +17,7 @@ import java.time.Duration;
 public class Homework20 extends BaseTest{
 
     @Test
-    public void deletePlaylist() throws InterruptedException{
+    public void deletePlaylist() {
 
         String playlistDeletedMessage ="Deleted playlist";
         provideEmail("bhakti.damle@testpro.io");
