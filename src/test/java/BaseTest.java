@@ -9,10 +9,11 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
 
-import java.util.concurrent.TimeUnit;
+import java.time.Duration;
 
 public class BaseTest {
     public WebDriver driver = null;
+    //public static Actions actions = null;
 
     //public String url = "https://qa.koel.app/";
     public String url;
@@ -33,8 +34,10 @@ public class BaseTest {
 
         url = baseUrl;
         driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        //driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         //driver.manage().window().maximize();
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
     }
 
     @AfterMethod
