@@ -136,7 +136,7 @@ public class BaseTest {
 
     public String showBanner(String textBanner) throws NoSuchElementException {
         try {
-            WebDriverWait wait = new WebDriverWait(theDriver, Duration.ofSeconds(5));
+            WebDriverWait wait = new WebDriverWait(theDriver, Duration.ofSeconds(3));
             WebElement notification = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("body > div.alertify-logs.top.right > div")));
 
             while (!Objects.equals(notification.getText(), textBanner)){
@@ -189,7 +189,7 @@ public class BaseTest {
         popUpMessage.click();
     }
     public void createSimplePlaylist (String playlistName) {
-        WebElement playlistInput = theDriver.findElement(By.cssSelector("#songResultsWrapper > header > div  form.form-save > input:required"));
+        WebElement playlistInput = theDriver.findElement(By.cssSelector("#songResultsWrapper > header > div  form.form-new-playlist > input"));
         playlistInput.click();
         playlistInput.clear();
         playlistInput.sendKeys(playlistName);
@@ -197,15 +197,15 @@ public class BaseTest {
         submitPlaylistButton.click();
     }
 
-    public void playlistCheck() {
+    public void playlistCheck(String playlistName, String song) {
         try {
             openPlaylist();
         } catch (Exception e) {
-            search("dark");
+            search(song);
             clickViewAll();
-            returnAnySong(1, searchResultsTable, 1).click();
+            returnAnySong(0, searchResultsTable, 1).click();
             clickAddTo();
-            createSimplePlaylist("first playlist");
+            createSimplePlaylist(playlistName);
         }
     }
 }

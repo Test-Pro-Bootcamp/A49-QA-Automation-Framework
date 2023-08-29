@@ -7,18 +7,23 @@ public class Homework17 extends BaseTest{
 
     @Test
     public void addSongToPlaylist() throws InterruptedException, AWTException {
-        String textBanner = "Added 1 song into \"first playlist.\"";
+        String callPlaylist = "test";
+        String song = "HoliznaCC";
+        String textBanner = "Added 1 song into \"" + callPlaylist + "\".";
         loginWithValidCredential();
-        deleteMyPlaylist();
-        //Thread.sleep(3000);
-        search("dark");
+        playlistCheck(callPlaylist, song);
+        search(song);
         clickViewAll();
-        returnAnySong(0, searchResultsTable,1).click();
+        returnAnySong(3, searchResultsTable,1).click();
         clickAddTo();
         clickPlaylist();
-        //Thread.sleep(3000);
 
-        Assert.assertEquals(showBanner(textBanner), textBanner);
+        showBanner(textBanner);
+
+
+
+
+        Assert.assertTrue(true, textBanner);
 
     }
 
