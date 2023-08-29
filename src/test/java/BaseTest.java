@@ -188,15 +188,24 @@ public class BaseTest {
         WebElement popUpMessage = theDriver.findElement(new By.ByCssSelector("div.alertify >div >div>nav >button.ok"));
         popUpMessage.click();
     }
-    public void createSimplePlaylist (String playlistName) throws  InterruptedException{
+    public void createSimplePlaylist (String playlistName) {
         WebElement playlistInput = theDriver.findElement(By.cssSelector("#songResultsWrapper > header > div  form.form-save > input:required"));
-        Thread.sleep(3000);
         playlistInput.click();
-        Thread.sleep(3000);
         playlistInput.clear();
         playlistInput.sendKeys(playlistName);
         WebElement submitPlaylistButton = theDriver.findElement(By.cssSelector("#songResultsWrapper > header > div.song-list-controls > div > section.new-playlist > form > button"));
         submitPlaylistButton.click();
     }
 
+    public void playlistCheck() {
+        try {
+            openPlaylist();
+        } catch (Exception e) {
+            search("dark");
+            clickViewAll();
+            returnAnySong(1, searchResultsTable, 1).click();
+            clickAddTo();
+            createSimplePlaylist("first playlist");
+        }
+    }
 }

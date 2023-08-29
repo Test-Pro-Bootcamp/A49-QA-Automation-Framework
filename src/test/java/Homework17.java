@@ -9,7 +9,7 @@ public class Homework17 extends BaseTest{
     public void addSongToPlaylist() throws InterruptedException, AWTException {
         String textBanner = "Added 1 song into \"first playlist.\"";
         loginWithValidCredential();
-        clearMyPlaylist();
+        deleteMyPlaylist();
         //Thread.sleep(3000);
         search("dark");
         clickViewAll();
