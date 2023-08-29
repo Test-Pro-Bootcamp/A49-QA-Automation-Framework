@@ -14,7 +14,7 @@ public class Homework17 extends BaseTest {
 
         String expectedSongAddedMessage = "Added 1 Song into \"Test Pro Playlist.\"";
 
-        //navigateTopage();
+        openPortal();
         castEmail("dirzo@gmail.com");
         castPassword("Te$ter1234");
         castSubmit();
@@ -33,7 +33,7 @@ public class Homework17 extends BaseTest {
     }
 
     private void selectPlaylist() throws InterruptedException {
-        WebElement playlist = driver.findElement(By.xpath("//a[normalize-space()='Prepare for battle']"));
+        WebElement playlist = driver.findElement(By.xpath("//section[@id='songResultsWrapper']//tr[@class='song-item'][1]"));
         playlist.click();
         Thread.sleep(2000);
     }
@@ -56,10 +56,16 @@ public class Homework17 extends BaseTest {
     }
 
     private void searchASong(String name) throws InterruptedException {
-        WebElement searchBar = driver.findElement(By.cssSelector("div#searchForm>input[type='search]"));
+        WebElement searchBar = driver.findElement(By.xpath("//input[@placeholder='Press F to search']"));
         searchBar.sendKeys(name);
         Thread.sleep(1500);
+
     }
+    private void openPortal() {
+        driver.get(url);
+
+    }
+
 }
 /*
 
