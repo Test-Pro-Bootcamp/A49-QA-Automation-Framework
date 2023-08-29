@@ -8,7 +8,7 @@ public class Homework18 extends BaseTest{
 
     @Test
     public void playSong() {
-
+        openPortal();
         castEmail("dirzo@gmail.com");
         castPassword("Te$ter1234");
         castSubmit();
@@ -16,7 +16,7 @@ public class Homework18 extends BaseTest{
         Assert.assertTrue(summonSong());
     }
 
-    private void castPlay() {
+    public void castPlay() {
         WebElement nextButton = driver.findElement(By.xpath("//i[@data-testid='play-next-btn']"));
         WebElement playButton = driver.findElement(By.xpath("//span[@data-testid='play-btn']"));
 
