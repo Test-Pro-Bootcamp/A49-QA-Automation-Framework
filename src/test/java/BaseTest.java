@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -12,12 +13,12 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Parameters;
 
-import java.security.PublicKey;
 import java.time.Duration;
 
 public class BaseTest {
-    public WebDriver driver;
+    public WebDriver driver=null;
 //    public String url = "https://qa.koel.app/";
+    public static Actions actions = null;
     public String url;
 
     WebDriverWait wait;
@@ -27,9 +28,10 @@ public class BaseTest {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
         options.addArguments("--disable-notifications");
+        url = baseURL;
         driver = new ChromeDriver(options);
         wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-        url = baseURL;
+        actions = new Actions(driver);
 
 //        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().window().maximize();
@@ -83,7 +85,7 @@ public class BaseTest {
             WebElement newPlaylist = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("section[id='songResultsWrapper'] input[placeholder='Playlist name']")));
             newPlaylist.click();
             newPlaylist.clear();
-            newPlaylist.sendKeys("Greatest Hits");
+            newPlaylist.sendKeys("Newest Hits");
     }
 //add a song to a location
     public void clickAddToBtn() {
@@ -130,12 +132,12 @@ public class BaseTest {
         playNextSong.click();
     }
 //Enter a Song Name into Search Field
-    protected void enterSongTitle(By inputLocator, String inputText) {
-        WebElement searchInput = driver.findElement(inputLocator);
-        searchInput.click();
-        searchInput.clear();
-        searchInput.sendKeys(inputText);
-    }
+//    protected void enterSongTitle(String inputText) {
+//        WebElement searchInput = driver.findElement(inputLocator);
+//        searchInput.click();
+//        searchInput.clear();
+//        searchInput.sendKeys(inputText);
+//    }
 //Click on OK when deleting a Playlist
     protected void clickOKPopUP() {
         WebElement clickOk = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".ok")));
