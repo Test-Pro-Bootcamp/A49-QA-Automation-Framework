@@ -14,13 +14,13 @@ public class Homework21 extends BaseTest{
 
         logInWithRightCredentials();
         doubleClickPlaylist();
-//        enterNewPlaylistName();
+        enterNewPlaylistName();
 
 
     }
 
     private void enterNewPlaylistName() {
-        WebElement enter = driver.findElement(By.cssSelector("[class='active'/Greatest Hits/]"));
+        WebElement enter = driver.findElement(By.xpath("//*[@id='playlists']/ul/li[3]/nav/ul/li[1]"));
         enter.click();
         enter.clear();
         enter.sendKeys("newest");
