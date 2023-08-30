@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
@@ -19,6 +20,8 @@ public class BaseTest {
 
 //    public String url = "https://qa.koel.app/";
     public String url;
+
+    public static Actions actions = null;
 
     WebDriverWait wait;
 
@@ -37,7 +40,7 @@ public class BaseTest {
         url=baseURL;
         driver = new ChromeDriver(options);
         wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-
+        actions = new Actions(driver);
 //        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
     }
     //After all methods. Close the browser
@@ -118,8 +121,7 @@ public class BaseTest {
     //Homework19
     //Clicks the "+" btn to add a new playlist
     public void clickAddPlaylist() {
-        WebElement newPlaylistBtn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[data-testid=\"sidebar-create-playlist-btn\"]")));
-        newPlaylistBtn.click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[data-testid=\"sidebar-create-playlist-btn\"]"))).click();
     }
     //Selects new playlist option
     public void selectNewOption () {
@@ -128,7 +130,7 @@ public class BaseTest {
     }
     //Inputs random string as new playlist name, So when I delete it this test will function everytime no matter what
     public void newPlaylist (String randomName) {
-        WebElement inputNewPlaylist = driver.findElement(By.cssSelector("#mainWrapper [name='name']"));
+        WebElement inputNewPlaylist = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#mainWrapper [name='name']")));
         inputNewPlaylist.clear();
         inputNewPlaylist.sendKeys(randomName);
         inputNewPlaylist.sendKeys(Keys.ENTER);

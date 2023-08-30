@@ -19,8 +19,8 @@ public class Homework19 extends BaseTest {
         selectNewRandomPlaylist();
         clickDeleteBtn();
 
-        WebElement verifyMessage = driver.findElement(By.cssSelector(".alertify-logs"));
-        Assert.assertTrue(verifyMessage.isDisplayed(), randomName);
+//        WebElement verifyMessage = driver.findElement(By.cssSelector(".alertify-logs"));
+//        Assert.assertTrue(verifyMessage.isDisplayed(), randomName);
 
         WebElement verifyString = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.success.show")));
         Assert.assertTrue(verifyString.isDisplayed(), randomName);
