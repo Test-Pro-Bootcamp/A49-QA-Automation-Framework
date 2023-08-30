@@ -7,11 +7,11 @@ import org.testng.annotations.Test;
 public class Homework19 extends BaseTest {
     @Test
     public void deletePlaylist() throws InterruptedException {
-        String expectedPlaylistDeleteMessage = "Delete playlist \"TestPro Playlist.\"";
+        String expectedPlaylistDeleteMessage = "Deleted playlist \"TestPro Playlist.\"";
 
        // navigateToPage();
-        provideEmail("demo@class.com");
-        providePassword("te$t$tudent");
+        provideEmail("gia.mitchell@testpro.io");
+        providePassword("Lovenoelle25");
         clickSubmit();
         openPlaylist();
         clickDeletePlaylistBtn();
