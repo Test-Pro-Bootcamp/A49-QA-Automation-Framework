@@ -70,6 +70,11 @@ public class BaseTest {
         emailInput.clear();
         emailInput.sendKeys(email);
     }
+    protected void loginWithValidCredential() {
+        enterEmail("anna.dudnik@testpro.io");
+        enterPassword("GulyalaKorova4milk!");
+        clickLogin();
+    }
     public void clearMyPlaylist() throws AWTException {
         openPlaylist();
 
@@ -117,7 +122,6 @@ public class BaseTest {
         try {
             WebDriverWait wait = new WebDriverWait(theDriver, Duration.ofSeconds(3));
             WebElement clickAddTo = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#songResultsWrapper > header > div.song-list-controls > span > button.btn-add-to")));
-            //WebElement clickAddTo = theDriver.findElement(By.cssSelector("#songResultsWrapper > header > div.song-list-controls > span > button.btn-add-to"));
             clickAddTo.click();
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -148,12 +152,6 @@ public class BaseTest {
         catch (Exception e){
             return e.getMessage();
         }
-    }
-
-    protected void loginWithValidCredential() {
-        enterEmail("anna.dudnik@testpro.io");
-        enterPassword("GulyalaKorova4milk!");
-        clickLogin();
     }
     public void doubleClick(int songNo, String sourceTable) {
         Actions actions = new Actions(theDriver);
@@ -208,4 +206,5 @@ public class BaseTest {
             createSimplePlaylist(playlistName);
         }
     }
+
 }

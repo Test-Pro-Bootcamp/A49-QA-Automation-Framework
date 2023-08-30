@@ -1,7 +1,7 @@
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class Homework19 extends BaseTest {
+public class Homework20 extends BaseTest{
     @Test
     public void deletePlaylist() throws InterruptedException {
         String song = "dark";
@@ -13,9 +13,7 @@ public class Homework19 extends BaseTest {
         confirmDeleting();
         showBanner(textBanner);
 
-        Assert.assertTrue(true,textBanner);
-
-
+        Assert.assertTrue(true, textBanner);
     }
 
 }
