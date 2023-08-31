@@ -1,3 +1,4 @@
+import com.beust.ah.A;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
@@ -5,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -19,6 +21,7 @@ public class BaseTest {
     //    public String url = "https://qa.koel.app/";
     public String url;
     WebDriverWait wait;
+    public static Actions actions = null;
 
 
     @BeforeSuite
@@ -38,6 +41,7 @@ public class BaseTest {
         driver = new ChromeDriver(options);
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        actions = new Actions(driver);
     }
 
     @AfterMethod
