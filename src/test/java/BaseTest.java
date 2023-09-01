@@ -60,7 +60,7 @@ public class BaseTest {
 
     public void clickSubmit() {
         WebElement submit = wait.until(ExpectedConditions.
-                visibilityOfElementLocated(By.cssSelector("button[type='submit']")));
+                visibilityOfElementLocated(By.cssSelector("[type='submit']")));
         submit.click();
     }
 }
