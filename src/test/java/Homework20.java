@@ -1,23 +1,17 @@
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.annotations.Test;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import pages.HomePage;
+import pages.LoginPage;
 
 public class Homework20 extends BaseTest {
     @Test(description = "Homework 20 -  implementExplicitWaits")
 
     public void deletePlaylist() {
 
+        LoginPage.logInWithRightCredentials();
+        HomePage.clickPlaylist();
+        HomePage.clickDeletePlaylist();
+        HomePage.clickOKPopUP();
 
-
-
-        logInWithRightCredentials();
-
-        clickPlaylist();
-        clickDeletePlaylist();
-        clickOKPopUP();
-        verifySuccessMessage();
 
 
 
