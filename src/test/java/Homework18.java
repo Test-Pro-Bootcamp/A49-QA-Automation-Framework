@@ -1,3 +1,4 @@
+
 import org.testng.annotations.Test;
 public class Homework18 extends BaseTest {
 
@@ -7,7 +8,8 @@ public class Homework18 extends BaseTest {
         loginPage.loginWithCorrectCred();
         homePage.clickSongsTab();
         homePage.selectASong();
-        homePage.playNextBtn();
+        homePage.playHover();
+        homePage.checkHover();
         homePage.playBtn();
         homePage.checkSoundbars();
     }

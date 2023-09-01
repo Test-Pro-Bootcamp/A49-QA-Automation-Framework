@@ -12,28 +12,31 @@ public class HomePage extends BasePage{
     public HomePage(WebDriver driver, WebDriverWait wait, Actions actions) {
         super(driver, wait, actions);
     }
-    public void clickAvatarIcon() {
-        WebElement avatarIcon = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[data-testid='view-profile-link']")));
-        avatarIcon.click();
+    //Play a song
+    By clickAvatarIcon = By.cssSelector("[data-testid='view-profile-link']");
+    By clickSongsTab = By.cssSelector(".music .songs");
+    By selectASong = By.cssSelector("#songsWrapper tr.song-item");
+//    By playNextBtn = By.cssSelector("[data-testid='play-next-btn']");
+    By playBtn = By.cssSelector("[data-testid='play-btn']");
+    public void clickAvatarIcon(){
+        findElement(clickAvatarIcon).click();
     }
-    //Homework18
-    //Method clicks on all songs tab
-    public void clickSongsTab() {
-        WebElement clickAllSongsTab = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".music .songs")));
-        clickAllSongsTab.click();
+    public void clickSongsTab(){
+        findElement(clickSongsTab).click();
     }
-    //Inputs random string as new playlist name, So when I delete it this test will function everytime no matter what
     public void selectASong() {
-        WebElement selectSong = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#songsWrapper tr.song-item")));
-        selectSong.click();
+        findElement(selectASong).click();
     }
-    public void playNextBtn() {
-        WebElement playNextSong = driver.findElement(By.cssSelector("[data-testid='play-next-btn']"));
-        playNextSong.click();
+    public WebElement playHover() {
+        WebElement play = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".side.player-controls")));
+        actions.moveToElement(play).perform();
+        return driver.findElement(By.cssSelector(".side.player-controls"));
+    }
+    public void checkHover(){
+        Assert.assertTrue(playHover().isDisplayed());
     }
     public void playBtn() {
-        WebElement clickPlayBtn = driver.findElement(By.cssSelector("[data-testid='play-btn']"));
-        clickPlayBtn.click();
+        findElement(playBtn).click();
     }
     public void clickDeleteBtn() {
         WebElement deleteBtn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".del")));

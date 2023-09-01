@@ -10,13 +10,16 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.UUID;
 
 public class BasePage {
-    WebDriver driver;
-    WebDriverWait wait;
-    Actions actions;
+    protected WebDriver driver;
+    protected WebDriverWait wait;
+    protected Actions actions;
     public BasePage(WebDriver driver, WebDriverWait wait, Actions actions) {
         this.driver = driver;
         this.wait = wait;
         this.actions = actions;
+    }
+    public WebElement findElement(By locator) {
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
     public void openLoginUrl(String url) {
         driver.get(url);

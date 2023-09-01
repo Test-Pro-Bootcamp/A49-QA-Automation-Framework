@@ -10,10 +10,10 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import java.time.Duration;
 public class BaseTest {
-    public WebDriver driver;
-    public Actions actions;
-    public String url = "https://qa.koel.app/";
+    WebDriver driver;
+    Actions actions;
     WebDriverWait wait;
+    public String url = "https://qa.koel.app/";
     BasePage basepage;
     LoginPage loginPage;
     HomePage homePage;
