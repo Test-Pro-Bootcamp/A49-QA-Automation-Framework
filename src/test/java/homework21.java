@@ -7,7 +7,6 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.TestNGException;
 
-
 @Test
 public class homework21 extends BaseTest {
     String playListName;
