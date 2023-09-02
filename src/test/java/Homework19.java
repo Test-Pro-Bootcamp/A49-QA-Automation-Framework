@@ -10,15 +10,10 @@ public class Homework19 extends BaseTest{
         String expectedBanishmentMessage = "Deleted playlist \"First in first out.\"";
         String expectedSummonTitle = "Created playlist \"First in first out.\"";
 
-        openPortal();
-        castEmail("dirzo@gmail.com");
-        castPassword("Te$ter1234");
-        castSubmit();
-        Thread.sleep(1500);
+        castPortal();
         createScroll("First in first out");
         summonScroll();
         Assert.assertEquals(getSummonresult(), expectedSummonTitle);
-        Thread.sleep(5000);
         banishScroll();
         Assert.assertEquals(getBanishmentResult(), expectedBanishmentMessage);
 

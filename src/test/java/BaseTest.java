@@ -4,6 +4,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
@@ -13,8 +15,11 @@ import java.time.Duration;
 
 public class BaseTest {
 
-    public WebDriver driver = null;
-    public String url = "https://qa.koel.app/";
+    WebDriver driver = null;
+    String url = "https://qa.koel.app/";
+    WebDriverWait wait;
+    Actions actions;
+
 
     public void castEmail(String email) {
         WebElement emailField = driver.findElement(By.cssSelector("input[type='email'"));
@@ -53,11 +58,17 @@ public class BaseTest {
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().window().maximize();
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
         url = BaseURL;
         openPortal();
 
 
+        }
+        public void castPortal(){
+        castEmail("dirzo@gmail.com");
+        castPassword("Te$ter1234");
+        castSubmit();
         }
 
     @AfterMethod
