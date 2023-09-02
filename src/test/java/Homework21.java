@@ -24,27 +24,7 @@ public class Homework21 extends BaseTest{
         playlistIsRenamed();
     }
 
-    private void playlistIsRenamed() {
-        WebElement notification = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[text() = 'Updated playlist \""+ newPlaylistName +".\"']")));
-        Assert.assertTrue(notification.isDisplayed());
-    }
 
-    private void enterNewPlayListName() {
-        WebElement playlistInputField = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[name='name']")));
-        playlistInputField.sendKeys(Keys.chord(Keys.CONTROL, "A", Keys.BACK_SPACE));
-        playlistInputField.sendKeys(newPlaylistName, Keys.ENTER);
-
-    }
-
-    private void doubleClickPlayList() {
-        WebElement playlist = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[text() = '" + playlistName + "']")));
-        actions.doubleClick(playlist).perform();
-    }
-
-    private void clickPlayList() {
-        WebElement playlist = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[text() = '" + playlistName + "']")));
-        actions.contextClick(playlist).perform();
-    }
 
     private void enterText(By inputLocator, String inputText) {
         WebElement searchInput = wait.until(ExpectedConditions.elementToBeClickable(inputLocator));
