@@ -3,9 +3,7 @@ package Pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 public class HomePage extends BasePage{
@@ -18,6 +16,7 @@ public class HomePage extends BasePage{
     By selectASong = By.cssSelector("#songsWrapper tr.song-item");
 //    By playNextBtn = By.cssSelector("[data-testid='play-next-btn']");
     By playBtn = By.cssSelector("[data-testid='play-btn']");
+    By clickDeleteBtn = By.cssSelector(".del");
     public void clickAvatarIcon(){
         findElement(clickAvatarIcon).click();
     }
@@ -39,8 +38,7 @@ public class HomePage extends BasePage{
         findElement(playBtn).click();
     }
     public void clickDeleteBtn() {
-        WebElement deleteBtn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".del")));
-        deleteBtn.click();
+        findElement(clickDeleteBtn).click();
     }
     public void checkSoundbars() {
         WebElement verifySongState = driver.findElement(By.cssSelector("[data-test=\"soundbars\"]"));

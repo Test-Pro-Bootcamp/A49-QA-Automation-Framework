@@ -4,9 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 public class PlaylistPage extends BasePage{
@@ -14,18 +12,22 @@ public class PlaylistPage extends BasePage{
         super(driver);
     }
     String newPlaylistName ="My new playlist name";
+
+    By clickAddPlaylist = By.cssSelector("[data-testid=\"sidebar-create-playlist-btn\"]");
+    By selectNewOption = By.cssSelector("[data-testid='playlist-context-menu-create-simple']");
     public void createPlaylist() {
         clickAddPlaylist();
         selectNewOption();
         newPlaylist(randomName);
     }
     public void clickAddPlaylist() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[data-testid=\"sidebar-create-playlist-btn\"]"))).click();
+        findElement(clickAddPlaylist).click();
+//        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[data-testid=\"sidebar-create-playlist-btn\"]"))).click();
     }
-    //Selects new playlist option
     public void selectNewOption () {
-        WebElement selectNewPlaylist = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[data-testid='playlist-context-menu-create-simple']")));
-        selectNewPlaylist.click();
+        findElement(selectNewOption).click();
+//        WebElement selectNewPlaylist = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[data-testid='playlist-context-menu-create-simple']")));
+//        selectNewPlaylist.click();
     }
     public void newPlaylist (String randomName) {
         WebElement inputNewPlaylist = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#mainWrapper [name='name']")));
