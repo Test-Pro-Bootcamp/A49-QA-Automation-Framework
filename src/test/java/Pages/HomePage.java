@@ -9,8 +9,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 public class HomePage extends BasePage{
-    public HomePage(WebDriver driver, WebDriverWait wait, Actions actions) {
-        super(driver, wait, actions);
+    public HomePage(WebDriver driver) {
+        super(driver);
     }
     //Play a song
     By clickAvatarIcon = By.cssSelector("[data-testid='view-profile-link']");

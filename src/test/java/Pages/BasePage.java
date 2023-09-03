@@ -7,16 +7,17 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.UUID;
 
 public class BasePage {
     protected WebDriver driver;
     protected WebDriverWait wait;
     protected Actions actions;
-    public BasePage(WebDriver driver, WebDriverWait wait, Actions actions) {
+    public BasePage(WebDriver driver) {
         this.driver = driver;
-        this.wait = wait;
-        this.actions = actions;
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        actions = new Actions(driver);
     }
     public WebElement findElement(By locator) {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));

@@ -10,8 +10,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 public class PlaylistPage extends BasePage{
-    public PlaylistPage(WebDriver driver, WebDriverWait wait, Actions actions) {
-        super(driver, wait, actions);
+    public PlaylistPage(WebDriver driver) {
+        super(driver);
     }
     String newPlaylistName ="My new playlist name";
     public void createPlaylist() {

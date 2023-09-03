@@ -10,8 +10,8 @@ import org.testng.Assert;
 
 public class LoginPage extends BasePage {
 
-    public LoginPage(WebDriver driver, WebDriverWait wait, Actions actions) {
-        super(driver, wait, actions);
+    public LoginPage(WebDriver driver) {
+        super(driver);
     }
     By enterEmail = By.cssSelector("input[type='email']");
     By enterPassword = By.cssSelector("input[type='password']");

@@ -9,8 +9,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 public class ProfilePage extends BasePage{
-    public ProfilePage(WebDriver driver, WebDriverWait wait, Actions actions) {
-        super(driver, wait, actions);
+    public ProfilePage(WebDriver driver) {
+        super(driver);
     }
     public void provideCurrentPassword (String password){
         WebElement currentPassword = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[name='current_password']")));

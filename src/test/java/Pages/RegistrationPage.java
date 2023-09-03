@@ -8,8 +8,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 public class RegistrationPage extends BasePage{
-    public RegistrationPage(WebDriver driver, WebDriverWait wait, Actions actions) {
-        super(driver, wait, actions);
+    public RegistrationPage(WebDriver driver) {
+        super(driver);
     }
     public void clickRegistrationBtn() {
         WebElement registrationLink = driver.findElement(By.cssSelector("a[href='registration']"));
