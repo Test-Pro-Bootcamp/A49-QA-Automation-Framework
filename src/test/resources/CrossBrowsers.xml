@@ -8,7 +8,6 @@
     <parameter name = "BaseUrl" value = "https://qa.koel.app/"/>
        <test name="CrossBrowsers" preserve-order="false">
         <classes>
-            <class name="LoginTests"/>
             <class name="BaseTest"/>
             <class name="Homework16"/>
             <class name="Homework17"/>

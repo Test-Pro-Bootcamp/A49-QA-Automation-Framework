@@ -1,10 +1,8 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -18,6 +16,8 @@ import java.awt.event.KeyEvent;
 import java.time.Duration;
 import java.util.Objects;
 import java.util.List;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 
 
 public class BaseTest {
@@ -32,6 +32,7 @@ public class BaseTest {
     static void setupClass() {
         WebDriverManager.chromedriver().setup();
     }
+
 
     @BeforeMethod
     @Parameters({"BaseUrl"})
@@ -157,6 +158,10 @@ public class BaseTest {
         Actions actions = new Actions(theDriver);
         actions.doubleClick(returnAnySong(songNo, sourceTable,1)).perform();
     }
+    public void doubleClickWebElement(WebElement we) {
+        Actions actions = new Actions(theDriver);
+        actions.doubleClick(we).perform();
+    }
     public void clickPlayButton () {
         WebElement playButton = theDriver.findElement(By.cssSelector("span[class='play']"));
         playButton.click();
@@ -206,5 +211,34 @@ public class BaseTest {
             createSimplePlaylist(playlistName);
         }
     }
+    public void createPlaylistAnotherWay(String playlistName) {
+        WebElement plusButton = theDriver.findElement(By.cssSelector("i[class='fa fa-plus-circle create']"));
+        plusButton.click();
+        WebElement playlistButton = theDriver.findElement(By.cssSelector("li[data-testid='playlist-context-menu-create-simple']"));
+        playlistButton.click();
+        WebElement playlistField = theDriver.findElement(By.cssSelector("#playlists > form.create > input"));
+        playlistField.click();
+        playlistField.clear();
+        playlistField.sendKeys(playlistName);
+        playlistField.sendKeys(Keys.ENTER);
+    }
+    public void renamePlaylists(String nameOld, String nameNew) throws InterruptedException, AWTException {
+        List<WebElement> existingPlaylist = theDriver.findElements(By.cssSelector("[class='playlist playlist']"));
+        for (WebElement el : existingPlaylist) {
+            if (el.getText().equals(nameOld)){
+                //System.out.println("Found!");
+                WebDriverWait wait = new WebDriverWait(theDriver, Duration.ofSeconds(5));
+                Actions action = new Actions(theDriver);
+                action.contextClick(el).perform();
+                WebElement editMenu = wait.until(ExpectedConditions.visibilityOfElementLocated(new By.ByXPath("//li[contains(text(), 'Edit')]")));
+                editMenu.click();
+                WebElement input = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[name='name']")));
+                doubleClickWebElement(input);
+                input.sendKeys(nameNew);
+                input.sendKeys(Keys.chord(Keys.ENTER));
 
+            }
+        }
+
+    }
 }
