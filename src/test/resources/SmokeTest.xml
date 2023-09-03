@@ -4,7 +4,7 @@
 <suite name="SmokeTest">
     <test name="Play a song" preserve-order="false">
         <classes>
-            <class name="Homework18">
+            <class name="Tests.Homework18">
                 <methods>
                     <include name="playSong"/>
                 </methods>

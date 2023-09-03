@@ -11,8 +11,8 @@ import org.testng.Assert;
 import java.util.UUID;
 
 public class SearchPage extends BasePage{
-    public SearchPage(WebDriver driver, WebDriverWait wait, Actions actions) {
-        super(driver, wait, actions);
+    public SearchPage(WebDriver driver) {
+        super(driver);
     }
     public void enterSongIntoSearchField() {
         enterText(By.cssSelector("input[type='search']"), "Dark Days");

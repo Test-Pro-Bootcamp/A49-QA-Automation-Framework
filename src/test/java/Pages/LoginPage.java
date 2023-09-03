@@ -3,15 +3,13 @@ package Pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 public class LoginPage extends BasePage {
 
-    public LoginPage(WebDriver driver, WebDriverWait wait, Actions actions) {
-        super(driver, wait, actions);
+    public LoginPage(WebDriver driver) {
+        super(driver);
     }
     By enterEmail = By.cssSelector("input[type='email']");
     By enterPassword = By.cssSelector("input[type='password']");
