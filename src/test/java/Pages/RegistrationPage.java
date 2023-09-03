@@ -9,8 +9,9 @@ public class RegistrationPage extends BasePage{
         super(driver);
     }
     By clickRegistrationBtn = By.cssSelector("a[href='registration']");
-    public void clickRegistrationBtn() {
+    public RegistrationPage clickRegistrationBtn() {
         findElement(clickRegistrationBtn).click();
+        return this;
     }
     public void checkUrl(){
         String registrationUrl = "https://qa.koel.app/registration";

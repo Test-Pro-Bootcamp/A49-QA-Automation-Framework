@@ -7,8 +7,8 @@ public class Homework16 extends BaseTest {
         registrationPage = new RegistrationPage(driver);
 
         basepage.openLoginUrl(url);
-        registrationPage.clickRegistrationBtn();
-        registrationPage.checkUrl();
+        registrationPage.clickRegistrationBtn()
+                        .checkUrl();
     }
 }
 

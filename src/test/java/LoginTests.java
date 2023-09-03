@@ -9,15 +9,15 @@ public class LoginTests extends BaseTest {
         loginPage = new LoginPage(driver);
 
         basepage.openLoginUrl(url);
-        loginPage.loginWithCorrectCred();
-        loginPage.checkAvatarDisplay();
+        loginPage.loginWithCorrectCred()
+                 .checkAvatarDisplay();
     }
     @Test
     public void LoginInvalidEmailPasswordTest() {
         loginPage = new LoginPage(driver);
 
         basepage.openLoginUrl(url);
-        loginPage.loginWithIncorrectCred();
-        loginPage.checkUrlIsTheSame();
+        loginPage.loginWithIncorrectCred()
+                 .checkUrlIsTheSame();
     }
 }

@@ -11,14 +11,14 @@ public class ProfileTest extends BaseTest {
         loginPage = new LoginPage(driver);
         homePage = new HomePage(driver);
         profilePage = new ProfilePage(driver);
+        String randomName = basepage.generateRandomName();
 
         homePage.openLoginUrl(url);
         loginPage.loginWithCorrectCred();
         homePage.clickAvatarIcon();
-        profilePage.provideCurrentPassword("te$t$tudent");
-        String randomName = basepage.generateRandomName();
-        profilePage.provideProfileName(randomName);
-        profilePage.clickSaveBtn();
-        profilePage.verifyProfileUpdated();
+        profilePage.provideCurrentPassword("te$t$tudent")
+                   .provideProfileName(randomName)
+                   .clickSaveBtn()
+                   .verifyProfileUpdated();
     }
 }

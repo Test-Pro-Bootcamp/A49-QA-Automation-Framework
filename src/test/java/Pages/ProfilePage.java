@@ -3,6 +3,7 @@ package Pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 
@@ -11,20 +12,25 @@ public class ProfilePage extends BasePage{
         super(driver);
     }
 
-    By clickSaveBtn = By.cssSelector("button.btn-submit");
-    public void provideCurrentPassword (String password){
+    @FindBy (css ="button.btn-submit")
+            WebElement saveBtn;
+//    By clickSaveBtn = By.cssSelector("button.btn-submit");
+    public ProfilePage provideCurrentPassword (String password){
         WebElement currentPassword = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[name='current_password']")));
         currentPassword.clear();
         currentPassword.sendKeys(password);
+        return this;
     }
-    public void provideProfileName(String randomName) {
+    public ProfilePage provideProfileName(String randomName) {
         WebElement profileName = driver.findElement(By.cssSelector("[name='name']"));
         profileName.clear();
         profileName.sendKeys(randomName);
+        return this;
     }
     //Click save Btn
-    public void clickSaveBtn() {
-        findElement(clickSaveBtn).click();
+    public ProfilePage clickSaveBtn() {
+        wait.until(ExpectedConditions.elementToBeClickable(saveBtn)).click();
+        return this;
     }
     public void verifyProfileUpdated() {
         WebElement verifyChangeProfile = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".alertify-logs")));
