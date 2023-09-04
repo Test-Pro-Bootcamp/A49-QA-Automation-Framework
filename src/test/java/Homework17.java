@@ -9,14 +9,13 @@ public class Homework17 extends BaseTest {
         loginPage = new LoginPage(driver);
         searchPage = new SearchPage(driver);
 
-//        basepage.openLoginUrl(url);
         loginPage.loginWithCorrectCred();
-        searchPage.enterSongIntoSearchField();
-        searchPage.clickViewAll();
-        searchPage.clickOnSongTitle();
-        searchPage.addTooBtn();
-        searchPage.enterUniquePlaylist();
-        searchPage.clickSubmitBtn();
-        searchPage.checkMsg();
+        searchPage.enterSongIntoSearchField()
+                  .clickViewAll()
+                  .clickOnSongTitle()
+                  .addTooBtn()
+                  .enterUniquePlaylist()
+                  .clickSubmitBtn()
+                  .checkMsg();
     }
 }

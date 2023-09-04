@@ -25,26 +25,32 @@ public class SearchPage extends BasePage{
 //    By clickOnSongTitle = By.cssSelector(".search-results .song-item .title");
 //    By addTooBtn = By.cssSelector(".btn-add-to");
 //    By clickSubmitBtn = By.cssSelector("#songResultsWrapper [type='submit']");
-    public void enterSongIntoSearchField() {
+    public SearchPage enterSongIntoSearchField() {
         enterText(By.cssSelector("input[type='search']"), "Dark Days");
+        return this;
     }
-    public  void clickViewAll () {
+    public SearchPage clickViewAll () {
         wait.until(ExpectedConditions.elementToBeClickable(viewAllBtn)).click();
+        return this;
     }
-    public void clickOnSongTitle () {
+    public SearchPage clickOnSongTitle () {
         wait.until(ExpectedConditions.elementToBeClickable(clickSong)).click();
+        return this;
     }
     //Method clicks on ADDToo Btn
-    public void addTooBtn () {
+    public SearchPage addTooBtn () {
         wait.until(ExpectedConditions.elementToBeClickable(addBtn)).click();
+        return this;
     }
     //Creates a Unique playlist for every test
-    public void enterUniquePlaylist() {
+    public SearchPage enterUniquePlaylist() {
         enterText(By.cssSelector("#songResultsWrapper [data-test='new-playlist-name"), getRandomString());
+        return this;
     }
     //CLick submit btn
-    public void clickSubmitBtn() {
+    public SearchPage clickSubmitBtn() {
         wait.until(ExpectedConditions.elementToBeClickable(submitBtn)).click();
+        return this;
     }
     String getRandomString () {
         UUID uuid = UUID. randomUUID();

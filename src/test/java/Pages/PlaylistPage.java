@@ -22,7 +22,7 @@ public class PlaylistPage extends BasePage{
     }
     public void clickAddPlaylist() {
 //        findElement(clickAddPlaylist).click();
-        WebElement addPlaylist = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[data-testid=\"sidebar-create-playlist-btn\"]")));
+        WebElement addPlaylist = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='playlists']//*[@class=\"fa fa-plus-circle create\"]")));
         actions.click(addPlaylist).perform();
     }
     public void selectNewOption () {

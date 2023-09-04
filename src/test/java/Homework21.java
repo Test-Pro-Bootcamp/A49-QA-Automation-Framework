@@ -9,7 +9,6 @@ public class Homework21 extends BaseTest {
         loginPage = new LoginPage(driver);
         playlistPage = new PlaylistPage(driver);
 
-        basepage.openLoginUrl(url);
         loginPage.loginWithCorrectCred();
         playlistPage.createPlaylist();
         playlistPage.doubleClickPlaylist();
