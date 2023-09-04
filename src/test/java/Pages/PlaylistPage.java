@@ -12,16 +12,14 @@ public class PlaylistPage extends BasePage{
         super(driver);
     }
     String newPlaylistName ="My new playlist name";
-
 //    By clickAddPlaylist = By.xpath("//*[@id='playlists']//*[@class=\"fa fa-plus-circle create\"]");
-    By selectNewOption = By.cssSelector("[data-testid='playlist-context-menu-create-simple']");
+    private By selectNewOption = By.cssSelector("[data-testid='playlist-context-menu-create-simple']");
     public void createPlaylist() {
         clickAddPlaylist();
         selectNewOption();
         newPlaylist(randomName);
     }
     public void clickAddPlaylist() {
-//        findElement(clickAddPlaylist).click();
         WebElement addPlaylist = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='playlists']//*[@class=\"fa fa-plus-circle create\"]")));
         actions.click(addPlaylist).perform();
     }

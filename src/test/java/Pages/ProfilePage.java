@@ -13,7 +13,7 @@ public class ProfilePage extends BasePage{
     }
 
     @FindBy (css ="button.btn-submit")
-            WebElement saveBtn;
+    private WebElement saveBtn;
 //    By clickSaveBtn = By.cssSelector("button.btn-submit");
     public ProfilePage provideCurrentPassword (String password){
         WebElement currentPassword = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[name='current_password']")));

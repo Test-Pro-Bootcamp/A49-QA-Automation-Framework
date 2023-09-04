@@ -13,17 +13,17 @@ public class HomePage extends BasePage{
     }
 
     @FindBy (css = ".music .songs")
-            WebElement songsTab;
+    private WebElement songsTab;
     @FindBy (css = "#songsWrapper tr.song-item")
-            WebElement select;
+    private WebElement select;
     @FindBy (css = "[data-testid='play-btn']")
-            WebElement play;
+    private WebElement play;
     //Play a song
-    By clickAvatarIcon = By.cssSelector("[data-testid='view-profile-link']");
+    private By clickAvatarIcon = By.cssSelector("[data-testid='view-profile-link']");
 //    By clickSongsTab = By.cssSelector(".music .songs");
 //    By selectASong = By.cssSelector("#songsWrapper tr.song-item");
 //    By playBtn = By.cssSelector("[data-testid='play-btn']");
-    By clickDeleteBtn = By.cssSelector(".del");
+    private By clickDeleteBtn = By.cssSelector(".del");
     public void clickAvatarIcon(){
         findElement(clickAvatarIcon).click();
     }

@@ -8,7 +8,7 @@ public class RegistrationPage extends BasePage{
     public RegistrationPage(WebDriver driver) {
         super(driver);
     }
-    By clickRegistrationBtn = By.cssSelector("a[href='registration']");
+    private By clickRegistrationBtn = By.cssSelector("a[href='registration']");
     public RegistrationPage clickRegistrationBtn() {
         findElement(clickRegistrationBtn).click();
         return this;

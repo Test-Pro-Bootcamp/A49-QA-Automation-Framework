@@ -14,13 +14,13 @@ public class SearchPage extends BasePage{
         super(driver);
     }
     @FindBy ( css = "[data-test='view-all-songs-btn']")
-    WebElement viewAllBtn;
+    private WebElement viewAllBtn;
     @FindBy ( css = ".search-results .song-item .title")
-    WebElement clickSong;
+    private WebElement clickSong;
     @FindBy ( css = ".btn-add-to")
-    WebElement addBtn;
+    private WebElement addBtn;
     @FindBy ( css = "#songResultsWrapper [type='submit']")
-    WebElement submitBtn;
+    private WebElement submitBtn;
 //    By clickViewAll = By.cssSelector("[data-test='view-all-songs-btn']");
 //    By clickOnSongTitle = By.cssSelector(".search-results .song-item .title");
 //    By addTooBtn = By.cssSelector(".btn-add-to");

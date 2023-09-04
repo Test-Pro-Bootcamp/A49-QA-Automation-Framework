@@ -14,11 +14,11 @@ public class LoginPage extends BasePage {
         super(driver);
     }
     @FindBy (css = "input[type='email']")
-    WebElement emailField;
+    private WebElement emailField;
     @FindBy (css = "input[type='password']")
-    WebElement passwordField;
+    private WebElement passwordField;
     @FindBy (css = "button[type='submit']")
-    WebElement submitBtn;
+    private WebElement submitBtn;
 
 //    By enterEmail = By.cssSelector("input[type='email']");
 //    By enterPassword = By.cssSelector("input[type='password']");
