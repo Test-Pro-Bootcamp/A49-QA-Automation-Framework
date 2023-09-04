@@ -28,7 +28,7 @@ public class SearchPage extends BasePage{
     public void enterSongIntoSearchField() {
         enterText(By.cssSelector("input[type='search']"), "Dark Days");
     }
-    public  clickViewAll () {
+    public  void clickViewAll () {
         wait.until(ExpectedConditions.elementToBeClickable(viewAllBtn)).click();
     }
     public void clickOnSongTitle () {

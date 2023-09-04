@@ -10,7 +10,7 @@ public class Homework18 extends BaseTest {
         loginPage = new LoginPage(driver);
         homePage= new HomePage(driver);
 
-        homePage.openLoginUrl(url);
+//        homePage.openLoginUrl(url);
         loginPage.loginWithCorrectCred();
         homePage.clickSongsTab();
         homePage.selectASong();

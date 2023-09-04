@@ -13,7 +13,7 @@ public class BaseTest {
     static void setupClass() {
         WebDriverManager.chromedriver().setup();
     }
-    @BeforeClass
+    @BeforeMethod
     public void launchBrowser() {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
@@ -23,7 +23,7 @@ public class BaseTest {
         basepage = new BasePage(driver);
         basepage.openLoginUrl(url);
     }
-    @AfterClass
+    @AfterMethod
     public void closeBrowser() {
         basepage.quitBrowser();
     }

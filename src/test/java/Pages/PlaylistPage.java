@@ -13,7 +13,7 @@ public class PlaylistPage extends BasePage{
     }
     String newPlaylistName ="My new playlist name";
 
-    By clickAddPlaylist = By.cssSelector("[data-testid=\"sidebar-create-playlist-btn\"]");
+//    By clickAddPlaylist = By.xpath("//*[@id='playlists']//*[@class=\"fa fa-plus-circle create\"]");
     By selectNewOption = By.cssSelector("[data-testid='playlist-context-menu-create-simple']");
     public void createPlaylist() {
         clickAddPlaylist();
@@ -21,8 +21,9 @@ public class PlaylistPage extends BasePage{
         newPlaylist(randomName);
     }
     public void clickAddPlaylist() {
-        findElement(clickAddPlaylist).click();
-//        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[data-testid=\"sidebar-create-playlist-btn\"]"))).click();
+//        findElement(clickAddPlaylist).click();
+        WebElement addPlaylist = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[data-testid=\"sidebar-create-playlist-btn\"]")));
+        actions.click(addPlaylist).perform();
     }
     public void selectNewOption () {
         findElement(selectNewOption).click();

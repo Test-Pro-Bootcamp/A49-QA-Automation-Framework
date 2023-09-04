@@ -6,7 +6,6 @@ public class Homework16 extends BaseTest {
     public void registrationNavigation() {
         registrationPage = new RegistrationPage(driver);
 
-        basepage.openLoginUrl(url);
         registrationPage.clickRegistrationBtn()
                         .checkUrl();
     }

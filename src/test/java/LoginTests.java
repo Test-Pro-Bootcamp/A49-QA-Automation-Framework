@@ -8,7 +8,7 @@ public class LoginTests extends BaseTest {
     public void LoginValidEmailPasswordTest() {
         loginPage = new LoginPage(driver);
 
-        basepage.openLoginUrl(url);
+//        basepage.openLoginUrl(url);
         loginPage.loginWithCorrectCred()
                  .checkAvatarDisplay();
     }
@@ -16,7 +16,7 @@ public class LoginTests extends BaseTest {
     public void LoginInvalidEmailPasswordTest() {
         loginPage = new LoginPage(driver);
 
-        basepage.openLoginUrl(url);
+//        basepage.openLoginUrl(url);
         loginPage.loginWithIncorrectCred()
                  .checkUrlIsTheSame();
     }
