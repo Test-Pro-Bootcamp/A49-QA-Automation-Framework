@@ -6,11 +6,14 @@ public class Homework19 extends BaseTest {
     @Test(description = "Homework 19 -  deletePlaylist")
 
     public void deletePlaylist() {
+        LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = new HomePage(driver);
 
-        LoginPage.logInWithRightCredentials();
-        HomePage.clickPlaylist();
-        HomePage.clickDeletePlaylist();
-        HomePage.clickOKPopUP();
+
+        loginPage.logInWithRightCredentials();
+        homePage.clickPlaylist()
+                .clickDeletePlaylist()
+                .clickOKPopUP();
 
 
 

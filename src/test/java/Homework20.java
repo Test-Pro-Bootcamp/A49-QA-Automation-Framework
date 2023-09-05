@@ -6,11 +6,13 @@ public class Homework20 extends BaseTest {
     @Test(description = "Homework 20 -  implementExplicitWaits")
 
     public void deletePlaylist() {
+        LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = new HomePage(driver);
 
-        LoginPage.logInWithRightCredentials();
-        HomePage.clickPlaylist();
-        HomePage.clickDeletePlaylist();
-        HomePage.clickOKPopUP();
+        loginPage.logInWithRightCredentials();
+        homePage.clickPlaylist()
+                .clickDeletePlaylist()
+                .clickOKPopUP();
 
 
 

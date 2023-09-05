@@ -4,60 +4,85 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 
 public class HomePage extends BasePage{
-    public HomePage(WebDriver driver) {
-        super(driver);
+    public HomePage(WebDriver givenDriver) {
+        super(givenDriver);
     }
     //Verify that the song is playing and the sound bar is moving
-    public static void verifySongIsPlaying() {
-        WebElement soundBars = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[data-testid='sound-bar-play']")));
+
+    @FindBy(css = "[data-testid='sound-bar-play']")
+    WebElement soundBars;
+    @FindBy (css = "[data-testid='play-btn']")
+    WebElement playSong;
+    @FindBy (css = ".side.player-controls")
+    WebElement playPanel;
+    @FindBy (css = ".ok")
+    WebElement clickOk;
+    @FindBy (css = "button[title='Delete this playlist']")
+    WebElement deletePlaylist;
+    @FindBy (css = "[class='playlist playlist']")
+    WebElement selectPlaylist;
+    @FindBy (css = "[name='name']")
+    WebElement playListInputField;
+    @FindBy (css = "[class='playlist playlist']")
+    WebElement doubleClick;
+
+    public HomePage verifySongIsPlaying() {
+        wait.until(ExpectedConditions.visibilityOf(soundBars));
         Assert.assertTrue(soundBars.isDisplayed());
+        return this;
     }
     //Click on Play Button on Player Control
-    public static void clickPlaySong() {
-        WebElement playSong = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[data-testid='play-btn']")));
+    public HomePage clickPlaySong() {
+        wait.until(ExpectedConditions.elementToBeClickable(playSong));
         playSong.click();
+        return this;
     }
     //Click on the Next Song on Player Control
-    public static void clickNextSongBtn() {
-        WebElement playPanel = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".side.player-controls")));
+    public  HomePage clickNextSongBtn() {
+        wait.until(ExpectedConditions.elementToBeClickable(playPanel));
         playPanel.click();
+        return this;
     }
 
     //Click on OK when deleting a Playlist
-    public static void clickOKPopUP() {
-        WebElement clickOk = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".ok")));
+    public HomePage clickOKPopUP() {
+        wait.until(ExpectedConditions.elementToBeClickable(clickOk));
         clickOk.click();
+        return this;
     }
     //Click on the X Playlist to delete playlist
-    public static void clickDeletePlaylist() {
-        WebElement deletePlaylist = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[title='Delete this playlist']")));
+    public HomePage clickDeletePlaylist() {
+        wait.until(ExpectedConditions.elementToBeClickable(deletePlaylist));
         deletePlaylist.click();
+        return this;
     }
     //Select a Playlist if there is one available
-    public static void clickPlaylist() {
-        WebElement selectPlaylist = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[class='playlist playlist']")));
+    public HomePage clickPlaylist() {
+        wait.until(ExpectedConditions.elementToBeClickable(selectPlaylist));
         selectPlaylist.click();
+        return this;
     }
 
-    public static void enterNewPlaylistName() {
-        WebElement playlistInputField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[name='name']")));
-        playlistInputField.sendKeys(Keys.chord(Keys.CONTROL + "a", Keys.BACK_SPACE));
-        playlistInputField.sendKeys("Newest Playlist");
-        playlistInputField.sendKeys(Keys.ENTER);
+    public HomePage enterNewPlaylistName() {
+        wait.until(ExpectedConditions.elementToBeClickable(playListInputField));
+        playListInputField.sendKeys(Keys.chord(Keys.CONTROL + "a", Keys.BACK_SPACE));
+        playListInputField.sendKeys("Newest Playlist");
+        playListInputField.sendKeys(Keys.ENTER);
+        return this;
 
     }
 
 
 
-    public static void doubleClickPlaylist() {
-        WebElement doubleClick = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[class='playlist playlist']")));
-
+    public HomePage doubleClickPlaylist() {
+        wait.until(ExpectedConditions.elementToBeClickable(doubleClick));
         actions.doubleClick(doubleClick).perform();
+        return this;
 
 
 
