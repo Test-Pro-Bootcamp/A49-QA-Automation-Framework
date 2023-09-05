@@ -13,12 +13,19 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import pages.BasePage;
+import pages.HomePage;
+import pages.LoginPage;
+import pages.PlaylistPage;
+
 import java.time.Duration;
 import java.util.UUID;
 
 public class BaseTest {
 
     BasePage basePage;
+    LoginPage loginPage;
+    HomePage homePage;
+    PlaylistPage playlistPage;
     public WebDriver driver ;
     public String url = "https://qa.koel.app/";
 
@@ -29,8 +36,8 @@ public class BaseTest {
         WebDriverManager.chromedriver().setup();
     }
 
-    @BeforeMethod
-    public void launchBrowser(String baseURL) {
+    @BeforeClass
+    public void launchBrowser() {
         //Added ChromeOptions argument below to fix websocket error
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
@@ -39,6 +46,9 @@ public class BaseTest {
         driver = new ChromeDriver(options);
         basePage = new BasePage(driver);
         basePage.navigateToPage(url);
+        loginPage = new LoginPage(driver);
+        homePage = new HomePage(driver);
+        playlistPage = new PlaylistPage(driver);
     }
 
     @AfterClass

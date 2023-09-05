@@ -2,6 +2,7 @@ package pages;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -13,13 +14,12 @@ import java.time.Duration;
 
 public class BasePage {
     WebDriver driver;
-    String url = "https://qa.koel.app/";
     WebDriverWait wait;
     Actions actions;
 
     public BasePage(WebDriver driver){
         this.driver = driver;
-        wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         actions = new Actions(driver);
     }
     @AfterMethod
@@ -29,24 +29,8 @@ public class BasePage {
     }
 
     public void navigateToPage(String url) {
+
         driver.get(url);
-    }
-
-    public void provideEmail(String email) {
-        WebElement emailField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[type='email']")));
-        emailField.clear();
-        emailField.sendKeys(email);
-    }
-
-    public void providePassword(String password) {
-        WebElement passwordField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[type='password']")));
-        passwordField.clear();
-        passwordField.sendKeys(password);
-    }
-
-    public void clickSubmit() {
-        WebElement submit = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button[type='submit']")));
-        submit.click();
     }
 
     public String getRandomString(int lettersAmount){
@@ -56,5 +40,12 @@ public class BasePage {
 
     public void quitBrowser() {
         driver.quit();
+    }
+
+    public void enterText(By inputLocator, String inputText) {
+        WebElement searchInput = wait.until(ExpectedConditions.elementToBeClickable(inputLocator));
+        searchInput.click();
+        searchInput.clear();
+        searchInput.sendKeys(inputText);
     }
 }
