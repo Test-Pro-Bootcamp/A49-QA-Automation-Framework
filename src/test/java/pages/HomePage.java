@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 
@@ -23,8 +24,8 @@ public class HomePage extends BasePage{
     }
     //Click on the Next Song on Player Control
     public static void clickNextSongBtn() {
-        WebElement playNextSong = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[data-testid='play-next-btn']")));
-        playNextSong.click();
+        WebElement playPanel = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".side.player-controls")));
+        playPanel.click();
     }
 
     //Click on OK when deleting a Playlist
