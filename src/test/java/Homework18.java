@@ -14,10 +14,5 @@ public class Homework18 extends BaseTest {
         homePage.clickNextSongBtn()
                 .clickPlaySong()
                 .verifySongIsPlaying();
-
-
-
-
     }
-
 }

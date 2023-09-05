@@ -14,11 +14,5 @@ public class Homework19 extends BaseTest {
         homePage.clickPlaylist()
                 .clickDeletePlaylist()
                 .clickOKPopUP();
-
-
-
-
-
     }
-
 }

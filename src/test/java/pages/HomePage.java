@@ -15,21 +15,21 @@ public class HomePage extends BasePage{
     //Verify that the song is playing and the sound bar is moving
 
     @FindBy(css = "[data-testid='sound-bar-play']")
-    WebElement soundBars;
+    private WebElement soundBars;
     @FindBy (css = "[data-testid='play-btn']")
-    WebElement playSong;
+    private WebElement playSong;
     @FindBy (css = ".side.player-controls")
-    WebElement playPanel;
+    private WebElement playPanel;
     @FindBy (css = ".ok")
-    WebElement clickOk;
+    private WebElement clickOk;
     @FindBy (css = "button[title='Delete this playlist']")
-    WebElement deletePlaylist;
+    private WebElement deletePlaylist;
     @FindBy (css = "[class='playlist playlist']")
-    WebElement selectPlaylist;
+    private WebElement selectPlaylist;
     @FindBy (css = "[name='name']")
-    WebElement playListInputField;
+    private WebElement playListInputField;
     @FindBy (css = "[class='playlist playlist']")
-    WebElement doubleClick;
+    private WebElement doubleClick;
 
     public HomePage verifySongIsPlaying() {
         wait.until(ExpectedConditions.visibilityOf(soundBars));

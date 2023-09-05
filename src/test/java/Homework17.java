@@ -17,15 +17,7 @@ public class Homework17 extends BaseTest {
                             .clickAddToBtn()
                             .enterPlaylistName()
                             .clickSaveBtn();
-
-
-
-
-
-
-}
-
-
+        }
 }
 
 
