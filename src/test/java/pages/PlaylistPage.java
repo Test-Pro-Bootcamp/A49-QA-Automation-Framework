@@ -19,17 +19,17 @@ public class PlaylistPage extends BasePage {
     //click on Search Field and enter a song title
 
     @FindBy (css = "input[placeholder='Press F to search']")
-    WebElement searchInput;
+    private WebElement searchInput;
     @FindBy (css = "button[data-test='view-all-songs-btn']" )
-    WebElement viewAllBtn;
+    private WebElement viewAllBtn;
     @FindBy (xpath = "//*[@id='songResultsWrapper']/div/div/div[1]/table/tr[1]/td[2]" )
-    WebElement clickSong;
+    private WebElement clickSong;
     @FindBy (css = "[data-test='add-to-btn']")
-    WebElement addToBtn;
+    private WebElement addToBtn;
     @FindBy (css = "section[id='songResultsWrapper'] input[placeholder='Playlist name']")
-    WebElement newPlaylist;
+    private WebElement newPlaylist;
     @FindBy (css = "section[id='songResultsWrapper'] button[title='Save']")
-    WebElement saveBtn;
+    private WebElement saveBtn;
     public PlaylistPage enterSongIntoSearchField() {
         wait.until(ExpectedConditions.elementToBeClickable(searchInput));
         searchInput.click();

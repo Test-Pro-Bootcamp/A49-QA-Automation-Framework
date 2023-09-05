@@ -13,11 +13,11 @@ public class LoginPage extends BasePage{
     //Navigate to and login with valid credentials
 
     @FindBy (css ="[type='email']" )
-    WebElement loginInput;
+    private WebElement loginInput;
     @FindBy (css = "[type='password']")
-    WebElement passwordInput;
+    private WebElement passwordInput;
     @FindBy (css = "button[type='submit']")
-    WebElement loginBtn;
+    private WebElement loginBtn;
 
     public LoginPage logInWithRightCredentials(){
         navigateToPage();

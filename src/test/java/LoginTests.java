@@ -11,10 +11,5 @@ public class LoginTests extends BaseTest {
                  .provideEmail()
                  .providePassword()
                  .clickSubmit();
-
-
-
-
     }
-
 }
