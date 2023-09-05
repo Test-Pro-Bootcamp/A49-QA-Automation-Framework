@@ -1,58 +1,18 @@
+package pages;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.testng.Assert;
-import org.testng.annotations.Test;
 
-public class Homework21 extends BaseTest {
-
-    String myNewPlaylist = "My New Playlist";
-    String newPlaylistTitle = "Updated " + myNewPlaylist;
-
-    @Test(priority = 1, dataProvider = "User Credentials", description = "Create new playlist with specific name")
-    public void createPlaylist(String email, String password) {
-        loginToKoelWithDataProvider(email, password);
-
-        createPlaylist(myNewPlaylist);
-        String expectedMessage = "Created playlist \"" + myNewPlaylist + ".\"";
-        Assert.assertEquals(verifyNotificationMessage(), expectedMessage);
+public class HomePage extends BasePage {
+    public HomePage (WebDriver driver) {
+        super(driver);
     }
-
-    @Test(priority = 2, dataProvider = "User Credentials", description = "Add few songs to newly created playlist with specific name")
-    public void addSongsPlaylist(String email, String password) {
-        loginToKoelWithDataProvider(email, password);
-
-        String expectedMsgForSongAdded = "Added 1 song into \"" + myNewPlaylist + ".\"";
-
-        addSongToPlayList("Song");
-        Assert.assertEquals(verifyNotificationMessage(), expectedMsgForSongAdded);
-
-        addSongToPlayList("Reactor");
-        Assert.assertEquals(verifyNotificationMessage(), expectedMsgForSongAdded);
-        //addSongToPlayList("Take");
-        //Assert.assertEquals(verifyNotificationMessage(), expectedMsgForSongAdded);
-        //wait.until(ExpectedConditions.visibilityOf(notification));
-    }
-
-    @Test(priority = 2, dataProvider = "User Credentials", description = "Update title of created playlist")
-    public void renamePlaylist(String email, String password) {
-        loginToKoelWithDataProvider(email, password);
-        doubleClickOnPlaylist();
-        updatePlaylistTitle(newPlaylistTitle);
-        String expectedMessage = "Updated playlist \"" + newPlaylistTitle + ".\"";
-        Assert.assertEquals(verifyNotificationMessage(), expectedMessage);
-    }
-
-
-    @Test(priority = 3, dataProvider = "User Credentials", description = "Delete playlist with updated title")
-    public void deletePlaylist(String email, String password) {
-        loginToKoelWithDataProvider(email, password);
-        deleteCreatedPlaylist();
-        String expectedMessage = "Deleted playlist \"" + newPlaylistTitle + ".\"";
-        Assert.assertEquals(verifyNotificationMessage(), expectedMessage);
-    }
+    public String myNewPlaylist;
+    public String newPlaylistTitle;
 
     public void updatePlaylistTitle(String newPlaylistTitle) {
         WebElement inputFieldWithTitle = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[name='name']")));
@@ -63,27 +23,22 @@ public class Homework21 extends BaseTest {
     }
 
     public void doubleClickOnPlaylist() {
-        WebElement listToUpdate = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//section[@id='playlists']//*[contains(text(), '" + myNewPlaylist + "')]")));
+        //WebElement listToUpdate = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//section[@id='playlists']//*[contains(text(), '" + myNewPlaylist + "')]")));
+        WebElement listToUpdate = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//section[@id='playlists']//li[@class='playlist playlist']")));
+        //*[@id="playlists"]/ul/li[3]/a
         Actions actions = new Actions(driver);
         actions.doubleClick(listToUpdate).perform();
     }
 
     public void deleteCreatedPlaylist() {
-        WebElement listToDelete = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//section[@id='playlists']//*[contains(text(), '" + newPlaylistTitle + "')]")));
+        //WebElement listToDelete = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//section[@id='playlists']//*[contains(text(), '" + newPlaylistTitle + "')]")));
+        WebElement listToDelete = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//section[@id='playlists']//li[@class='playlist playlist']")));
         //WebElement listToDelete = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#playlists li:nth-child(3)")));
         listToDelete.click();
         WebElement deletePlaylistButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".del.btn-delete-playlist")));
         deletePlaylistButton.click();
         WebElement okButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("body > div.alertify > div > div > nav > button.ok")));
         okButton.click();
-    }
-
-    public void addSongToPlayList(String song) {
-        searchForSong(song);
-        clickViewAllButton();
-        findFirstSongInResults();
-        clickAddToButton();
-        addSongToMyNewPlaylist();
     }
 
     public void searchForSong(String name) {
@@ -108,10 +63,23 @@ public class Homework21 extends BaseTest {
     }
 
     public void addSongToMyNewPlaylist() {
-        WebElement listButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='songResultsWrapper']//li[contains(text(), '" + myNewPlaylist + "')]")));
+        //WebElement listButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='songResultsWrapper']//li[contains(text(), '" + myNewPlaylist + "')]")));
+        //WebElement listButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"playlistWrapper\"]/header/div[3]/div/section[1]/ul/li[5]")));
+        ////*[@id="playlistWrapper"]/header/div[3]/div/section[1]/ul/li[5]
+        WebElement listButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("section #songResultsWrapper section.existing-playlists li.playlist")));
+        //#songResultsWrapper > header > div.song-list-controls > div > section.existing-playlists > ul > li.playlist
         Actions action = new Actions(driver);
         action.moveToElement(listButton);
         listButton.click();
+    }
+
+
+    public void addSongToPlayList(String song) {
+        searchForSong(song);
+        clickViewAllButton();
+        findFirstSongInResults();
+        clickAddToButton();
+        addSongToMyNewPlaylist();
     }
 
     public void createPlaylist(String myNewPlaylist) {
@@ -126,15 +94,15 @@ public class Homework21 extends BaseTest {
         playlistTitleInput.sendKeys(Keys.RETURN);
     }
 
-
     public void clickOnElement(By locator){
         WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
         element.click();
     }
 
     public String verifyNotificationMessage() {
+        //WebElement notificationMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.success.show")));
         WebElement notificationMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.success.show")));
+        //WebElement notificationMessage = wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("div.success.show")));
         return notificationMessage.getText();
     }
-
 }

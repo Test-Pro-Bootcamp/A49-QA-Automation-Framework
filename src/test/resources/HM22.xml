@@ -1,19 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="Homework for Actions">
-    <parameter name="BaseURL" value="https://qa.koel.app/"></parameter>
-    <test name="Test for creating new playlist, renaming and deleting it" preserve-order="false">
+<suite name="HM for POM">
+    <test name="Test for logging in and creating playlist" preserve-order="false">
         <classes>
-
-            <class name="Homework21"/>
+            <class name="tests.Homework22"/>
             <methods>
                 <include name="createPlaylist"/>
                 <include name="addSongsPlaylist"/>
                 <include name="renamePlaylist"/>
                 <include name="deletePlaylist"/>
             </methods>
-
         </classes>
     </test>
 </suite>
