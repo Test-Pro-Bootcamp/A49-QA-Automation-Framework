@@ -1,19 +1,17 @@
-package Tests;
+package tests;
 
-import Pages.HomePage;
-import Pages.LoginPage;
-import org.openqa.selenium.WebDriver;
+import pages.HomePage;
+import pages.LoginPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class HomeWork22  {
+public class HomeWork22 extends BaseTest {
 
     @Test
     public void renamePlaylist() {
         String newPlaylistName = "Natalia Gorbunova+";
         String updatedPlaylistMsg = "Updated playlist \"Natalia Gorbunova+.\"";
 
-        WebDriver driver = null;
         LoginPage loginPage = new LoginPage(driver);
         HomePage homePage = new HomePage (driver);
 
