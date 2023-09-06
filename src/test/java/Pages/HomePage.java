@@ -6,31 +6,29 @@ import org.openqa.selenium.WebDriver;
 
 public class HomePage extends BasePage {
 
- public HomePage (WebDriver givenDriver) {
-    super (givenDriver);
+    public HomePage (WebDriver givenDriver) {
+        super(givenDriver);
+    }
 
- By firstPlaylist = By.cssSelector (".playlist:nth-child(3)");
+    By firstPlaylist = By.cssSelector (".playlist:nth-child(3)");
 
- By playlistNameField = By.cssSelector ("[name='name']");
+    By playlistNameField = By.cssSelector ("[name='name']");
 
- By renamePlaylistSuccessMsg = By.cssSelector ("div.success.show");
+    By renamePlaylistSuccessMsg = By.cssSelector ("div.success.show");
 
- public void doubleClickPlaylist(){
+    public void doubleClickPlaylist() {
 
-        doubleClick (firstPlaylist);
+        doubleClick(firstPlaylist);
+    }
 
- public void enterNewPlaylistName (String playlistName) {
-     findElement(playlistNameField).sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.BACK_SPACE));
-     findElement(playlistNameField).sendKeys(playlistName);
-     findElement(playlistNameField).sendKeys(Keys.ENTER);
+    public void enterNewPlaylistName (String playlistName){
+        findElement(playlistNameField).sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.BACK_SPACE));
+        findElement(playlistNameField).sendKeys(playlistName);
+        findElement(playlistNameField).sendKeys(Keys.ENTER);
+    }
 
- public String getRenamePlaylistSuccessMsg(){
-      return findElement(getRenamePlaylistSuccessMsg).getText();
+    public String getRenamePlaylistSuccessMsg(){
+        return findElement(renamePlaylistSuccessMsg).getText();
 
-             }
-
-
-         }
-     }
- }
+    }
 }
