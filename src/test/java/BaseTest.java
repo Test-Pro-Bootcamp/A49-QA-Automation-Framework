@@ -18,7 +18,7 @@ public class BaseTest {
     WebDriver driver = null;
     String url = "https://qa.koel.app/";
     WebDriverWait wait;
-    Actions actions;
+    Actions actions = null;
 
 
     public void castEmail(String email) {
@@ -55,10 +55,12 @@ public class BaseTest {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
 
+
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().window().maximize();
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        actions = new Actions(driver);
 
         url = BaseURL;
         openPortal();
