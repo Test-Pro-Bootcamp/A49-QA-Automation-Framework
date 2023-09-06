@@ -1,7 +1,5 @@
 package tests;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -24,16 +22,6 @@ public class Homework22 extends BaseTest {
         homePage = new HomePage(driver);
 
         loginPage.loginToKoel();
-    }
-
-    @Test (priority = 1)
-    public void loginIntoKoelPage2() {
-        loginPage.provideEmail("alina.nikolaienko@testpro.io");
-        loginPage.providePassword("OPJKDUhA");
-        loginPage.clickSubmitButton();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".menu .home")));
-        String homepageUrl = "https://qa.koel.app/#!/home";
-        Assert.assertEquals(driver.getCurrentUrl(), homepageUrl);
     }
 
     @Test(priority = 2, description = "Create new playlist with specific name")

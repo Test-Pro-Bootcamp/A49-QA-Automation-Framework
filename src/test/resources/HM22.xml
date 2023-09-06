@@ -5,12 +5,6 @@
     <test name="Test for logging in and creating playlist" preserve-order="false">
         <classes>
             <class name="tests.Homework22"/>
-            <methods>
-                <include name="createPlaylist"/>
-                <include name="addSongsPlaylist"/>
-                <include name="renamePlaylist"/>
-                <include name="deletePlaylist"/>
-            </methods>
         </classes>
     </test>
 </suite>
