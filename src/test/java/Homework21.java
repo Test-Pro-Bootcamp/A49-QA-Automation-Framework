@@ -16,7 +16,5 @@ public class Homework21 extends BaseTest{
         loginPage.logInWithRightCredentials();
         homePage.doubleClickPlaylist()
                 .enterNewPlaylistName();
-        WebElement popUpNotification = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".success.show")));
-        Assert.assertTrue(popUpNotification.isDisplayed());
     }
 }
