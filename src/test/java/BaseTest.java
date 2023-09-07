@@ -10,6 +10,9 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeSuite;
 import java.net.MalformedURLException;
 import java.net.URI;
+import java.net.URL;
+import java.util.HashMap;
+
 
 public class BaseTest {
     public WebDriver driver ;
@@ -29,6 +32,9 @@ public class BaseTest {
         switch (browser) {
             case "edge" -> {
                 return setupEdge();
+            }
+            case "cloud" -> {
+                return lambdaTest();
             }
             case "grid-chrome" -> {
                 caps.setCapability("browserName", "chrome");
@@ -60,5 +66,21 @@ public class BaseTest {
         options.addArguments("--start-maximized");
         driver =new EdgeDriver(options);
         return driver;
+    }
+    public WebDriver lambdaTest ()throws MalformedURLException{
+        String hubURL = "https://hub.lambdatest.com/wd/hub";
+
+        ChromeOptions browserOptions = new ChromeOptions();
+        browserOptions.setPlatformName("Windows 10");
+        browserOptions.setBrowserVersion("117.0");
+        HashMap<String, Object> ltOptions = new HashMap<String, Object>();
+        ltOptions.put("username", "riddik.ozzie");
+        ltOptions.put("accessKey", "UAy2ARLWKyzJIG9ue8B12dRA151OKgnAsLmlqm5HW5GUkmqHuO");
+        ltOptions.put("project", "Untitled");
+        ltOptions.put("selenium_version", "4.0.0");
+        ltOptions.put("w3c", true);
+        browserOptions.setCapability("LT:Options", ltOptions);
+
+        return new RemoteWebDriver(new URL(hubURL), browserOptions);
     }
 }
