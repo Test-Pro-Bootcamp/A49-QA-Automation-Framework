@@ -21,23 +21,18 @@ public class BasePage {
         wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         actions = new Actions(driver);
     }
-    @AfterMethod
-    public void closeBrowser() {
-
-        driver.quit();
-    }
-
     public void navigateToPage(String url) {
 
         driver.get(url);
     }
 
-    public String getRandomString(int lettersAmount){
-        String randomString = RandomStringUtils.randomAlphabetic(lettersAmount);
+    public String getRandomString(){
+        String randomString = RandomStringUtils.randomAlphabetic(10);
         return randomString;
     }
 
     public void quitBrowser() {
+
         driver.quit();
     }
 
