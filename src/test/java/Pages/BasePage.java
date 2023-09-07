@@ -24,12 +24,12 @@ public class BasePage {
     public WebElement findElement(By locator) {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
-    public void openLoginUrl(String url) {
-        driver.get(url);
-    }
-    public void quitBrowser() {
-        driver.quit();
-    }
+//    public void openLoginUrl(String url) {
+//        driver.get(url);
+//    }
+//    public void quitBrowser() {
+//        driver.quit();
+//    }
     public String generateRandomName () {
         return UUID.randomUUID().toString().replace("-", "");
     }

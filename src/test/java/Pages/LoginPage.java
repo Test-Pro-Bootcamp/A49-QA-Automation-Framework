@@ -53,10 +53,8 @@ public class LoginPage extends BasePage {
     public void checkAvatarDisplay() {
         WebElement avatar = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("img.avatar")));
         Assert.assertTrue(avatar.isDisplayed());
-//        return this;
     }
     public void checkUrlIsTheSame(){
         Assert.assertEquals(driver.getCurrentUrl(), "https://qa.koel.app/");
-//        return this;
     }
 }
