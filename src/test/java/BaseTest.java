@@ -15,7 +15,7 @@ import java.net.URI;
 public class BaseTest {
     WebDriver driver;
     public String url = "https://qa.koel.app/";
-    BasePage basepage;
+//    BasePage basepage;
 
     @BeforeSuite
     public void setupSuite() throws MalformedURLException {
