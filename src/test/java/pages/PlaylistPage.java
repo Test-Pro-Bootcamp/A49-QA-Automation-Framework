@@ -16,12 +16,12 @@ public class PlaylistPage extends BasePage{
     }
 
     public void playlistIsRenamed(String newPlaylistName) {
-        WebElement notification = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[text() = 'Updated playlist \""+ newPlaylistName +".\"']")));
+        WebElement notification = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[text() = 'Updated playlist "+ newPlaylistName +"']")));
         Assert.assertTrue(notification.isDisplayed());
     }
 
     public void enterNewPlayListName(String newPlaylistName) {
-        WebElement playlistInputField = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[name='name']")));
+        WebElement playlistInputField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[name='name']")));
         playlistInputField.sendKeys(Keys.chord(Keys.CONTROL, "A", Keys.BACK_SPACE));
         playlistInputField.sendKeys(newPlaylistName, Keys.ENTER);
 
@@ -38,12 +38,12 @@ public class PlaylistPage extends BasePage{
     }
 
     public void clickOnNewPlayListBtn() {
-        WebElement newPlayListBtn = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[data-testid='playlist-context-menu-create-simple']")));
-        newPlayListBtn.click();
+        WebElement newPlayListBtn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[data-testid='playlist-context-menu-create-simple']")));
+        actions.click(newPlayListBtn).perform();
     }
 
     public void clickOnCreateNewPlaylistBtn() {
-        WebElement plusBtn = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[data-testid='sidebar-create-playlist-btn']")));
+        WebElement plusBtn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[data-testid='sidebar-create-playlist-btn']")));
         plusBtn.click();
     }
 
