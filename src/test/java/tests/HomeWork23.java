@@ -10,8 +10,8 @@ public class HomeWork23 extends BaseTest {
 
     @Test
     public void renamePlaylist() {
-        String newPlaylistName = "Natalia Gorbunova+";
-        String updatedPlaylistMsg = "Updated playlist \"Natalia Gorbunova+.\"";
+        String newPlaylistName = "Natalia Gorbunova24+";
+        String updatedPlaylistMsg = "Updated playlist \"Natalia Gorbunova24+.\"";
 
         LoginPage loginPage = new LoginPage(driver);
         HomePage homePage = new HomePage (driver);

@@ -18,15 +18,15 @@ import java.time.Duration;
 
 public class BaseTest {
 
-    public static WebDriver driver = null;
-    public static String url = null;
-    public static WebDriverWait wait = null;
-    public static Actions actions = null;
+    public WebDriver driver = null;
+    public String url = null;
+    public WebDriverWait wait = null;
+    public Actions actions = null;
 
 
 
     @BeforeSuite
-    static void setupClass() {
+    public void setupClass() {
         WebDriverManager.chromedriver().setup();
     }
 

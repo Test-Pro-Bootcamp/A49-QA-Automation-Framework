@@ -21,8 +21,9 @@ public class HomePage extends BasePage {
     WebElement renamePlaylistSuccessMsg;
 
      public HomePage doubleClickPlaylist() {
-         wait.until(ExpectedConditions.elementToBeClickable(firstPlaylist)).click();
-         return this;
+        WebElement playlistElement = wait.until(ExpectedConditions.elementToBeClickable(firstPlaylist));
+        actions.doubleClick(playlistElement).build().perform();
+        return this;
      }
 
     public HomePage enterNewPlaylistName (String playlistName) {
