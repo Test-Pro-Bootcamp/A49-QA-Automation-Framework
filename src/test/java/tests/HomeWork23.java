@@ -5,7 +5,7 @@ import pages.LoginPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class HomeWork22 extends BaseTest {
+public class HomeWork23 extends BaseTest {
 
     @Test
     public void renamePlaylist() {
