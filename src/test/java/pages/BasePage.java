@@ -12,9 +12,9 @@ import java.time.Duration;
 
 public class BasePage {
 
-    WebDriver driver;
-    WebDriverWait wait;
-    Actions actions;
+    protected WebDriver driver;
+    protected WebDriverWait wait;
+    protected Actions actions;
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
@@ -24,12 +24,12 @@ public class BasePage {
     }
 
 
-    public WebElement findElement(By locator) {
+    protected WebElement findElement(By locator) {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
 
-    public void doubleClick(By locator) {
+    protected void doubleClick(By locator) {
         actions.doubleClick(findElement(locator)).perform();
 
     }
