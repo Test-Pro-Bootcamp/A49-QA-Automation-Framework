@@ -24,6 +24,7 @@ public class BaseTest {
     public static Actions actions = null;
 
 
+
     @BeforeSuite
     static void setupClass() {
         WebDriverManager.chromedriver().setup();
