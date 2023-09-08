@@ -17,10 +17,12 @@ public class BaseTest {
     public String url = "https://qa.koel.app/";
 //    BasePage basepage;
 
-    @BeforeSuite
+    @BeforeClass
     public void setupSuite() throws MalformedURLException {
+//        driver = setupBrowser(System.getProperty("browser"));
         String browser = System.getProperty("browser");
         driver = setupBrowser(browser);
+//        driver.get(url);
 //        setupFirefox();
 //        setupSafari();
 //        setupChrome();

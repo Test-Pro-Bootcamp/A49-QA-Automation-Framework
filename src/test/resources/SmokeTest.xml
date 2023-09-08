@@ -1,14 +1,14 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<!--<?xml version="1.0" encoding="UTF-8"?>-->
+<!--<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >-->
 
-<suite name="SmokeTest">
-    <test name="Play a song" preserve-order="false">
-        <classes>
-            <class name="Homework18">
-                <methods>
-                    <include name="playSong"/>
-                </methods>
-            </class>
-        </classes>
-    </test>
-</suite>
+<!--<suite name="SmokeTest">-->
+<!--    <test name="Play a song" preserve-order="false">-->
+<!--        <classes>-->
+<!--&lt;!&ndash;            <class name="Homework18">&ndash;&gt;-->
+<!--                <methods>-->
+<!--                    <include name="playSong"/>-->
+<!--                </methods>-->
+<!--            </class>-->
+<!--        </classes>-->
+<!--    </test>-->
+<!--</suite>-->
