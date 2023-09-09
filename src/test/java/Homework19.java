@@ -14,7 +14,7 @@ public class Homework19 extends BaseTest{
         String expectedBanishmentMessage = "Deleted playlist \"First in first out.\"";
         String expectedSummonTitle = "Created playlist \"First in first out.\"";
 
-        castPortal();
+        loginPage.SuccessfulPortalTest();
         try {
             createScroll("First in first out");
             summonScroll();

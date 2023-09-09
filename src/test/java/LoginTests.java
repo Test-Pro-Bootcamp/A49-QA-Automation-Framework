@@ -11,34 +11,9 @@ import java.time.Duration;
 public class LoginTests extends BaseTest {
 
     @Test
-    public void loginEmptyEmailPassword() {
+    public void loginValidEmailPassword() {
+        loginPage.SuccessfulPortalTest();
 
-//      Added ChromeOptions argument below to fix websocket error
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
-
-        WebDriver driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
-        String url = "https://qa.koel.app/";
-        driver.get(url);
-
-        WebElement emailField = driver.findElement(By.cssSelector("input[type='email']"));
-        emailField.clear();
-        emailField.sendKeys("dirzo@gmail.com");
-
-        WebElement passwordField = driver.findElement(By.cssSelector("input[type='password']"));
-        passwordField.clear();
-        passwordField.sendKeys("Te$ter1234");
-
-        WebElement submit = driver.findElement(By.cssSelector("button[type='submit']"));
-        submit.click();
-
-        WebElement avatarIcon = driver.findElement(By.cssSelector("img[class='avatar']"));
-
-
-        Assert.assertTrue(avatarIcon.isDisplayed());
-        driver.quit();
     }
 
 

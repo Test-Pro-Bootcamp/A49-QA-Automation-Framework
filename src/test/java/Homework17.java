@@ -14,10 +14,7 @@ public class Homework17 extends BaseTest {
 
         String expectedSongAddedMessage = "Added 1 Song into \"Prepare for battle.\"";
 
-        openPortal();
-        castEmail("dirzo@gmail.com");
-        castPassword("Te$ter1234");
-        castSubmit();
+        loginPage.SuccessfulPortalTest();
         Thread.sleep(2000);
         searchASong("Way Of The Samurai");
         clickViewAll();

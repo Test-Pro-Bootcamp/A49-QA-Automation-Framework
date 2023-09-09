@@ -8,10 +8,7 @@ public class Homework18 extends BaseTest{
 
     @Test
     public void playSong() {
-        openPortal();
-        castEmail("dirzo@gmail.com");
-        castPassword("Te$ter1234");
-        castSubmit();
+        loginPage.SuccessfulPortalTest();
         castPlay();
         Assert.assertTrue(summonSong());
     }

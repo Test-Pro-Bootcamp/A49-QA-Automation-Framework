@@ -15,7 +15,7 @@ public class Homework21 extends BaseTest {
     public void renameScroll() {
 
         String updatedScrollMsg = "Updated playlist \"Sword Dancer Playlist.\"";
-        castPortal();
+        loginPage.SuccessfulPortalTest();
         castRename();
         Assert.assertEquals(getRenamedScrollAch(), updatedScrollMsg);
 
