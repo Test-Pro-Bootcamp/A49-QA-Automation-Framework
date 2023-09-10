@@ -5,6 +5,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
@@ -20,6 +21,7 @@ public class BasePage {
         this.driver = driver;
         wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         actions = new Actions(driver);
+        PageFactory.initElements(driver, this);
     }
     public void navigateToPage(String url) {
 
@@ -41,5 +43,13 @@ public class BasePage {
         searchInput.click();
         searchInput.clear();
         searchInput.sendKeys(inputText);
+    }
+
+    public WebElement click(By locator){
+        return wait.until(ExpectedConditions.elementToBeClickable(locator));
+    }
+
+    public WebElement findElement(By locator){
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 }
