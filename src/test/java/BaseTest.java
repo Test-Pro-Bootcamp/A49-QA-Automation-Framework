@@ -30,6 +30,9 @@ public class BaseTest {
         DesiredCapabilities caps = new DesiredCapabilities();
         String gridURL = "http://192.168.1.105:4444";
         switch (browser) {
+            case "chrome" -> {
+                return setupChrome();
+            }
             case "edge" -> {
                 return setupEdge();
             }
