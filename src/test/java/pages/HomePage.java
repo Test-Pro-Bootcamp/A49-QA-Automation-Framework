@@ -11,7 +11,7 @@ public class HomePage extends BasePage{
     }
 
     public void clickOnPlayList(String playlistName) {
-        WebElement playlist = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[text() = '" + playlistName + "']")));
+        WebElement playlist = findElement(By.xpath("//*[text() = '" + playlistName + "']"));
         actions.contextClick(playlist).perform();
     }
 }
