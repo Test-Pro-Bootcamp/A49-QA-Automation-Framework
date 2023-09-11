@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="CrossBrowsers">
+
+    <parameter name="browser1" value="chrome"/>
+    <parameter name="browser2" value="edge"/>
+    <parameter name = "BaseUrl" value = "https://qa.koel.app/"/>
+       <test name="CrossBrowsers" preserve-order="false">
+        <classes>
+            <class name="BaseTest"/>
+            <class name="Homework16"/>
+            <class name="Homework17"/>
+            <class name="Homework18"/>
+            <class name="Homework19"/>
+        </classes>
+    </test>
+</suite>
