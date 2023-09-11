@@ -6,6 +6,8 @@ import org.testng.annotations.Test;
 
 import java.time.Duration;
 
+
+
 public class  LoginTests extends BaseTest {
     @Test
     public void LoginEmptyEmailPassword() {
@@ -19,6 +21,8 @@ public class  LoginTests extends BaseTest {
 
         String url = "https://qa.koel.app/";
         driver.get(url);
+
+
         Assert.assertEquals(driver.getCurrentUrl(), url);
         driver.quit();
 

@@ -1,5 +1,8 @@
 import com.sun.source.doctree.SeeTree;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -10,6 +13,10 @@ import org.openqa.selenium.WebElement
 import org.openqa.selenium.By
 
 import java.time.Duration;
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 
 public class BaseTest {
  public WebDriver = "null";
@@ -19,7 +26,65 @@ public class BaseTest {
     @BeforeSuite
     static void setupClass() {
         WebDriverManager.chromedriver().setup();
+
+     @AfterMethod
+      public void launchBrowser(){
+        //Added chromeOptions argument below to fix websocket error
+        //Added chromeOptions argument below to maximize screen
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--remote-allow-origins=*");
+        options.addArguments("---start:maximize");
+
+        WebDriver driver = new ChromeDriver(options);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
+     }
+    public void navigateToPage() {
+            String url = https://qa.koel.app;
+            driver.get(url);
+        }
+        public void provideEmail (String email){
+            webElement provideEmail = driver.findElement(By.CssSelector([type="email"]);
+            provideEmail.clear
+            provideEmail.sendKeys(---keysToSend:"email");
+        }
+
+           public void providePassword (String email){
+                webElement providePassword = driver.findElement(By.CssSelector([type="password"]);
+                providePassword.clear
+                providePassword.sendKeys(---keysToSend:"password");
+        }
+
+                public void clickSubmit() {
+                    webElement loginBtn = driver.findElement(By.ByCssSelector([type="submit"]);
+                    loginBtn.click;
+        }
+
+                    public void searchField(String randomGenerator) {
+                     webElement searchField = driver.findElement(By.CssSelector(input[type="search"]);
+                     Thread.sleep(millis:2000);
+        }
+                     public void selectFirstSong() {
+                            webElement selectFirstSong = driver.findElement(By.ByCssSelector([section="playlists"]);
+                            selectFirstSong.click;
+                            Thread.sleep(millis:2000);
+        }
+                                    public void clickToViewAllBtn() {
+                                webElement clickToViewAllBtn = driver.findElement(By.CssSelector(["data-test=\"view-all-songs-btn\""]);
+                                clickToViewAllBtn.click;
+                                Thread.sleep(millis:2000);
+        }
+                                public void clickAddToBtn() {
+            webElement clickAddToBtn = drive.findElement(By.CssSelector[data - test = "add-to-btn"]);
+            clickAddToBtn.click;
+            Thread.sleep(millis:2000);
+        }
+        public void choosePlaylist(){
+        webElement choosePlaylist = driver.findElement(By.ByCssSelector([""]);
+        choosePlaylist.click;
+        Thread.sleep(millis:2000);
     }
+<<<<<<< Updated upstream
 
 
     @BeforeMethod
@@ -80,3 +145,14 @@ public class BaseTest {
     driver.quit();
     }
 }
+=======
+      webElement avatarIcon = drivr.findElement(By.ByCssSelector(div[id="searchForm"]);
+      Assert.assertTrue(avatarIcon.isDisplayed();
+    }
+      @AfterMethod
+    public void closeBrowser() {
+          driver.quit();
+      }
+
+
+>>>>>>> Stashed changes
