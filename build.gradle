@@ -17,6 +17,20 @@ dependencies {
 
 test {
     useTestNG() {
-        suites "src/test/resources/TestNG.xml"
+        suites "src/test/resources/SmokeTests.xml"
+    }
+}
+
+task regression(type: Test){
+    useTestNG(){
+        suites "src/test/resources/RegressionTests.xml"
+
+    }
+
+}
+
+task homework18(type: Test){
+    useTestNG() {
+        suites "src/test/resources/Homework18.xml"
     }
 }
