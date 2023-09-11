@@ -19,7 +19,8 @@ dependencies {
 
 test {
     useTestNG() {
-        suites "src/test/resources/HM23.xml"
+        suites "src/test/resources/HM24.xml"
+        systemProperty "browser", System.getProperty("browser")
     }
 }
 /*
