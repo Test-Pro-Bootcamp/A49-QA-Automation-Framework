@@ -3,13 +3,15 @@
 
 <suite name="TestNG">
 
-    <test name="Example Test" preserve-order="false">
+    <parameter name = "BaseUrl" value = "https://qa.koel.app/"/>
+       <test name="Example Test" preserve-order="false">
         <classes>
-            <class name="LoginTests"/>
-            <class name="BaseTest"/>
             <class name="Homework16"/>
             <class name="Homework17"/>
             <class name="Homework18"/>
+            <class name="Homework19"/>
+            <class name="Homework20"/>
+            <class name="Homework21"/>
         </classes>
     </test>
 </suite>

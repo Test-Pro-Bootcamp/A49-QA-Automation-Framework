@@ -1,19 +1,23 @@
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import pages.HomePage;
 
 import java.awt.*;
 
 public class Homework21 extends BaseTest{
     @Test
-    public void renamePlaylist() throws InterruptedException, AWTException {
+    public void renamePlaylist() throws InterruptedException {
+        String oldName = "Vasyuki";
+        String newName = "New " + oldName;
+        String textBanner = ("Updated playlist " + newName +".");
 
+        HomePage homePage = new HomePage(theDriver);
         loginWithValidCredential();
-        String nameNew = "Songs&Albums";
-        String textBanner = "Updated playlist \"" + nameNew + "\".";
-        createPlaylistAnotherWay("Singers");
-        renamePlaylists("Singers", "Songs&Albums");
-        showBanner(textBanner);
-        Assert.assertTrue(true, textBanner);
+        homePage.renameExistingPlaylist("Vasyuki", "NewVasyuki");
+
+        String result = homePage.showBanner(textBanner);
+
+        Assert.assertTrue(result.equals(textBanner));
 
 
     }

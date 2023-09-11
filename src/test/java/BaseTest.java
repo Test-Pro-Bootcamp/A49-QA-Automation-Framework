@@ -18,6 +18,8 @@ import java.util.Objects;
 import java.util.List;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
+import pages.LoginPage;
+import pages.HomePage;
 
 
 public class BaseTest {
@@ -53,29 +55,14 @@ public class BaseTest {
     }
 
 
-    public void clickLogin() {
-        WebElement submitLogin = theDriver.findElement(By.cssSelector("button[type='submit']"));
-        submitLogin.click();
-    }
 
-    public void enterPassword(String password) {
-        WebElement passwordInput = theDriver.findElement(By.cssSelector("[type='password']"));
-        passwordInput.click();
-        passwordInput.clear();
-        passwordInput.sendKeys(password);
-    }
-
-    public void enterEmail(String email) {
-        WebElement emailInput = theDriver.findElement(By.cssSelector("[type='email']"));
-        emailInput.click();
-        emailInput.clear();
-        emailInput.sendKeys(email);
-    }
     protected void loginWithValidCredential() {
-        enterEmail("anna.dudnik@testpro.io");
-        enterPassword("GulyalaKorova4milk!");
-        clickLogin();
+        LoginPage loginPage = new LoginPage(theDriver,"anna.dudnik@testpro.io", "GulyalaKorova4milk!");
+        loginPage.login();
+        //LoginPage loginPage2 = new LoginPage(theDriver,"anna.dudnik2@testpro.io", "GulyalaKorova4milk!");
+        //loginPage2.login();
     }
+
     public void clearMyPlaylist() throws AWTException {
         openPlaylist();
 
@@ -222,23 +209,5 @@ public class BaseTest {
         playlistField.sendKeys(playlistName);
         playlistField.sendKeys(Keys.ENTER);
     }
-    public void renamePlaylists(String nameOld, String nameNew) throws InterruptedException, AWTException {
-        List<WebElement> existingPlaylist = theDriver.findElements(By.cssSelector("[class='playlist playlist']"));
-        for (WebElement el : existingPlaylist) {
-            if (el.getText().equals(nameOld)){
-                //System.out.println("Found!");
-                WebDriverWait wait = new WebDriverWait(theDriver, Duration.ofSeconds(5));
-                Actions action = new Actions(theDriver);
-                action.contextClick(el).perform();
-                WebElement editMenu = wait.until(ExpectedConditions.visibilityOfElementLocated(new By.ByXPath("//li[contains(text(), 'Edit')]")));
-                editMenu.click();
-                WebElement input = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[name='name']")));
-                doubleClickWebElement(input);
-                input.sendKeys(nameNew);
-                input.sendKeys(Keys.chord(Keys.ENTER));
 
-            }
-        }
-
-    }
 }
