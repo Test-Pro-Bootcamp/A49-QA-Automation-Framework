@@ -28,16 +28,18 @@ public class HomePage extends BasePage {
     By plusButton = By.cssSelector("i[class='fa fa-plus-circle create']");
     By playlistButton = By.cssSelector("li[data-testid='playlist-context-menu-create-simple']");
     By playlistField = By.cssSelector("#playlists > form.create > input");
-    //By notification = By.cssSelector("body > div.alertify-logs.top.right > div");
 
 
     public void renameExistingPlaylist(String nameOld, String nameNew) throws InterruptedException{
+        String url = "https://qa.koel.app/";
         WebElement playlistsHeader = findElement(playlistsHeaderLoc);
         List<WebElement> existingPlaylists = playlistsHeader.findElements(By.cssSelector("a"));
         for (WebElement el : existingPlaylists) {
             if (el.getText().contains(nameOld)) {
-                actions.doubleClick(el).perform();
-                WebElement editElement = findElement(input);
+                el.click();
+                actions.contextClick(el).perform();
+                wait.until(ExpectedConditions.visibilityOfElementLocated(editMenu)).click();
+                WebElement editElement = wait.until(ExpectedConditions.visibilityOfElementLocated(input));
                 actions.doubleClick(editElement).perform();
                 editElement.sendKeys(nameNew);
                 editElement.sendKeys(Keys.chord(Keys.ENTER));

@@ -10,6 +10,7 @@ public class Homework22 extends BaseTest{
 
         HomePage homePage = new HomePage(theDriver);
         loginWithValidCredential();
+        homePage.createPlaylistAnotherWay(oldName);
         if (homePage.findPlaylist("Vasyuki")) {
             homePage.renameExistingPlaylist("Vasyuki", "New Vasyuki");
         } else {
