@@ -42,6 +42,12 @@ public class BasePage {
         WebElement okBtn = driver.findElement(By.cssSelector((".ok")));
         okBtn.click();
     }
+    public WebElement findElement(By locator){
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+    }
+    public void doubleClick (By locator){
+        actions.doubleClick(findElement(locator)).perform();
+    }
 
     public void checkSpellSuccess() {
         WebElement notification = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.success.show")));

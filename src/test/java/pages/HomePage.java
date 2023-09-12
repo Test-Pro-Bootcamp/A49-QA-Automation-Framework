@@ -1,6 +1,7 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -11,6 +12,14 @@ import org.testng.Assert;
 public class HomePage extends BasePage {
     public HomePage(WebDriver driver, WebDriverWait wait, Actions actions) {
         super(driver, wait, actions);
+    }
+
+    By firstScroll = By.cssSelector(".playlist:nth-child(3)");
+    By spellTarget = By.cssSelector("[name='name']");
+    By getRenamedScrollAch = By.cssSelector("div.success.show");
+
+    public void doubleClickScrolllist(){
+        doubleClick(firstScroll);
     }
 
     public void clickOnPlaylist(String playlistName) {
@@ -44,16 +53,28 @@ public class HomePage extends BasePage {
         WebElement song = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//section[@id=' songWrapper']//td[text()='" + songName + "']")));
         actions.contextClick(song).perform();
     }
+    public void castRenameScroll(String newScrollName) {
+        findElement(spellTarget).sendKeys(Keys.chord(Keys.LEFT_CONTROL,"A", Keys.BACK_SPACE));
+        findElement(spellTarget).sendKeys(newScrollName);
+        findElement(spellTarget).sendKeys(Keys.RETURN);
+        /*WebElement nameTarget = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("section[id='playlists'] li:nth-child(3)")));
+        actions.doubleClick(nameTarget).perform();
+        WebElement spellTarget = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[name='name']")));
+        spellTarget.sendKeys(Keys.chord(Keys.LEFT_CONTROL,"A", Keys.BACK_SPACE));
+        spellTarget.sendKeys(newScrollName);
+        spellTarget.sendKeys(Keys.RETURN);*/
+    }
+    public String getRenamePlaylistSuccessMsg() {
+        return findElement(getRenamedScrollAch).getText();
+    }
 
-    By userAvatarIcon = By.cssSelector("img.avatar");
+   /* By userAvatarIcon = By.cssSelector("img.avatar");
 
     public WebElement getUserAvatar() {
 
-        return findElement(userAvatarIcon);
+        return findElement(userAvatarIcon);*/
 
-
-
-    }
 }
+
 
 
