@@ -17,10 +17,10 @@ import java.time.Duration;
 
 public class BaseTest {
 
-    WebDriver driver = null;
-    String url = "https://qa.koel.app/";
-    WebDriverWait wait;
-    Actions actions = null;
+    public WebDriver driver = null;
+    public String url = "https://qa.koel.app/";
+    public WebDriverWait wait;
+    public Actions actions = null;
     BasePage basePage;
     LoginPage loginPage;
     HomePage homePage;
@@ -33,21 +33,18 @@ public class BaseTest {
         WebDriverManager.chromedriver().setup();
     }
     @BeforeMethod
-    @Parameters({"BaseURL"})
-    public void launchBrowser(String BaseURL) {
+    public void launchBrowser() {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
         options.addArguments("--disable-notifications");
         driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.manage().window().maximize();
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         actions = new Actions(driver);
         basePage = new BasePage(driver, wait, actions);
+        basePage.navigateToPage(url);
         loginPage = new LoginPage(driver, wait, actions);
         homePage = new HomePage(driver, wait, actions);
         createPlaylist = new CreatePlaylist(driver, wait, actions);
-        url = BaseURL;
         }
 
     @AfterMethod

@@ -10,10 +10,8 @@ import org.testng.Assert;
 
 import java.time.Duration;
 import java.util.UUID;
-
 public class BasePage {
-
-    public static WebDriver driver = null;
+    WebDriver driver;
     WebDriverWait wait;
     Actions actions;
 
@@ -24,29 +22,22 @@ public class BasePage {
         //wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         //actions = new Actions(driver);
     }
-
     public void navigateToPage(String url) {
         driver.get(url);
     }
-
-    ;
-
     public String castRandomName() {
         return UUID.randomUUID().toString().replace("-", "");
     }
-
     public void clickOnElement(By locator) {
-        WebElement el = wait.until(ExpectedConditions.elementToBeClickable(locator));
+        WebElement el= wait.until(ExpectedConditions.elementToBeClickable(locator));
         el.click();
     }
-
     public void enterText(By locator, String text) {
-        WebElement el = wait.until(ExpectedConditions.elementToBeClickable(locator));
+        WebElement el= wait.until(ExpectedConditions.elementToBeClickable(locator));
         el.click();
         el.clear();
         el.sendKeys(text);
     }
-
     public void clickOnOk() {
         WebElement okBtn = driver.findElement(By.cssSelector((".ok")));
         okBtn.click();
@@ -56,13 +47,6 @@ public class BasePage {
         WebElement notification = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.success.show")));
         Assert.assertTrue(notification.isDisplayed());
     }
-
-    /*public void click(By locator) {
-        wait.until(ExpectedConditions.elementToBeClickable(locator));
-    }
-    public WebElement findElement(By locator){
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
-    }*/
     public void closeBrowser() {
         driver.quit();
     }

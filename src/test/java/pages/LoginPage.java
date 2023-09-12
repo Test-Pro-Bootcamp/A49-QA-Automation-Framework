@@ -13,9 +13,9 @@ import java.time.Duration;
 
 public class LoginPage extends BasePage{
     //locators
-    By submitButtonLocator = By.cssSelector("type='submit']");
-    By emailField = By.cssSelector("type='email']");
-    By passwordField = By.cssSelector("type='password']");
+    By submitButtonLocator = By.cssSelector("[type='submit']");
+    By emailField = By.cssSelector("[type='email']");
+    By passwordField = By.cssSelector("[type='password']");
 
     public LoginPage (WebDriver driver, WebDriverWait wait, Actions actions){
 
@@ -46,4 +46,5 @@ public class LoginPage extends BasePage{
 
         Assert.assertTrue(towerPage.getUserAvatar().isDisplayed());
     }
+
 }
