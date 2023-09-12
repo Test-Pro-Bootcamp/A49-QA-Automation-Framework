@@ -7,9 +7,11 @@ import pages.LoginPage;
 public class InvalidLoginTests extends BaseTest{
     LoginPage loginPage;
     @BeforeMethod
-    void setup(){
+    public void setup(){
         loginPage = new LoginPage(driver);
+        //loginPage = new LoginPage(getThreadDriver());
         driver.get(url);
+        //getThreadDriver().get(url);
     }
     @Test
     public void invalidEmailInvalidPassword(){

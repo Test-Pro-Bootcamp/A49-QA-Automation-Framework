@@ -22,10 +22,18 @@ public class ActionsTest extends BaseTest {
     @Test
     void contextClickTest()  {
         homePage.clickAllSongs();
-        songsPage.findSong("Reactor")
+        songsPage.findSong("Epic Song")
                 .clickPlayOption()
                 .checkIfSongIsPlaying();
     }
+
+    /*@Test
+    void contextClick()  {
+        homePage.clickAllSongs();
+        songsPage.findSong("Epic Song")
+                .clickPlayOption()
+                .checkIfSongIsPlaying();
+    }*/
 
     @Test
     void doubleClickTest() {

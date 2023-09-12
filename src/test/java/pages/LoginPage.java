@@ -52,29 +52,4 @@ public class LoginPage extends BasePage {
         //providePassword("te$t$tudent");
         clickSubmitButton();
     }
-
-
-
-
-    /*
-    //without Page Factory
-    public void provideEmail(String email) {
-        WebElement emailField = driver.findElement(emailFieldLocator);
-        emailField.clear();
-        emailField.sendKeys(email);
-    }
-
-    public void providePassword(String password) {
-        WebElement passwordField = driver.findElement(passwordFieldLocator);
-        passwordField.clear();
-        passwordField.sendKeys(password);
-    }
-
-    public void clickSubmitButton() {
-        WebElement submitButton = driver.findElement(submitButtonFieldLocator);
-        submitButton.click();
-    }
-    */
-
-
 }

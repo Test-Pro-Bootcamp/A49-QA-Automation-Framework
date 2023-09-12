@@ -5,81 +5,54 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import pages.BasePage;
 
 import java.net.MalformedURLException;
-import java.net.URI;
+import java.net.URL;
+import java.time.Duration;
+import java.util.HashMap;
 
 public class BaseTest {
     public WebDriver driver;
 
-    //public WebDriverWait wait;
+    public WebDriverWait wait;
+
+    public Actions actions;
     public String url = "https://qa.koel.app/";
 
     BasePage basePage;
 
-    @BeforeSuite
+
+
+    @BeforeClass
     public void setupSuite() throws MalformedURLException {
-        //was here before creating setupChrome and setupFirefox methods
-        //WebDriverManager.chromedriver().setup();
+
         String browser = System.getProperty("browser");
-        //String browser = "grid-chrome";
-        driver=setupBrowser(browser);
+        driver = setupBrowser(browser);
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        actions = new Actions(driver);
+        driver.get(url);
     }
 
-    WebDriver setupBrowser(String browser) throws MalformedURLException {
-        DesiredCapabilities caps = new DesiredCapabilities();
-        String gridURL = "http://192.168.1.198:4444";
+
+    private WebDriver setupBrowser(String browser) throws MalformedURLException {
         switch (browser){
-            case "firefox":
-                return setupFirefox();
             case "chrome":
                 return setupChrome();
-            case "grid-chrome":
-                caps.setCapability("browserName", "chrome");
-                return driver = new RemoteWebDriver(URI.create(gridURL).toURL(), caps);
-            case "grid-firefox":
-                caps.setCapability("browserName", "firefox");
-                return driver = new RemoteWebDriver(URI.create(gridURL).toURL(), caps);
+            case "cloud":
+                return setupLambda();
+            case "firefox":
+                return setupFirefox();
             default:
-                caps.setCapability("browserName", "chrome");
-                return driver = new RemoteWebDriver(URI.create(gridURL).toURL(), caps);
+                return setupChrome();
+
         }
-    }
-
-  //  @BeforeClass
-   // public void launchBrowser() {
-        /*//moved to setupChrome method
-        // Added ChromeOptions argument below to fix websocket error
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
-
-        driver = new ChromeDriver(options);
-
-        //wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        //actions = new Actions(driver);*/
-
-        //basePage = new BasePage(driver);
-        //basePage.navigateToPage(url);
-   // }
-
-
-
-    @AfterClass
-    public void quitBrowser(){
-        //basePage.closeBrowser();
-        driver.quit();
-    }
-
-    WebDriver setupFirefox(){
-        WebDriverManager.firefoxdriver().setup();
-        driver = new FirefoxDriver();
-        return driver;
     }
 
     WebDriver setupChrome(){
@@ -89,7 +62,33 @@ public class BaseTest {
 
         driver = new ChromeDriver(options);
         return driver;
+    }
 
+    WebDriver setupFirefox(){
+        WebDriverManager.firefoxdriver().setup();
+        driver = new FirefoxDriver();
+        return driver;
+    }
+
+    public WebDriver setupLambda() throws MalformedURLException {
+        String hubURL ="https://hub.lambdatest.com/wd/hub";
+        ChromeOptions browserOptions = new ChromeOptions();
+        browserOptions.setPlatformName("Windows 10");
+        browserOptions.setBrowserVersion("117.0");
+        HashMap<String, Object> ltOptions = new HashMap<String, Object>();
+        ltOptions.put("username", "alina.salnik");
+        ltOptions.put("accessKey", "1RMqJHjZhPfrJM7hhUuIQRCLeSR1HuYtFMFC91fpwx3pcL0l7p");
+        ltOptions.put("project", "TestPro");
+        ltOptions.put("w3c", true);
+        ltOptions.put("plugin", "java-testNG");
+        browserOptions.setCapability("LT:Options", ltOptions);
+        return  new RemoteWebDriver(new URL(hubURL),browserOptions);
+    }
+
+
+    @AfterClass
+    public void quitBrowser(){
+        driver.quit();
     }
 
     @DataProvider(name = "User Credentials")

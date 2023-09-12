@@ -12,12 +12,21 @@ import java.time.Duration;
 public class LoginTests extends BaseTest{
     LoginPage loginPage;
     WebDriverWait wait;
+
+    /*@BeforeMethod
+    public void setup(){
+        loginPage= new LoginPage(getThreadDriver());
+        getThreadDriver().get(url);
+    }*/
+
     @BeforeMethod
     void setup(){
         loginPage = new LoginPage(driver);
         driver.get(url);
         wait = new WebDriverWait(driver, Duration.ofSeconds(5));
     }
+
+
     @Test
     public void validEmailValidPassword()  {
         loginPage.loginToKoel();

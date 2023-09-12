@@ -7,7 +7,7 @@ import pages.BasePage;
 import pages.HomePage;
 import pages.LoginPage;
 
-public class Homework24 extends BaseTest {
+public class PlaylistTest extends BaseTest {
     LoginPage loginPage;
     HomePage homePage;
 
@@ -21,6 +21,7 @@ public class Homework24 extends BaseTest {
         homePage = new HomePage(driver);
         loginPage.loginToKoel();
     }
+
 
     /*@Test (priority = 1, description = "Login into Koel")
     public void loginIntoKoel(){
