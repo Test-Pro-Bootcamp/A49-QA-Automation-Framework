@@ -32,7 +32,7 @@ public class BaseTest {
         driver=setupBrowser(browser);
     }
 
-    WebDriver setupBrowser(String browser) throws MalformedURLException {
+    public WebDriver setupBrowser(String browser) throws MalformedURLException {
         DesiredCapabilities caps = new DesiredCapabilities();
         String gridURL = "http://192.168.1.198:4444";
         switch (browser){
@@ -89,7 +89,6 @@ public class BaseTest {
 
         driver = new ChromeDriver(options);
         return driver;
-
     }
 
     @DataProvider(name = "User Credentials")
@@ -99,6 +98,4 @@ public class BaseTest {
                 {"demo@testpro.io", "te$t$tudent"}
         };
     }
-
-
 }
