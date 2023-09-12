@@ -11,18 +11,28 @@ import org.testng.annotations.*;
 
 import java.net.MalformedURLException;
 import java.net.URI;
+import java.time.Duration;
 
 public class BaseTest {
-    WebDriver driver;
+    public WebDriver driver;
     public String url = "https://qa.koel.app/";
 //    BasePage basepage;
+    public static final ThreadLocal<WebDriver> threadDriver =  new ThreadLocal<>();
+    public static WebDriver getDriver() {
+        return threadDriver.get();}
 
-    @BeforeClass
+    @BeforeMethod
     public void setupSuite() throws MalformedURLException {
+//        String browser = System.getProperty("browser");
+        threadDriver.set(setupBrowser(System.getProperty("browser")));
+//        wait = new WebDriverWait(getDriver(),Duration.ofSeconds(10));
+//        actions = new Actions(getDriver);
 //        driver = setupBrowser(System.getProperty("browser"));
-        String browser = System.getProperty("browser");
-        driver = setupBrowser(browser);
-//        driver.get(url);
+        getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+//        driver.manage().window().maximize();
+        driver.get(url);
+        //        String browser = System.getProperty("browser");
+        //        driver = setupBrowser(browser);
 //        setupFirefox();
 //        setupSafari();
 //        setupChrome();
@@ -33,9 +43,10 @@ public class BaseTest {
 //        basepage = new BasePage(driver);
 //        basepage.openLoginUrl(url);
 //    }
-    @AfterClass
+    @AfterMethod
     public void closeBrowser() {
-        driver.quit();
+        threadDriver.get().close();
+        threadDriver.remove();
     }
     WebDriver setupBrowser(String browser) throws MalformedURLException {
         DesiredCapabilities caps = new DesiredCapabilities();

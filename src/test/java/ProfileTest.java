@@ -10,16 +10,15 @@
 //    BasePage basepage;
 //
 //    @Test
-//    public void changeProfileNameTest() {
+//    public void changeProfileNameTest() throws InterruptedException {
 //        loginPage = new LoginPage(driver);
 //        homePage = new HomePage(driver);
 //        profilePage = new ProfilePage(driver);
 //        basepage = new BasePage(driver);
 //        String randomName = basepage.generateRandomName();
 //
-////        homePage.openLoginUrl(url);
-////        driver.get(url);
 //        loginPage.loginWithCorrectCred();
+//        Thread.sleep(3000);
 //        homePage.clickAvatarIcon();
 //        profilePage.provideCurrentPassword("te$t$tudent")
 //                   .provideProfileName(randomName)
