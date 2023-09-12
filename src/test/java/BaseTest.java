@@ -68,7 +68,7 @@ public class BaseTest {
         ChromeOptions browserOptions = new ChromeOptions();
         browserOptions.setPlatformName("Windows 10");
         browserOptions.setBrowserVersion("117.0");
-        HashMap<String, Object> ltOptions = new HashMap<String, Object>();
+        HashMap<String, Object> ltOptions = new HashMap<>();
         ltOptions.put("username", "riddik.ozzie");
         ltOptions.put("accessKey", "UAy2ARLWKyzJIG9ue8B12dRA151OKgnAsLmlqm5HW5GUkmqHuO");
         ltOptions.put("project", "Untitled");
