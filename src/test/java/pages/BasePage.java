@@ -19,13 +19,8 @@ public class BasePage {
 
     public BasePage(WebDriver driver){
         this.driver = driver;
-        wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-        actions = new Actions(driver);
-        PageFactory.initElements(driver, this);
-    }
-    public void navigateToPage(String url) {
-
-        driver.get(url);
+        PageFactory.initElements(driver,this);
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
     public String getRandomString(){
@@ -33,23 +28,4 @@ public class BasePage {
         return randomString;
     }
 
-    public void quitBrowser() {
-
-        driver.quit();
-    }
-
-    public void enterText(By inputLocator, String inputText) {
-        WebElement searchInput = wait.until(ExpectedConditions.elementToBeClickable(inputLocator));
-        searchInput.click();
-        searchInput.clear();
-        searchInput.sendKeys(inputText);
-    }
-
-    public WebElement click(By locator){
-        return wait.until(ExpectedConditions.elementToBeClickable(locator));
-    }
-
-    public WebElement findElement(By locator){
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
-    }
 }

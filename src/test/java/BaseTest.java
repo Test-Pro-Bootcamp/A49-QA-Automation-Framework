@@ -1,25 +1,27 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeSuite;
-import pages.BasePage;
-import pages.HomePage;
-import pages.LoginPage;
-import pages.PlaylistPage;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.*;
+
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.time.Duration;
 
 public class BaseTest {
 
-    BasePage basePage;
-    LoginPage loginPage;
-    HomePage homePage;
-    PlaylistPage playlistPage;
-    public WebDriver driver ;
-    public String url = "https://qa.koel.app/";
+    public static WebDriver driver = null;
+    public static String url = null;
+    public static WebDriverWait wait = null;
 
+    public static Actions actions = null;
 
     @BeforeSuite
     static void setupClass() {
@@ -27,25 +29,50 @@ public class BaseTest {
         WebDriverManager.chromedriver().setup();
     }
 
-    @BeforeClass
-    public void launchBrowser() {
-        //Added ChromeOptions argument below to fix websocket error
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
-        options.addArguments("--disable-notifications");
-        options.addArguments("--start-maximized");
-        driver = new ChromeDriver(options);
-        basePage = new BasePage(driver);
-        basePage.navigateToPage(url);
-        loginPage = new LoginPage(driver);
-        homePage = new HomePage(driver);
-        playlistPage = new PlaylistPage(driver);
-    }
+    @BeforeMethod
+    @Parameters({"BaseURL"})
+    public void launchBrowser(String BaseURL) throws MalformedURLException {
 
+        driver = pickBrowser(System.getProperty("browser"));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().window().maximize();
+
+        url = BaseURL;
+        navigateToPage();
+    }
     @AfterClass
     public void closeBrowser() {
-
-        basePage.quitBrowser();
+        driver.quit();
+    }
+    public  void navigateToPage() {
+        driver.get(url);
     }
 
+
+    public WebDriver pickBrowser(String browser) throws MalformedURLException {
+        DesiredCapabilities caps = new DesiredCapabilities();
+        String gridURL = "http://10.0.0.243:4444";
+
+        switch(browser) {
+
+            case "MicrosoftEdge":
+                WebDriverManager.edgedriver().setup();
+                EdgeOptions edgeOptions = new EdgeOptions();
+                edgeOptions.addArguments("--remote-allow-origins=*");
+                return driver = new EdgeDriver(edgeOptions);
+
+            case "grid-edge":
+                caps.setCapability("browserName", "MicrosoftEdge");
+                return driver = new RemoteWebDriver(URI.create(gridURL).toURL(), caps);
+
+            case "grid-chrome":
+                caps.setCapability("browserName", "chrome");
+                return driver = new RemoteWebDriver(URI.create(gridURL).toURL(), caps);
+            default:
+                WebDriverManager.chromedriver().setup();
+                ChromeOptions chromeOptions = new ChromeOptions();
+                chromeOptions.addArguments("--remote-allow-origins=*");
+                return driver = new ChromeDriver(chromeOptions);
+        }
+    }
 }
