@@ -30,26 +30,18 @@ public class BaseTest {
         DesiredCapabilities caps = new DesiredCapabilities();
         String gridURL = "http://192.168.1.105:4444";
         switch (browser) {
-            case "chrome" -> {
-                return setupChrome();
-            }
-            case "edge" -> {
+            case "edge":
                 return setupEdge();
-            }
-            case "cloud" -> {
+            case "cloud":
                 return lambdaTest();
-            }
-            case "grid-chrome" -> {
+            case "grid-chrome":
                 caps.setCapability("browserName", "chrome");
                 return driver = new RemoteWebDriver(URI.create(gridURL).toURL(), caps);
-            }
-            case "grid-edge" -> {
+            case "grid-edge":
                 caps.setCapability("browserName", "edge");
                 return driver = new RemoteWebDriver(URI.create(gridURL).toURL(), caps);
-            }
-            default -> {
+            default:
                 return setupChrome();
-            }
         }
     }
     public WebDriver setupChrome(){
