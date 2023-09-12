@@ -20,14 +20,12 @@ import java.util.HashMap;
 
 public class BaseTest {
     public WebDriver driver;
-
     public WebDriverWait wait;
-
     public Actions actions;
+
     public String url = "https://qa.koel.app/";
 
     BasePage basePage;
-
 
 
     @BeforeClass
@@ -40,7 +38,6 @@ public class BaseTest {
         driver.get(url);
     }
 
-
     private WebDriver setupBrowser(String browser) throws MalformedURLException {
         switch (browser){
             case "chrome":
@@ -51,7 +48,6 @@ public class BaseTest {
                 return setupFirefox();
             default:
                 return setupChrome();
-
         }
     }
 
