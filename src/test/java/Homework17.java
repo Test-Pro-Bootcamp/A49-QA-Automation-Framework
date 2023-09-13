@@ -6,7 +6,7 @@ import java.awt.*;
 public class Homework17 extends BaseTest{
 
     @Test
-    public void addSongToPlaylist() throws InterruptedException, AWTException {
+    public void addSongToPlaylist() {
         String callPlaylist = "test";
         String song = "HoliznaCC";
         String textBanner = "Added 1 song into \"" + callPlaylist + "\".";
@@ -18,12 +18,10 @@ public class Homework17 extends BaseTest{
         clickAddTo();
         clickPlaylist();
 
-        showBanner(textBanner);
+        String result = showBanner(textBanner);
 
 
-
-
-        Assert.assertTrue(true, textBanner);
+        Assert.assertEquals(result, textBanner);
 
     }
 

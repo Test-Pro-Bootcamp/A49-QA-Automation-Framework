@@ -1,5 +1,6 @@
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import pages.BasePage;
 import pages.HomePage;
 public class Homework22 extends BaseTest{
     @Test
@@ -9,6 +10,7 @@ public class Homework22 extends BaseTest{
         String textBanner = "Updated playlist \"" + newName +".\"";
 
         HomePage homePage = new HomePage(theDriver);
+        BasePage basePage = new BasePage(theDriver);
         loginWithValidCredential();
         homePage.createPlaylistAnotherWay(oldName);
         if (homePage.findPlaylist("Vasyuki")) {
@@ -17,7 +19,7 @@ public class Homework22 extends BaseTest{
             System.out.println("Playlist doesn't exist");
         }
 
-        String result = homePage.showBanner(textBanner);
+        String result = basePage.showBanner(textBanner);
 
 
         Assert.assertEquals(result, textBanner);

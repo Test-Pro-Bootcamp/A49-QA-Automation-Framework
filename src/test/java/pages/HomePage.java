@@ -1,26 +1,20 @@
 package pages;
 
 import org.openqa.selenium.*;
-import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Wait;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.openqa.selenium.remote.RemoteWebElement;
-import org.openqa.selenium.SearchContext;
 
-
-import java.awt.*;
-import java.time.Duration;
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
 public class HomePage extends BasePage {
 
     public HomePage(WebDriver givenDriver) {
+
         super(givenDriver);
     }
-
+    @FindBy(xpath = "//button[@data-test='view-all-songs-btn']")
+    WebElement buttonViewAll;
     By playlistsHeaderLoc = By.cssSelector("#sidebar > #playlists");
     By editMenu = By.xpath("//li[contains(text(), 'Edit')]");
     By input = By.cssSelector("input[name='name']");
@@ -30,13 +24,14 @@ public class HomePage extends BasePage {
     By playlistField = By.cssSelector("#playlists > form.create > input");
 
 
+
     public void renameExistingPlaylist(String nameOld, String nameNew) throws InterruptedException{
-        String url = "https://qa.koel.app/";
+        //String url = "https://qa.koel.app/";
         WebElement playlistsHeader = findElement(playlistsHeaderLoc);
         List<WebElement> existingPlaylists = playlistsHeader.findElements(By.cssSelector("a"));
         for (WebElement el : existingPlaylists) {
-            if (el.getText().contains(nameOld)) {
-                el.click();
+            if (el.getText().equals(nameOld)) {
+                Thread.sleep(3000);
                 actions.contextClick(el).perform();
                 wait.until(ExpectedConditions.visibilityOfElementLocated(editMenu)).click();
                 WebElement editElement = wait.until(ExpectedConditions.visibilityOfElementLocated(input));
@@ -46,6 +41,7 @@ public class HomePage extends BasePage {
             }
         }
     }
+
     public String getRenamePlaylistSuccessMsg() {
         return findElement(successMessage).getText();
     }
@@ -57,19 +53,7 @@ public class HomePage extends BasePage {
             findElement(playlistField).sendKeys(playlistName);
             findElement(playlistField).sendKeys(Keys.ENTER);
         }
-        public String showBanner (String textBanner) throws NoSuchElementException {
-            try {
-                WebElement notification = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("body > div.alertify-logs.top.right > div")));
 
-                while (!Objects.equals(notification.getText(), textBanner)) {
-                    notification = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("body > div.alertify-logs.top.right > div")));
-                }
-
-                return notification.getText();
-            } catch (Exception e) {
-                return e.getMessage();
-            }
-        }
     public Boolean findPlaylist(String namePlaylist) {
         WebElement playlistsHeader = findElement(playlistsHeaderLoc);
         List<WebElement> existingPlaylists = playlistsHeader.findElements(By.cssSelector("li"));

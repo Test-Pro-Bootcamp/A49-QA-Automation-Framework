@@ -7,7 +7,7 @@ import java.awt.*;
 public class Homework18 extends BaseTest{
 
     @Test
-    public void playSong() throws InterruptedException, AWTException{
+    public void playSong() {
         loginWithValidCredential();
         search("HoliznaCC");
         clickViewAll();

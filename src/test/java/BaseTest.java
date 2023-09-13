@@ -47,6 +47,7 @@ public class BaseTest {
         theDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         theDriver.manage().window().maximize();
         theDriver.get(BaseUrl);
+
     }
 
     @AfterMethod
