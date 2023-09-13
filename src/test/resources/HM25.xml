@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="HM for Testing on Cloud">
+<suite name="HM for Testing on Cloud" parallel="methods" thread-count="4">
     <test name="Test for invalid login" preserve-order="false">
+
         <classes>
-            <class name="tests.PlaylistTest"/>
             <class name="tests.ActionsTest"/>
+            <class name="tests.PlaylistTest"/>
         </classes>
     </test>
 </suite>

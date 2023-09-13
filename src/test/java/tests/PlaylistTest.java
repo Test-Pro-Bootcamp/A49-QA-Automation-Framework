@@ -10,15 +10,21 @@ import pages.LoginPage;
 public class PlaylistTest extends BaseTest {
     LoginPage loginPage;
     HomePage homePage;
+    BasePage basePage;
 
     public String myNewPlaylist = "My New Playlist";
     public String newPlaylistTitle = "Updated " + myNewPlaylist;
 
     @BeforeClass
     void login(){
-        loginPage = new LoginPage(driver);
-        basePage = new BasePage(driver);
-        homePage = new HomePage(driver);
+        loginPage = new LoginPage(getThreadLocal());
+        basePage = new BasePage(getThreadLocal());
+        homePage = new HomePage(getThreadLocal());
+        basePage = new BasePage(getThreadLocal());
+
+        //loginPage = new LoginPage(driver);
+        //basePage = new BasePage(driver);
+        //homePage = new HomePage(driver);
         loginPage.loginToKoel();
     }
 

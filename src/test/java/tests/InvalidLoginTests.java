@@ -8,10 +8,11 @@ public class InvalidLoginTests extends BaseTest{
     LoginPage loginPage;
     @BeforeMethod
     public void setup(){
-        loginPage = new LoginPage(driver);
-        //loginPage = new LoginPage(getThreadDriver());
-        driver.get(url);
-        //getThreadDriver().get(url);
+        //loginPage = new LoginPage(driver);
+        loginPage = new LoginPage(getThreadLocal());
+        //driver.get(url);
+        getThreadLocal().get(url);
+        loginPage.loginToKoel();
     }
     @Test
     public void invalidEmailInvalidPassword(){

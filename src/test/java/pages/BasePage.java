@@ -25,9 +25,9 @@ public class BasePage {
     }*/
     //constructor
     public BasePage(WebDriver givenDriver){
-        driver = givenDriver;
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        actions = new Actions(driver);
+        this.driver = givenDriver;
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        this.actions = new Actions(driver);
         PageFactory.initElements(driver, this);
     }
 

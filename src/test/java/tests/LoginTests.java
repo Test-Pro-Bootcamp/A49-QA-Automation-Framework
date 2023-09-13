@@ -21,9 +21,12 @@ public class LoginTests extends BaseTest{
 
     @BeforeMethod
     void setup(){
-        loginPage = new LoginPage(driver);
-        driver.get(url);
-        wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        //loginPage = new LoginPage(driver);
+        loginPage = new LoginPage(getThreadLocal());
+        //driver.get(url);
+        getThreadLocal().get(url);
+        //wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait = new WebDriverWait(getThreadLocal(), Duration.ofSeconds(5));
     }
 
 

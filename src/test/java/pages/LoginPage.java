@@ -10,6 +10,10 @@ public class LoginPage extends BasePage {
     public LoginPage(WebDriver driver) {
         super(driver);
     }
+    /*public LoginPage( ThreadLocal<WebDriver> THREAD_LOCAL) {
+        super((WebDriver) THREAD_LOCAL);
+    }*/
+
     @FindBy(css = "[type = 'email']")
     private  WebElement emailFieldLocator;
 
