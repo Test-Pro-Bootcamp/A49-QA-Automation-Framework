@@ -43,6 +43,13 @@ public class BaseTest {
         String gridURL = "http://10.2.127.17:4444";
 
         switch (browser) {
+            case "chrome":
+                WebDriverManager.chromedriver().setup();
+                ChromeOptions optionsChrome = new ChromeOptions();
+                //optionsChrome.addArguments("--disable-notifications","--remote-allow-origins=*", "--incognito","--start-maximized");
+                optionsChrome.addArguments("--disable-notifications","--remote-allow-origins=*", "--incognito");
+                optionsChrome.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
+                return driver = new ChromeDriver(optionsChrome);
             case "firefox":
                 WebDriverManager.firefoxdriver().setup();
                 FirefoxOptions optionsFirefox = new FirefoxOptions();
@@ -64,10 +71,11 @@ public class BaseTest {
                 return setupLambda();
             default:
                 WebDriverManager.chromedriver().setup();
-                ChromeOptions optionsChrome = new ChromeOptions();
-                optionsChrome.addArguments("--disable-notifications","--remote-allow-origins=*", "--incognito","--start-maximized");
-                optionsChrome.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
-                return driver = new ChromeDriver(optionsChrome);
+                ChromeOptions optionChrome = new ChromeOptions();
+                //optionsChrome.addArguments("--disable-notifications","--remote-allow-origins=*", "--incognito","--start-maximized");
+                optionChrome.addArguments("--disable-notifications","--remote-allow-origins=*", "--incognito");
+                optionChrome.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
+                return driver = new ChromeDriver(optionChrome);
         }
     }
 

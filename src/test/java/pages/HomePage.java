@@ -82,6 +82,7 @@ public class HomePage extends BasePage {
         return this;
     }
 
+
     public HomePage searchForSong(String name) {
         wait.until(ExpectedConditions.visibilityOf(searchField));
         searchField.clear();

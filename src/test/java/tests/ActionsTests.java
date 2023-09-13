@@ -5,7 +5,7 @@ import pages.HomePage;
 import pages.LoginPage;
 import pages.SongsPage;
 
-public class ActionsTest extends BaseTest {
+public class ActionsTests extends BaseTest {
 
 
 
