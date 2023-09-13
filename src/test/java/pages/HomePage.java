@@ -34,6 +34,9 @@ public class HomePage extends BasePage {
     @FindBy (css = "section #songResultsWrapper section.existing-playlists li.playlist")
     WebElement listButton;
 
+    @FindBy (xpath = "//*[@id='songResultsWrapper']//*[@class='song-list-controls']//*[@class='existing-playlists']//li[contains(text(), 'TestPro Playlist')]")
+    WebElement testProPlaylist;
+
     @FindBy (xpath = "//div[@class='song-list-wrap main-scroll-wrap search-results']//table[@class='items']/tr[@class='song-item'][1]")
     WebElement firstSongInList;
 
@@ -112,15 +115,17 @@ public class HomePage extends BasePage {
         return this;
     }
 
-
-    public HomePage addSongToPlayList(String song) {
-        searchForSong(song);
-        clickViewAllButton();
-        findFirstSongInResults();
-        clickAddToButton();
-        addSongToMyNewPlaylist();
+    public HomePage addSongToTestProPlaylist() {
+        wait.until(ExpectedConditions.visibilityOf(listButton));
+        Actions action = new Actions(driver);
+        action.moveToElement(testProPlaylist);
+        testProPlaylist.click();
         return this;
     }
+
+
+
+
 
     public HomePage createPlaylist(String myNewPlaylist) {
         String newPlaylistButton = "#playlists .fa.fa-plus-circle.create";
