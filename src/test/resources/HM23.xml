@@ -6,7 +6,7 @@
         <classes>
             <class name="tests.Homework23"/>
 
-            <class name="tests.ActionsTest"/>
+            <class name="tests.ActionsTests"/>
         </classes>
     </test>
 </suite>

@@ -27,15 +27,18 @@ public class PlaylistTest extends BaseTest {
 
         basePage.waitForInvisibilityOfNotificationMessage();
 
+        //homePage.deleteCreatedPlaylist();
+
     }
 
     @Test(priority = 3, description = "Add few songs to newly created playlist with specific name")
-    public void addSongsPlaylist() {
+    public void addSongsPlaylist() throws InterruptedException {
         HomePage homePage = new HomePage(getThreadLocal());
         BasePage basePage = new BasePage(getThreadLocal());
         LoginPage loginPage = new LoginPage(getThreadLocal());
         loginPage.loginToKoel();
         homePage.createPlaylist("TestPro Playlist");
+        Thread.sleep(5000);
 
         basePage.waitForInvisibilityOfNotificationMessage();
 
