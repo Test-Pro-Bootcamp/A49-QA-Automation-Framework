@@ -12,7 +12,6 @@ public class LoginPage extends BasePage{
         super(driver);
 
     }
-
     @FindBy(css="input[type='email']")
     WebElement emailField;
     @FindBy(css="input[type='password']")
@@ -34,13 +33,13 @@ public class LoginPage extends BasePage{
     }
 
     public LoginPage providePassword(String password) {
-       wait.until(ExpectedConditions.elementToBeClickable(passwordField)).clear();
+        wait.until(ExpectedConditions.elementToBeClickable(passwordField)).clear();
         passwordField.sendKeys(password);
         return this;
     }
 
     public LoginPage clickSubmit() {
-       wait.until(ExpectedConditions.elementToBeClickable(submit)).click();
+        wait.until(ExpectedConditions.elementToBeClickable(submit)).click();
         return this;
     }
 }
