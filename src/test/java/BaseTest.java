@@ -129,7 +129,7 @@ public class BaseTest {
 
     public String showBanner(String textBanner) throws NoSuchElementException {
         try {
-            WebDriverWait wait = new WebDriverWait(theDriver, Duration.ofSeconds(3));
+            WebDriverWait wait = new WebDriverWait(theDriver, Duration.ofSeconds(5));
             WebElement notification = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("body > div.alertify-logs.top.right > div")));
 
             while (!Objects.equals(notification.getText(), textBanner)){

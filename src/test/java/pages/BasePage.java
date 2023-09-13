@@ -58,11 +58,12 @@ public class BasePage {
             return e.getMessage();
         }
     }
-    public void search(String song) {
+    public BasePage search(String song) {
         WebElement searchField = findElement(By.cssSelector("[type='search']"));
         searchField.click();
         searchField.clear();
         searchField.sendKeys(song);
+        return this;
     }
 
 }
