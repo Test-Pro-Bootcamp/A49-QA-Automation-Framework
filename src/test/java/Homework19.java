@@ -8,11 +8,12 @@
 //    HomePage homePage;
 //    @Test
 //    public void deletePlaylist() {
-//        loginPage = new LoginPage(driver);
-//        playlistPage = new PlaylistPage(driver);
-//        homePage = new HomePage(driver);
+//        loginPage = new LoginPage(getThreadLocal());
+//        playlistPage = new PlaylistPage(getThreadLocal());
+//        homePage = new HomePage(getThreadLocal());
 //
 //        loginPage.loginWithCorrectCred();
+//        homePage.waitForLoadingBarToDisappear();
 //        playlistPage.clickAddPlaylist();
 //        playlistPage.selectNewOption();
 //        String randomName = homePage.generateRandomName();

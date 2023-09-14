@@ -6,14 +6,14 @@ public class LoginTests extends BaseTest {
     LoginPage loginPage;
     @Test
     public void LoginValidEmailPasswordTest() {
-        loginPage = new LoginPage(getDriver());
+        loginPage = new LoginPage(getThreadLocal());
 
         loginPage.loginWithCorrectCred()
                  .checkAvatarDisplay();
     }
     @Test
     public void LoginInvalidEmailPasswordTest() {
-        loginPage = new LoginPage(getDriver());
+        loginPage = new LoginPage(getThreadLocal());
 
         loginPage.loginWithIncorrectCred()
                  .checkUrlIsTheSame();
