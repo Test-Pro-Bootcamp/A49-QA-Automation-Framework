@@ -16,4 +16,11 @@ public class Homework26 extends BaseTest {
         homePage.avatarImgIsDisplayed();
     }
 
+    @Test
+    public void emptyPassword() {
+        loginPage = new LoginPage(driver);
+        homePage = new HomePage(driver);
+        loginPage.provideEmail("svitlana.shkribliak@testpro.io").providePassword("").clickSubmit();
+        homePage.logoIsDisplayed();
+    }
 }
