@@ -14,10 +14,15 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import pages.HomePage;
+import pages.LoginPage;
 
 import java.time.Duration;
 
 public class Homework27 {
+
+    LoginPage loginPage;
+    HomePage homePage;
 
     WebDriver driver;
     WebDriverWait wait;
@@ -30,6 +35,8 @@ public class Homework27 {
         options.addArguments("--disable-notifications");
         driver = new ChromeDriver(options);
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        loginPage = new LoginPage(driver);
+        homePage = new HomePage(driver);
     }
 
     @After
@@ -43,21 +50,21 @@ public class Homework27 {
 
     @When("I enter email {string}")
     public void iEnterEmail(String email) {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[type='email']"))).sendKeys(email);
+        loginPage.provideEmail(email);
     }
 
     @And("I enter password {string}")
     public void iEnterPassword(String password) {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[type='password']"))).sendKeys(password);
+        loginPage.providePassword(password);
     }
 
     @And("I click Submit")
     public void iClickSubmit() {
-        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button[type='submit']"))).click();
+        loginPage.clickSubmit();
     }
 
     @Then("I am logged in")
     public void iAmLoggedIn() {
-        Assert.assertTrue(wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("img.avatar"))).isDisplayed());
+        homePage.avatarImgIsDisplayed();
     }
 }
