@@ -4,7 +4,7 @@ import org.testng.annotations.Test;
 import pages.HomePage;
 import pages.LoginPage;
 
-public class Homework26 extends BaseTest {
+public class Homework27 extends BaseTest {
     LoginPage loginPage;
     HomePage homePage;
 
