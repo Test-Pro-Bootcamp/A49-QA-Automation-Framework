@@ -3,6 +3,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -58,10 +59,9 @@ public class BaseTest {
                 return driver = new FirefoxDriver(optionsFirefox);
             case "edge":
                 WebDriverManager.edgedriver().setup();
-                return driver = new EdgeDriver();
-            case "safari":
-                WebDriverManager.safaridriver().setup();
-                return driver = new SafariDriver();
+                EdgeOptions edgeOptions = new EdgeOptions();
+                edgeOptions.addArguments("--remote-allow-origins=*");
+                return driver = new EdgeDriver(edgeOptions);
             case "grid-firefox":
                 capabilities.setCapability("browserName", "firefox");
                 return driver = new RemoteWebDriver(URI.create(gridURL).toURL(), capabilities);
