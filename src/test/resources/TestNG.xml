@@ -5,7 +5,7 @@
     <test name="CucumberTests" preserve-order="false">
 
         <classes>
-            <class name="tests.CucumberRunner"/>
+            <class name="CucumberRunner"/>
         </classes>
 
     </test>

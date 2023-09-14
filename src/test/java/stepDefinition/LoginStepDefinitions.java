@@ -1,4 +1,4 @@
-package stepDefinitions;
+package stepDefinition;
 
 
 import io.cucumber.java.After;
@@ -8,13 +8,13 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import pages.HomePage;
+import pages.LoginPage;
 
 import java.time.Duration;
 
@@ -42,37 +42,14 @@ public class LoginStepDefinitions {
         driver.get("https://qa.koel.app/");
     }
 
-    // Without PAGE OBJECTS
-
     @When("I enter email {string}")
-    public void i_enter_email(String email) {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[type='email']"))).sendKeys(email);
-    }
-    @And("I enter password {string}")
-    public void i_enter_password(String password) {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[type='password']"))).sendKeys(password);
-    }
-    @And("I submit")
-    public void clickSubmit() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[type='submit']"))).click();
-    }
-    @Then("I am logged in")
-    public void userIsLoggedIn() {
-        Assert.assertTrue(wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("img.avatar"))).isDisplayed());
-    }
-
-
-    /*
-    // Using PAGE OBJECTS
-
-    @When("I enter email {string}")
-    public void i_enter_email(String email) {
+    public void enterEmail(String email) {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.provideEmail(email);
     }
 
     @And("I enter password {string}")
-    public void i_enter_password(String password) {
+    public void enterPassword(String password) {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.providePassword(password);
     }
@@ -80,7 +57,7 @@ public class LoginStepDefinitions {
     @And("I submit")
     public void clickSubmit() {
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.clickSubmit();
+        loginPage.clickSubmitButton();
     }
 
     @Then("I am logged in")
@@ -88,6 +65,4 @@ public class LoginStepDefinitions {
         HomePage homePage = new HomePage(driver);
         Assert.assertTrue(homePage.isAvatarDisplayed());
     }
-
-     */
 }
