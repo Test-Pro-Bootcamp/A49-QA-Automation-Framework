@@ -44,11 +44,13 @@ public class BaseTest {
         url = BaseURL;
         navigateToPage();
     }
+
     @AfterClass
     public void closeBrowser() {
         driver.quit();
     }
-    public  void navigateToPage() {
+
+    public void navigateToPage() {
         driver.get(url);
     }
 
@@ -57,7 +59,7 @@ public class BaseTest {
         DesiredCapabilities caps = new DesiredCapabilities();
         String gridURL = "http://10.0.0.243:4444";
 
-        switch(browser) {
+        switch (browser) {
 
             case "MicrosoftEdge":
                 WebDriverManager.edgedriver().setup();
