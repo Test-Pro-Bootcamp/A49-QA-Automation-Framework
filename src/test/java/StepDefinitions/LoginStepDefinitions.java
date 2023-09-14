@@ -17,7 +17,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import java.time.Duration;
 
-public class LoginStepDefinitions {
+public class LoginStepDefinitions{
     WebDriver driver;
     WebDriverWait wait;
     @Before
@@ -35,23 +35,22 @@ public class LoginStepDefinitions {
     }
     @Given("I open Login Page")
     public void iOpenLoginPage() {
-        LoginPage.
+        LoginPage.openLogin();
     }
     @When("I enter email {string}")
     public void iEnterEmail(String email) {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[type='email']"))).sendKeys(email);
+        LoginPage.enterEmail(email);
     }
     @And("I enter password {string}")
     public void iEnterPassword(String password) {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[type='password']"))).sendKeys(password);
+        LoginPage.enterPassword(password);
     }
-
     @And("I submit")
     public void iSubmit() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[type='submit']"))).click();
+        LoginPage.submit();
     }
-@Then("I am logged in")
+    @Then("I am logged in")
     public void iAmLoggedIn() {
-        Assert.assertTrue(wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("img.avatar"))).isDisplayed());
+        LoginPage.loggedIn();
     }
 }
