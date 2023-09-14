@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="SmokeTests">
+    <parameter name="BaseURL" value="https://qa.koel.app/"></parameter>
+    <test name="Smoke Test" preserve-order="false">
+        <classes>
+            <class name="tests.Homework26">
+                <methods>
+                    <include name="emptyPassword"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
