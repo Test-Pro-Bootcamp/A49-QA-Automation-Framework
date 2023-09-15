@@ -32,4 +32,12 @@ public class BasePage {
         return randomString;
     }
 
+    public WebElement findElement(By locator){
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+    }
+
+    public WebElement click(By locator){
+        return wait.until(ExpectedConditions.elementToBeClickable(locator));
+    }
+
 }

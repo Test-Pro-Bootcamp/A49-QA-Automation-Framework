@@ -11,15 +11,15 @@ public class HomePage extends BasePage{
         super(driver);
     }
 
-    public void avatarImgIsDisplayed(){
-        WebElement avatarImg = wait.until(ExpectedConditions.
-                visibilityOfElementLocated(By.xpath("//img[@class='avatar']")));
-        Assert.assertTrue(avatarImg.isDisplayed());
-    }
-
-    public void logoIsDisplayed() {
-        WebElement avatarImg = wait.until(ExpectedConditions.
-                visibilityOfElementLocated(By.xpath("//form[@data-testid='login-form']")));
-        Assert.assertTrue(avatarImg.isDisplayed());
-    }
+//    public void avatarImgIsDisplayed(){
+//        WebElement avatarImg = wait.until(ExpectedConditions.
+//                visibilityOfElementLocated(By.xpath("//img[@class='avatar']")));
+//        Assert.assertTrue(avatarImg.isDisplayed());
+//    }
+//
+//    public void logoIsDisplayed() {
+//        WebElement avatarImg = wait.until(ExpectedConditions.
+//                visibilityOfElementLocated(By.xpath("//form[@data-testid='login-form']")));
+//        Assert.assertTrue(avatarImg.isDisplayed());
+//    }
 }

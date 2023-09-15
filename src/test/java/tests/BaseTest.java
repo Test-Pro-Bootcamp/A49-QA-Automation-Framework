@@ -8,12 +8,12 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Parameters;
 
 import java.net.MalformedURLException;
 import java.net.URI;
@@ -22,56 +22,55 @@ import java.time.Duration;
 import java.util.HashMap;
 
 public class BaseTest {
-    public static final ThreadLocal<WebDriver> threadDriver = new ThreadLocal<>();
+    //public static final ThreadLocal<WebDriver> threadDriver = new ThreadLocal<>();
 
     public int timeSeconds = 3;
     public static WebDriver driver = null;
-    public static String url = null;
+    public static String url = "https://qa.koel.app/";
 
-//    @BeforeSuite
-//    static void setupClass() {
-//
-//        WebDriverManager.chromedriver().setup();
-//    }
+    @BeforeSuite
+    static void setupClass() {
 
-    protected static WebDriver getThreadLocal() {
-        return threadDriver.get();
+        WebDriverManager.chromedriver().setup();
     }
 
-    @Before
-    public void setUpBrowser() throws MalformedURLException {
-        threadDriver.set(pickBrowser(System.getProperty("browser")));
-        threadDriver.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(timeSeconds));
+//    protected static WebDriver getThreadLocal() {
+//        return threadDriver.get();
+//    }
+//
+//    @Before
+//    public void setUpBrowser() throws MalformedURLException {
+//        threadDriver.set(pickBrowser(System.getProperty("browser")));
+//        threadDriver.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(timeSeconds));
+//    }
+//
+//    @After
+//    public void tearDown() {
+//        threadDriver.get().close();
+//        threadDriver.remove();
+//    }
+
+    @BeforeMethod
+    @Parameters({"BaseURL"})
+    public void launchBrowser(String BaseURL) throws MalformedURLException {
+
+        driver = pickBrowser(System.getProperty("browser"));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().window().maximize();
+
+        url = BaseURL;
+        navigateToPage();
     }
 
-    @After
-    public void tearDown() {
-        threadDriver.get().close();
-        threadDriver.remove();
+    @AfterClass
+    public void closeBrowser() {
+        driver.quit();
     }
 
-//    @BeforeMethod
-//    @Parameters({"BaseURL"})
-//    public void launchBrowser(String BaseURL) throws MalformedURLException {
-//
-//        threadDriver = pickBrowser(System.getProperty("browser"));
-//        threadDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-//        threadDriver.manage().window().maximize();
-//
-//        url = BaseURL;
-//        navigateToPage();
-//    }
+    public void navigateToPage() {
 
-//    @AfterClass
-//    public void closeBrowser() {
-//
-//        driver.quit();
-//    }
-
-//    public void navigateToPage() {
-//
-//        driver.get(url);
-//    }
+        driver.get(url);
+    }
 
 
     public WebDriver pickBrowser(String browser) throws MalformedURLException {

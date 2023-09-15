@@ -1,19 +1,16 @@
 package pages;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-
-import java.time.Duration;
 
 public class LoginPage extends BasePage {
     public LoginPage(WebDriver driver) {
 
         super(driver);
-
     }
 
     @FindBy(css = "input[type='email']")
@@ -22,8 +19,8 @@ public class LoginPage extends BasePage {
     WebElement passwordField;
     @FindBy(css = "button[type='submit']")
     WebElement submit;
-    @FindBy(css = "a#hel")
-    WebElement registrationLink;
+//    @FindBy(css = "a#hel")
+//    WebElement registrationLink;
 
     public LoginPage loginWithCorrectCred() {
         provideEmail("svitlana.shkribliak@testpro.io");
@@ -57,5 +54,10 @@ public class LoginPage extends BasePage {
 //    public WebElement getRegistrationLink() {
 //        return registrationLink;
 //    }
+
+    public String getRandomString(){
+        String randomString = RandomStringUtils.randomAlphabetic(10);
+        return randomString;
+    }
 
 }
