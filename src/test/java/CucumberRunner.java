@@ -5,8 +5,12 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 
+//@CucumberOptions(
+//        features = {"src/test/resources/features/Login.feature"}
+//)
 @CucumberOptions(
-        features = {"src/test/resources/features/Login.feature"}
+        features = {"src/test/resources/features"}, // Specifies the location of the feature files
+        publish = true // Indicates whether to publish the test results
 )
 public class CucumberRunner extends AbstractTestNGCucumberTests {
     private TestNGCucumberRunner testNGCucumberRunner;
