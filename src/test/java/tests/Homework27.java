@@ -6,7 +6,6 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.testng.Assert;
-import pages.BasePage;
 import pages.HomePage;
 import pages.LoginPage;
 
@@ -52,9 +51,10 @@ public class Homework27 {
     }
 
     @Then("I still Login page")
-    public void stillLoginPage() {
-        LoginPage loginPage = new LoginPage(BaseTest.getThreadLocal());
-        Assert.assertTrue(loginPage.getRegistrationLink().isDisplayed());
+    public void stillLoginPage() throws InterruptedException {
+        loginPage.compareURL();
+//        LoginPage loginPage = new LoginPage(BaseTest.getThreadLocal());
+//        Assert.assertTrue(loginPage.getRegistrationLink().isDisplayed());
     }
 
     @When("I enter Not existing email {string}")

@@ -49,8 +49,13 @@ public class LoginPage extends BasePage {
         return this;
     }
 
-    public WebElement getRegistrationLink() {
-        return registrationLink;
+    public void compareURL() throws InterruptedException {
+        Thread.sleep(500);
+        Assert.assertEquals(driver.getCurrentUrl(), "https://qa.koel.app/");
     }
+
+//    public WebElement getRegistrationLink() {
+//        return registrationLink;
+//    }
 
 }
