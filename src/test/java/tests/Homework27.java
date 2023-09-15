@@ -1,70 +1,74 @@
 package tests;
 
-import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import pages.BasePage;
 import pages.HomePage;
 import pages.LoginPage;
-
-import java.time.Duration;
 
 public class Homework27 {
 
     LoginPage loginPage;
     HomePage homePage;
 
-    WebDriver driver;
-    WebDriverWait wait;
-    String url = "https://qa.koel.app/";
     @Before
-    public void iOpenBrowser() {
-        WebDriverManager.chromedriver().setup();
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
-        options.addArguments("--disable-notifications");
-        driver = new ChromeDriver(options);
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        loginPage = new LoginPage(driver);
-        homePage = new HomePage(driver);
+    public void setUp(){
+        loginPage = new LoginPage(BaseTest.getThreadLocal());
+        homePage = new HomePage(BaseTest.getThreadLocal());
     }
 
-    @After
-    public void closeBrowser(){
-        driver.quit();
-    }
     @Given("I open Login Page")
-    public void iOpenLoginPage() {
-        driver.get(url);
+    public void openLoginPage() {
+        BaseTest.getThreadLocal().get("https://qa.koel.app/");
     }
 
     @When("I enter email {string}")
-    public void iEnterEmail(String email) {
+    public void enterEmail(String email) {
         loginPage.provideEmail(email);
     }
 
     @And("I enter password {string}")
-    public void iEnterPassword(String password) {
+    public void enterPassword(String password) {
         loginPage.providePassword(password);
     }
 
     @And("I click Submit")
-    public void iClickSubmit() {
+    public void clickSubmit() {
         loginPage.clickSubmit();
     }
 
     @Then("I am logged in")
-    public void iAmLoggedIn() {
+    public void loggedIn() {
         homePage.avatarImgIsDisplayed();
+    }
+
+    @And("I enter incorrect password {string}")
+    public void enterIncorrectPassword(String password) {
+        loginPage.providePassword(password);
+    }
+
+    @Then("I still Login page")
+    public void stillLoginPage() {
+        LoginPage loginPage = new LoginPage(BaseTest.getThreadLocal());
+        Assert.assertTrue(loginPage.getRegistrationLink().isDisplayed());
+    }
+
+    @When("I enter Not existing email {string}")
+    public void enterNotExistingEmail(String email) {
+        loginPage.provideEmail(email);
+    }
+
+    @When("I enter Empty email {string}")
+    public void enterEmptyEmail(String email) {
+        loginPage.provideEmail(email);
+    }
+
+    @And("I enter Empty password {string}")
+    public void enterEmptyPassword(String password) {
+        loginPage.providePassword(password);
     }
 }

@@ -1,26 +1,31 @@
 package pages;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+
 import java.time.Duration;
 
-public class LoginPage extends BasePage{
-    public LoginPage(WebDriver driver){
+public class LoginPage extends BasePage {
+    public LoginPage(WebDriver driver) {
 
         super(driver);
 
     }
 
-    @FindBy(css="input[type='email']")
+    @FindBy(css = "input[type='email']")
     WebElement emailField;
-    @FindBy(css="input[type='password']")
+    @FindBy(css = "input[type='password']")
     WebElement passwordField;
-    @FindBy(css="button[type='submit']")
+    @FindBy(css = "button[type='submit']")
     WebElement submit;
+    @FindBy(css = "a#hel")
+    WebElement registrationLink;
 
-    public LoginPage loginWithCorrectCred(){
+    public LoginPage loginWithCorrectCred() {
         provideEmail("svitlana.shkribliak@testpro.io");
         providePassword("te$t$tudent49");
         clickSubmit();
@@ -34,13 +39,18 @@ public class LoginPage extends BasePage{
     }
 
     public LoginPage providePassword(String password) {
-       wait.until(ExpectedConditions.elementToBeClickable(passwordField)).clear();
+        wait.until(ExpectedConditions.elementToBeClickable(passwordField)).clear();
         passwordField.sendKeys(password);
         return this;
     }
 
     public LoginPage clickSubmit() {
-       wait.until(ExpectedConditions.elementToBeClickable(submit)).click();
+        wait.until(ExpectedConditions.elementToBeClickable(submit)).click();
         return this;
     }
+
+    public WebElement getRegistrationLink() {
+        return registrationLink;
+    }
+
 }

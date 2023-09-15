@@ -1,5 +1,7 @@
 package tests;
 
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -20,41 +22,56 @@ import java.time.Duration;
 import java.util.HashMap;
 
 public class BaseTest {
+    public static final ThreadLocal<WebDriver> threadDriver = new ThreadLocal<>();
 
+    public int timeSeconds = 3;
     public static WebDriver driver = null;
     public static String url = null;
-    public static WebDriverWait wait = null;
 
-    public static Actions actions = null;
+//    @BeforeSuite
+//    static void setupClass() {
+//
+//        WebDriverManager.chromedriver().setup();
+//    }
 
-    @BeforeSuite
-    static void setupClass() {
-
-        WebDriverManager.chromedriver().setup();
+    protected static WebDriver getThreadLocal() {
+        return threadDriver.get();
     }
 
-    @BeforeMethod
-    @Parameters({"BaseURL"})
-    public void launchBrowser(String BaseURL) throws MalformedURLException {
-
-        driver = pickBrowser(System.getProperty("browser"));
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.manage().window().maximize();
-
-        url = BaseURL;
-        navigateToPage();
+    @Before
+    public void setUpBrowser() throws MalformedURLException {
+        threadDriver.set(pickBrowser(System.getProperty("browser")));
+        threadDriver.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(timeSeconds));
     }
 
-    @AfterClass
-    public void closeBrowser() {
-
-        driver.quit();
+    @After
+    public void tearDown() {
+        threadDriver.get().close();
+        threadDriver.remove();
     }
 
-    public void navigateToPage() {
+//    @BeforeMethod
+//    @Parameters({"BaseURL"})
+//    public void launchBrowser(String BaseURL) throws MalformedURLException {
+//
+//        threadDriver = pickBrowser(System.getProperty("browser"));
+//        threadDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+//        threadDriver.manage().window().maximize();
+//
+//        url = BaseURL;
+//        navigateToPage();
+//    }
 
-        driver.get(url);
-    }
+//    @AfterClass
+//    public void closeBrowser() {
+//
+//        driver.quit();
+//    }
+
+//    public void navigateToPage() {
+//
+//        driver.get(url);
+//    }
 
 
     public WebDriver pickBrowser(String browser) throws MalformedURLException {
