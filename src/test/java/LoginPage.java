@@ -1,36 +1,46 @@
-import org.openqa.selenium.By;
+package pages;
+
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
-public class LoginPage extends BasePage {
 
+public class LoginPage extends pages.BasePage {
 
-    public LoginPage (WebDriver givenDriver) {
-        super (givenDriver);
+    public LoginPage(WebDriver driver) {
+        super(driver);
     }
+    @FindBy (css ="input[type='email']")
+    WebElement emailField;
+    @FindBy (css ="input[type='password']")
+    WebElement passwordField;
+    @FindBy (css ="[type='submit']")
+    WebElement submitBtn;
 
-    By emailField = By.cssSelector ("input[type='email']");
-    By passwordField = By.cssSelector("input[type='password']");
-    By submitBtn = By.cssSelector("button[type='submit']");
-
-    public void provideEmail (String email){
-    findElement(emailField).sendKeys(email);
-    }
-
-    public void providePassword (String password) {
-        findElement(passwordField).sendKeys(password);
-    }
-
-    public void clickSubmit () {
-        findElement(submitBtn).click();
-    }
-
-
-    public void login() {
+    public void loginCorrectCred() {
         provideEmail("eric.stetson@testpro.io");
         providePassword("Testpro@2023");
         clickSubmit();
-
-
     }
+
+
+    public LoginPage provideEmail(String email) {
+        wait.until(ExpectedConditions.elementToBeClickable(emailField)).clear();
+        emailField.sendKeys(email);
+        return this;
+    }
+
+    public LoginPage providePassword(String password) {
+        wait.until(ExpectedConditions.elementToBeClickable(passwordField)).clear();
+        passwordField.sendKeys(password);
+        return this;
+    }
+
+    public LoginPage clickSubmit() {
+        wait.until(ExpectedConditions.elementToBeClickable(submitBtn)).click();
+        return this;
+    }
+
 
 }
