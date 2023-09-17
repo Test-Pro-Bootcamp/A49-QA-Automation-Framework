@@ -1,16 +1,16 @@
 package tests;
 
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import org.testng.annotations.AfterClass;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Parameters;
@@ -22,11 +22,14 @@ import java.time.Duration;
 import java.util.HashMap;
 
 public class BaseTest {
-    //public static final ThreadLocal<WebDriver> threadDriver = new ThreadLocal<>();
 
-    public int timeSeconds = 3;
     public static WebDriver driver = null;
-    public static String url = "https://qa.koel.app/";
+    public static String url = null;
+    public static WebDriverWait wait = null;
+
+    public static Actions actions = null;
+
+    private static final ThreadLocal<WebDriver> threadDriver = new ThreadLocal<>();
 
     @BeforeSuite
     static void setupClass() {
@@ -34,42 +37,30 @@ public class BaseTest {
         WebDriverManager.chromedriver().setup();
     }
 
-//    protected static WebDriver getThreadLocal() {
-//        return threadDriver.get();
-//    }
-//
-//    @Before
-//    public void setUpBrowser() throws MalformedURLException {
-//        threadDriver.set(pickBrowser(System.getProperty("browser")));
-//        threadDriver.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(timeSeconds));
-//    }
-//
-//    @After
-//    public void tearDown() {
-//        threadDriver.get().close();
-//        threadDriver.remove();
-//    }
-
     @BeforeMethod
     @Parameters({"BaseURL"})
     public void launchBrowser(String BaseURL) throws MalformedURLException {
 
-        driver = pickBrowser(System.getProperty("browser"));
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.manage().window().maximize();
+        threadDriver.set(pickBrowser(System.getProperty("browser")));
+        getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        getDriver().manage().window().maximize();
 
         url = BaseURL;
         navigateToPage();
     }
 
-    @AfterClass
+    public static WebDriver getDriver() {
+        return threadDriver.get();
+    }
+
+    @AfterMethod
     public void closeBrowser() {
-        driver.quit();
+        threadDriver.get().close();
+        threadDriver.remove();
     }
 
     public void navigateToPage() {
-
-        driver.get(url);
+        getDriver().get(url);
     }
 
 
@@ -89,12 +80,12 @@ public class BaseTest {
                 caps.setCapability("browserName", "MicrosoftEdge");
                 return driver = new RemoteWebDriver(URI.create(gridURL).toURL(), caps);
 
-            case "cloud":
-                return setupLambda();
-
             case "grid-chrome":
                 caps.setCapability("browserName", "chrome");
                 return driver = new RemoteWebDriver(URI.create(gridURL).toURL(), caps);
+
+            case "cloud":
+                return setupLambda();
             default:
                 WebDriverManager.chromedriver().setup();
                 ChromeOptions chromeOptions = new ChromeOptions();
@@ -117,5 +108,4 @@ public class BaseTest {
         browserOptions.setCapability("LT:Options", ltOptions);
         return new RemoteWebDriver(new URL(hubURL), browserOptions);
     }
-
 }

@@ -18,13 +18,11 @@ public class BasePage {
     public WebDriverWait wait;
     public Actions actions;
 
-    public BasePage(WebDriver givenDriver) {
-        driver = givenDriver;
+    public BasePage(WebDriver driver){
+        this.driver = driver;
+        PageFactory.initElements(driver,this);
         wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         actions = new Actions(driver);
-        PageFactory.initElements(driver, this);
-        PageFactory.initElements(new AjaxElementLocatorFactory(driver, 5), this);
-        // The constructor initializes the driver, wait, actions, and page elements using the given WebDriver.
     }
 
     public String getRandomString(){

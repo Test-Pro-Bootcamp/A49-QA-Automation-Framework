@@ -10,8 +10,8 @@ public class InvalidLoginTests extends BaseTest{
 
     @BeforeMethod
     public void setUp(){
-        loginPage = new LoginPage(driver);
-
+        loginPage = new LoginPage(getDriver());
+        getDriver().get(url);
     }
     @Test
     public void invalidPassword() {
@@ -36,9 +36,7 @@ public class InvalidLoginTests extends BaseTest{
 
     @Test
     public void emptyPassword(){
-        loginPage.provideEmail("svitlana.shkribliak@testpro.io")
-                .providePassword(" ")
-                .clickSubmit();
+        loginPage.provideEmail("svitlana.shkribliak@testpro.io").providePassword(" ").clickSubmit();
     }
 
     @Test
