@@ -5,73 +5,77 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.testng.annotations.*;
-import pages.BasePage;
 
 import java.net.MalformedURLException;
-import java.net.URI;
+import java.net.URL;
+import java.util.HashMap;
+
 
 public class BaseTest {
-
-    public WebDriver driver = null;
-    public String url = null;
-
-
-    @BeforeSuite
-    public void setupClass() {
-        WebDriverManager.chromedriver().setup();
+    private static final ThreadLocal<WebDriver> threadDriver = new ThreadLocal<>();
+    public static WebDriver getThreadDriver() {
+        return threadDriver.get();
     }
+    public WebDriver driver ;
+    public String url = "https://qa.koel.app/";
 
-    @BeforeMethod
-    @Parameters({"BaseURL"})
-    public void launchBrowser(String BaseURL) throws MalformedURLException {
-        driver = pickBrowser(System.getProperty("browser"));
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        url = BaseURL;
-        driver.get(url);
-    }
-
-    @AfterMethod(alwaysRun = true)
-    public void closeBrowser() {
-        driver.quit();
-    }
-
-    public WebDriver pickBrowser(String browser) throws MalformedURLException {
-        DesiredCapabilities caps = new DesiredCapabilities();
-        String gridURL = "http://192.168.1.7:4444";
-
+    @BeforeClass
+    private WebDriver setupBrowser(String browser) throws MalformedURLException {
         switch(browser) {
-            case "firefox": // gradle clean test -Dbrowser=firefox
-                WebDriverManager.firefoxdriver().setup();
-                return driver = new FirefoxDriver();
-
-            case "MicrosoftEdge": // gradle clean test -Dbrowser=MicrosoftEdge
-                WebDriverManager.edgedriver().setup();
-                EdgeOptions edgeOptions = new EdgeOptions();
-                edgeOptions.addArguments("--remote-allow-origins=*");
-                return driver = new EdgeDriver(edgeOptions);
-
-            case "grid-edge": // gradle clean test -Dbrowser=grid-edge
-                caps.setCapability("browserName", "MicrosoftEdge");
-                return driver = new RemoteWebDriver(URI.create(gridURL).toURL(), caps);
-
-            case "grid-firefox": // gradle clean test -Dbrowser=grid-firefox
-                caps.setCapability("browserName", "firefox");
-                return driver = new RemoteWebDriver(URI.create(gridURL).toURL(), caps);
-
-            case "grid-chrome": // gradle clean test -Dbrowser=grid-chrome
-                caps.setCapability("browserName", "chrome");
-                return driver = new RemoteWebDriver(URI.create(gridURL).toURL(), caps);
+            case "firefox":
+                return setupFirefox();
+            case "chrome":
+                return setupChrome();
+            case "safari":
+                return setupSafari();
+            case "cloud":
+                return setupLambda();
             default:
-                WebDriverManager.chromedriver().setup();
-                ChromeOptions options = new ChromeOptions();
-                options.addArguments("--disable-notifications", "--remote-allow-origins=*", "--incognito", "--start-maximized");
-                options.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
-                return driver = new ChromeDriver(options);
+                return setupChrome();
         }
     }
 
+    WebDriver setupLambda() throws MalformedURLException {
+        String hubURL ="https://hub.lambdatest.com/wd/hub";
+        ChromeOptions browserOptions = new ChromeOptions();
+        browserOptions.setPlatformName("Windows 10");
+        browserOptions.setBrowserVersion("118.0");
+        HashMap<String, Object> ltOptions = new HashMap<String, Object>();
+        ltOptions.put("username", "gorbunova1982");
+        ltOptions.put("accessKey", "EsCixENGiPE6Pr5DMJBRlIAVNSAqlx9ooxGiI2hxSQ2ZUZVnkm");
+        ltOptions.put("project", "Untitled");
+        ltOptions.put("selenium_version", "4.0.0");
+        ltOptions.put("w3c", true);
+        browserOptions.setCapability("LT:Options", ltOptions);
+        return  new RemoteWebDriver(new URL(hubURL),browserOptions);
+    }
+    WebDriver setupChrome(){
+        WebDriverManager.chromedriver().setup();
+        //Added ChromeOptions argument below to fix websocket error
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--remote-allow-origins=*");
+        options.addArguments("--disable-notifications");
+        options.addArguments("--start-maximized");
+        driver = new ChromeDriver(options);
+        return driver;
+    }
+    WebDriver setupFirefox() {
+        WebDriverManager.firefoxdriver().setup();
+        driver = new FirefoxDriver();
+        return driver;
+    }
+
+    WebDriver setupSafari(){
+        WebDriverManager.safaridriver().setup();
+        driver = new SafariDriver();
+        return driver;
+    }
+    @AfterClass
+    public void tearDown() {
+        threadDriver.get().close();
+        threadDriver.remove();
+    }
 }
