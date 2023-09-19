@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Homework 26 - Jenkins" parallel="methods" thread-count="4">
+
+    <test name="Regression Testing" preserve-order="false">
+        <parameter name="baseURL" value="https://qa.koel.app/"/>
+        <classes>
+            <class name="tests.LoginTests"/>
+            <class name="tests.ActionsTests"/>
+            <class name="tests.PlaylistTest"/>
+        </classes>
+    </test>
+</suite>

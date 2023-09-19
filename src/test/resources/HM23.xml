@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="HM for Page Factory">
+    <test name="Test for logging in and creating playlist" preserve-order="false">
+        <classes>
+            <class name="tests.Homework23"/>
+
+            <class name="tests.ActionsTests"/>
+        </classes>
+    </test>
+</suite>
+

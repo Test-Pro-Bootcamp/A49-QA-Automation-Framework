@@ -11,12 +11,68 @@ repositories {
 
 dependencies {
     testImplementation 'org.testng:testng:7.6.1'
-    implementation 'org.seleniumhq.selenium:selenium-java:4.5.0'
+    implementation 'org.seleniumhq.selenium:selenium-java:4.12.1'
     testImplementation 'io.github.bonigarcia:webdrivermanager:5.4.1'
+    implementation 'io.cucumber:cucumber-testng:7.9.0'
+    implementation 'io.cucumber:cucumber-core:7.9.0'
+    implementation 'io.cucumber:cucumber-java:7.9.0'
+    implementation 'io.cucumber:gherkin:25.0.2'
 }
 
 test {
     useTestNG() {
-        suites "src/test/resources/TestNG.xml"
+        suites 'src/test/resources/Cucumber.xml'
+        systemProperty "browser", System.getProperty("browser")
     }
+}
+
+/*
+test {
+    useTestNG() {
+        suites 'src/test/resources/Grid.xml'
+        systemProperty "browser", System.getProperty("browser")
+        //systemProperty "browser", System.getProperty("grid-chrome")
+    }
+}
+
+
+
+test {
+    useTestNG() {
+        suites 'src/test/resources/Smoke.xml'
+        systemProperty "browser", System.getProperty("browser")
+        //systemProperty "browser", System.getProperty("grid-chrome")
+    }
+}
+ */
+
+
+configurations {
+    cucumberRuntime {
+        extendsFrom testImplementation
+    }
+}
+
+task cucumber(type: JavaExec) {
+    dependsOn assemble, testClasses
+    description = 'Run Cucumber tests'
+    group = 'verification'
+
+    // Define the main class
+    main = 'io.cucumber.core.cli.Main'
+
+    // Define the classpath
+    classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
+
+    // Specify Cucumber options
+    args = [
+            'src/test/resources/features/Login.feature', // Path to feature files
+            '--plugin', 'pretty', // Generate human-readable output
+            '--plugin', 'html:build/reports/cucumber-report.html', // HTML report
+            '--glue', 'stepDefinition', // Package where step definitions are located
+            '--monochrome' // Output is more readable in monochrome mode
+    ]
+
+    // Ensure the test task depends on this task
+    test.dependsOn cucumber
 }
