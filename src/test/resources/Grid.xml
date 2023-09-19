@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="HM for Multi-Browser Execution">
-    <test name="Test for invalid logging in in multiple browsers" preserve-order="false">
+<suite name="HM for Grid">
+    <test name="Test for invalid logging" preserve-order="false">
+        <parameter name="baseURL" value="https://qa.koel.app/"/>
         <classes>
             <class name="tests.InvalidLoginTests"/>
-
         </classes>
     </test>
 </suite>

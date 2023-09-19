@@ -3,7 +3,7 @@ package tests;
 import org.testng.annotations.Test;
 import pages.LoginPage;
 
-public class LoginTests extends BaseTest{
+public class LoginTests extends BaseTest_threads{
     //LoginPage loginPage;
     //WebDriverWait wait = new WebDriverWait(getThreadLocal(), Duration.ofSeconds(5));;
 
@@ -16,6 +16,4 @@ public class LoginTests extends BaseTest{
         loginPage.loginToKoel();
         //wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".view-profile")));
     }
-
-
 }

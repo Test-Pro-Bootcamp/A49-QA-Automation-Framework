@@ -9,35 +9,35 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Optional;
-import pages.BasePage;
+import org.testng.annotations.*;
 
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
+import java.time.Duration;
 import java.util.HashMap;
 
-public class BaseTest {
+public class BaseTest_threads {
 
-    WebDriver driver;
-    BasePage basePage;
-    public String url = "https://qa.koel.app/";
+    private static final ThreadLocal<WebDriver> THREAD_LOCAL = new ThreadLocal<>();
+    private WebDriver driver;
 
-    @BeforeClass
-    //@Parameters({"baseURL"})
+    public static WebDriver getThreadLocal() {
+        return THREAD_LOCAL.get();
+    }
+
+
+
+    @BeforeMethod
+    @Parameters({"baseURL"})
     public void setUpBrowser(@Optional String baseURL) throws MalformedURLException {
-        String browser = System.getProperty("browser");
-        driver=pickBrowser(browser);
-        basePage = new BasePage(driver);
-        basePage.navigateToPage(url);
+        THREAD_LOCAL.set(pickBrowser(System.getProperty("browser")));
+        THREAD_LOCAL.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        getThreadLocal().get(baseURL);
+        System.out.println(
+                "Browser setup by Thread " + Thread.currentThread().getId() + " and Driver reference is : " + getThreadLocal());
     }
-    @AfterClass
-    public void closeBrowser() {
-        //driver.quit();
-        driver.close();
-    }
+
 
     public WebDriver pickBrowser(String browser) throws MalformedURLException {
         DesiredCapabilities capabilities = new DesiredCapabilities();
@@ -97,7 +97,11 @@ public class BaseTest {
         return  new RemoteWebDriver(new URL(hubURL),browserOptions);
     }
 
-
+    @AfterMethod
+    public void tearDown() {
+        THREAD_LOCAL.get().close();
+        THREAD_LOCAL.remove();
+    }
 
 
 }
