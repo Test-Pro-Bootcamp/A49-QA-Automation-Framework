@@ -53,7 +53,13 @@ public class HomePage extends BasePage {
     @FindBy (css = "input[name='name']")
     WebElement playlistTitleInput;
 
+    @FindBy(css = "img[class='avatar']")
+    WebElement avatarIcon;
 
+    public boolean isAvatarDisplayed() {
+        wait.until(ExpectedConditions.visibilityOf(avatarIcon));
+        return avatarIcon.isDisplayed();
+    }
 
     public HomePage updatePlaylistTitle(String newPlaylistTitle) {
         wait.until(ExpectedConditions.visibilityOf(inputFieldWithTitle));

@@ -5,10 +5,7 @@ import pages.HomePage;
 import pages.LoginPage;
 import pages.SongsPage;
 
-public class ActionsTests extends BaseTest {
-
-
-
+public class ActionsTests extends BaseTest_threads {
 
     @Test
     void contextClickTest()  {
@@ -22,7 +19,6 @@ public class ActionsTests extends BaseTest {
                 .clickPlayOption()
                 .checkIfSongIsPlaying();
     }
-
 
     @Test
     void doubleClickTest() {

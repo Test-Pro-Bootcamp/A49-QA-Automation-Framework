@@ -6,7 +6,7 @@ import pages.BasePage;
 import pages.HomePage;
 import pages.LoginPage;
 
-public class PlaylistTest extends BaseTest {
+public class PlaylistTest extends BaseTest_threads {
 
 
     public String myNewPlaylist = "My New Playlist";

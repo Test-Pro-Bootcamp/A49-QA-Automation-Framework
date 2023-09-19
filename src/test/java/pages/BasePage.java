@@ -32,5 +32,8 @@ public class BasePage {
         wait.until(ExpectedConditions.invisibilityOf(notification));
         return this;
     }
+    public void navigateToPage(String url) {
+        driver.get(url);
+    }
 
 }
