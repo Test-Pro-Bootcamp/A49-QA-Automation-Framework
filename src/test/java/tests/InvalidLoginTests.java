@@ -8,7 +8,7 @@ public class InvalidLoginTests extends BaseTest_threads {
 
     @Test
     //@Parameters("baseURL")
-    public void invalidEmailInvalidPassword() throws InterruptedException {
+    public void invalidEmailInvalidPassword() {
         LoginPage loginPage = new LoginPage(getThreadLocal());
         //LoginPage loginPage = new LoginPage(driver);
         //driver.get(baseURL);

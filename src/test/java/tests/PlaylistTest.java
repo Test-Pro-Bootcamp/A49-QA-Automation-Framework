@@ -8,12 +8,8 @@ import pages.LoginPage;
 
 public class PlaylistTest extends BaseTest_threads {
 
-
     public String myNewPlaylist = "My New Playlist";
     public String newPlaylistTitle = "Updated " + myNewPlaylist;
-
-
-
 
     @Test(priority = 2, description = "Create new playlist with specific name")
     public void createPlaylist() {
@@ -28,7 +24,6 @@ public class PlaylistTest extends BaseTest_threads {
         basePage.waitForInvisibilityOfNotificationMessage();
 
         //homePage.deleteCreatedPlaylist();
-
     }
 
     @Test(priority = 3, description = "Add few songs to newly created playlist with specific name")
