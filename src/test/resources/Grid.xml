@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="HM for Grid">
+<suite name="Grid">
     <test name="Test for Selenium Grid" preserve-order="false">
         <parameter name="baseURL" value="https://qa.koel.app/"/>
         <classes>
