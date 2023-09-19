@@ -35,8 +35,8 @@ public class BaseTest {
     }
     @AfterClass
     public void closeBrowser() {
-        //driver.quit();
-        driver.close();
+        driver.quit();
+        //driver.close();
     }
 
     public WebDriver pickBrowser(String browser) throws MalformedURLException {

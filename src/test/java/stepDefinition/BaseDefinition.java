@@ -9,8 +9,11 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.net.MalformedURLException;
+import java.net.URI;
 import java.time.Duration;
 
 public class BaseDefinition {
@@ -36,8 +39,8 @@ public class BaseDefinition {
 
     // This method selects the browser based on the provided input and returns the corresponding WebDriver instance.
     public WebDriver pickBrowser(String browser) throws MalformedURLException {
-        //DesiredCapabilities capabilities = new DesiredCapabilities();
-        //String gridURL = "http://192.168.1.198:4444";
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        String gridURL = "http://192.168.1.198:4444";
         switch (browser) {
             case "firefox":
                 WebDriverManager.firefoxdriver().setup();
@@ -47,7 +50,6 @@ public class BaseDefinition {
             case "edge":
                 WebDriverManager.edgedriver().setup();
                 return new EdgeDriver();
-            /*
             case "grid-firefox":
                 capabilities.setCapability("browserName", "firefox");
                 return new RemoteWebDriver(URI.create(gridURL).toURL(), capabilities);
@@ -57,7 +59,6 @@ public class BaseDefinition {
             case "grid-chrome":
                 capabilities.setCapability("browserName", "chrome");
                 return new RemoteWebDriver(URI.create(gridURL).toURL(), capabilities);
-             */
             default:
                 WebDriverManager.chromedriver().setup();
                 ChromeOptions optionsChrome = new ChromeOptions();

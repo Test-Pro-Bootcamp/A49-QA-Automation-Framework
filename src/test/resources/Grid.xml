@@ -2,10 +2,11 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="HM for Grid">
-    <test name="Test for invalid logging" preserve-order="false">
+    <test name="Test for Selenium Grid" preserve-order="false">
         <parameter name="baseURL" value="https://qa.koel.app/"/>
         <classes>
             <class name="tests.InvalidLoginTests"/>
+            <class name="tests.LoginTests"/>
         </classes>
     </test>
 </suite>

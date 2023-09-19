@@ -9,7 +9,10 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
 
 import java.net.MalformedURLException;
 import java.net.URI;
@@ -98,9 +101,17 @@ public class BaseTest_threads {
     }
 
     @AfterMethod
+//    public void tearDown() {
+//        THREAD_LOCAL.get().close();
+//        THREAD_LOCAL.remove();
+//    }
+//    @After
     public void tearDown() {
-        THREAD_LOCAL.get().close();
-        THREAD_LOCAL.remove();
+        WebDriver driver = THREAD_LOCAL.get();
+        if (driver != null) {
+            driver.quit(); // Use quit() to ensure proper cleanup
+            THREAD_LOCAL.remove();
+        }
     }
 
 

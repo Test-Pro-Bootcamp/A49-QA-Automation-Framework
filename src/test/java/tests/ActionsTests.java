@@ -20,7 +20,6 @@ public class ActionsTests extends BaseTest_threads {
                 .checkIfSongIsPlaying();
     }
 
-
     @Test
     void doubleClickTest() {
         HomePage homePage = new HomePage(getThreadLocal());
