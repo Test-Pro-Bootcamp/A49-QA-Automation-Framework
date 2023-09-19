@@ -33,7 +33,7 @@ public class LoginTests extends BaseTest {
     @Test
     public static void loginWrongEmailTest() {
         LoginPage loginPage = new LoginPage(getThreadLocal());
-        loginPage.provideEmail("demo1@class.com")
+        loginPage.provideEmail("demo@class.com")
                 .providePassword("te$t$tudent")
                 .clickSubmitBtn();
         Assert.assertTrue(loginPage.getRegistrationLink().isDisplayed());
