@@ -1,40 +1,43 @@
 package pages;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 public class HomePage extends BasePage {
 
-    public HomePage (WebDriver givenDriver) {
-
+    @FindBy(css = ".avatar")
+    private WebElement userAvatarIcon;
+    @FindBy(css = ".playlist:nth-child(3)")
+    private WebElement firsPlaylist;
+    @FindBy(css = "input[name='name']")
+    private WebElement playlistInputField;
+    @FindBy(css = ".fa-plus-circle")
+    private WebElement addNewPlaylist;
+    @FindBy(css = ".btn-delete-playlist")
+    private WebElement deletePlaylistBtn;
+    @FindBy(css = ".show.success")
+    private WebElement notification;
+    @FindBy(css = ".songs")
+    private WebElement allSongs;
+    @FindBy(css = "[data-testid='playlist-context-menu-create-simple']")
+    private WebElement chooseCreateNewPlaylist;
+   public HomePage(WebDriver givenDriver) {
         super(givenDriver);
     }
-
-    @FindBy (css = ".playlist:nth-child(3)")
-    WebElement firstPlaylist;
-    @FindBy (css = "[name='name']")
-    WebElement playlistNameField;
-    @FindBy (css = "div.success.show")
-    WebElement renamePlaylistSuccessMsg;
-
-     public HomePage doubleClickPlaylist() {
-        WebElement playlistElement = wait.until(ExpectedConditions.elementToBeClickable(firstPlaylist));
-        actions.doubleClick(playlistElement).build().perform();
-        return this;
-     }
-
-    public HomePage enterNewPlaylistName (String playlistName) {
-        playlistNameField.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.BACK_SPACE));
-        playlistNameField.sendKeys(playlistName);
-        playlistNameField.sendKeys(Keys.ENTER);
+   public boolean getUserAvatar() {
+        return userAvatarIcon.isEnabled();
+    }
+   public HomePage chooseFirstPlaylist() {
+        firsPlaylist.click();
         return this;
     }
-
-    public String getRenamePlaylistSuccessMsg(){
-        return renamePlaylistSuccessMsg.getText();
-
+   public HomePage deletePlaylist() {
+        deletePlaylistBtn.click();
+        return this;
+    }
+    public boolean notificationText() {
+        findElement(notification);
+        return notification.isDisplayed();
     }
 }
