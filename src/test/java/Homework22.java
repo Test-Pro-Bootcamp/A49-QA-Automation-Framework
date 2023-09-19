@@ -2,6 +2,8 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.BasePage;
 import pages.HomePage;
+import pages.LoginPage;
+
 public class Homework22 extends BaseTest{
     @Test
     public void renamePlaylist() throws InterruptedException{
@@ -11,7 +13,8 @@ public class Homework22 extends BaseTest{
 
         HomePage homePage = new HomePage(theDriver);
         BasePage basePage = new BasePage(theDriver);
-        loginWithValidCredential();
+        LoginPage loginPage = new LoginPage(theDriver);
+        loginPage.login();
         homePage.createPlaylistAnotherWay(oldName);
         if (homePage.findPlaylist("Vasyuki")) {
             homePage.renameExistingPlaylist("Vasyuki", "New Vasyuki");

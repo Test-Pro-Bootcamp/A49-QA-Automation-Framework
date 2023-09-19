@@ -13,8 +13,6 @@ public class HomePage extends BasePage {
 
         super(givenDriver);
     }
-    @FindBy(xpath = "//button[@data-test='view-all-songs-btn']")
-    WebElement buttonViewAll;
     By playlistsHeaderLoc = By.cssSelector("#sidebar > #playlists");
     By editMenu = By.xpath("//li[contains(text(), 'Edit')]");
     By input = By.cssSelector("input[name='name']");

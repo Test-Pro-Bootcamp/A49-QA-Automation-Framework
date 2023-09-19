@@ -45,6 +45,11 @@ public class BasePage {
         actions.doubleClick(element).perform();
         return this;
     }
+    public BasePage navigateToPage(String baseUrl) {
+        theDriver.get(baseUrl);
+        return this;
+    }
+
     public String showBanner (String textBanner) throws NoSuchElementException {
         try {
             WebElement notification = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("body > div.alertify-logs.top.right > div")));

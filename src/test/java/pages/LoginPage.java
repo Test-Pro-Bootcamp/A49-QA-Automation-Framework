@@ -6,12 +6,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends BasePage{
-    String email;
-    String password;
-    public LoginPage(WebDriver givenDriver, String email, String password) {
+
+    public LoginPage(WebDriver givenDriver) {
         super(givenDriver);
-        this.email = email;
-        this.password = password;
     }
     @FindBy(css = "[type='email']")
             WebElement emailField;
@@ -34,10 +31,13 @@ public class LoginPage extends BasePage{
         submitBtn.click();
     }
 
-    public void login() {
-        enterEmail(this.email);
-        enterPassword(this.password);
+    public LoginPage login() {
+        String email = "anna.dudnik@testpro.io";
+        String password = "GulyalaKorova4milk!";
+        enterEmail(email);
+        enterPassword(password);
         clickLogin();
+        return this;
     }
 
 
