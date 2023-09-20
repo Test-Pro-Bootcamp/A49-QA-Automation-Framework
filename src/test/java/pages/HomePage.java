@@ -36,6 +36,7 @@ public class HomePage extends BasePage {
         deletePlaylistBtn.click();
         return this;
     }
+
     public boolean notificationText() {
         findElement(notification);
         return notification.isDisplayed();

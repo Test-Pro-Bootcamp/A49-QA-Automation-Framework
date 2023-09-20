@@ -6,7 +6,7 @@ import pages.LoginPage;
 
 public class LoginTests extends BaseTest {
     @Test
-    public static void loginEmptyEmailPasswordTest() {
+    public void loginEmptyEmailPasswordTest() {
        LoginPage loginPage = new LoginPage(getThreadLocal());
         loginPage.provideEmail("")
                 .providePassword("te$t$tudent")
@@ -15,7 +15,8 @@ public class LoginTests extends BaseTest {
         Assert.assertTrue(loginPage.getRegistrationLink().isDisplayed());
     }
     @Test
-    public static void loginWrongPasswordTest() {
+
+    public void loginWrongPasswordTest() {
        LoginPage loginPage = new LoginPage(getThreadLocal());
         loginPage.provideEmail("demo@class.com")
                 .providePassword("te$t123")
@@ -23,7 +24,7 @@ public class LoginTests extends BaseTest {
         Assert.assertTrue(loginPage.getRegistrationLink().isDisplayed());
     }
     @Test
-    public static void loginEmptyPasswordTest() {
+    public void loginEmptyPasswordTest() {
         LoginPage loginPage = new LoginPage(getThreadLocal());
         loginPage.provideEmail("demo@class.com")
                 .providePassword("")
@@ -31,7 +32,7 @@ public class LoginTests extends BaseTest {
         Assert.assertTrue(loginPage.getRegistrationLink().isDisplayed());
     }
     @Test
-    public static void loginWrongEmailTest() {
+    public void loginWrongEmailTest() {
         LoginPage loginPage = new LoginPage(getThreadLocal());
         loginPage.provideEmail("demo@class.com")
                 .providePassword("te$t$tudent")

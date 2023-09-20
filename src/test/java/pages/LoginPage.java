@@ -6,6 +6,7 @@ import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends BasePage {
 
+
     @FindBy(css = "button[type='submit']")
     private WebElement submitButtonLocator;
     @FindBy(css = "[type='email']")

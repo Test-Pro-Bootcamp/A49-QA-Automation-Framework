@@ -14,6 +14,7 @@ import java.net.URI;
 import java.net.URL;
 import java.time.Duration;
 public class BaseTest {
+
     private static final ThreadLocal<WebDriver> THREAD_LOCAL = new ThreadLocal<>();
     private WebDriver driver = null;
     private int timeSeconds = 3;
