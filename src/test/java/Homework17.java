@@ -1,8 +1,5 @@
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -14,7 +11,7 @@ public class Homework17 extends BaseTest {
 
         String expectedSongAddedMessage = "Added 1 Song into \"Prepare for battle.\"";
 
-        loginPage.SuccessfulPortalTest();
+        loginPage.successfulPortalTest();
         Thread.sleep(2000);
         searchASong("Way Of The Samurai");
         clickViewAll();

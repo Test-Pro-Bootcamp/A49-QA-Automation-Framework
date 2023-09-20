@@ -8,10 +8,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Parameters;
-import pages.BasePage;
-import pages.CreatePlaylist;
-import pages.HomePage;
-import pages.LoginPage;
+import pages.*;
 
 import java.time.Duration;
 
@@ -20,11 +17,11 @@ public class BaseTest {
     public WebDriver driver = null;
     public String url = "https://qa.koel.app/";
     public WebDriverWait wait;
-    public Actions actions = null;
+    public Actions actions;
     BasePage basePage;
     LoginPage loginPage;
     HomePage homePage;
-    CreatePlaylist createPlaylist;
+    PlaylistPage playlistPage;
 
 
 
@@ -40,11 +37,11 @@ public class BaseTest {
         driver = new ChromeDriver(options);
         wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         actions = new Actions(driver);
-        basePage = new BasePage(driver, wait, actions);
+        basePage = new BasePage(driver);
         basePage.navigateToPage(url);
-        loginPage = new LoginPage(driver, wait, actions);
-        homePage = new HomePage(driver, wait, actions);
-        createPlaylist = new CreatePlaylist(driver, wait, actions);
+        loginPage = new LoginPage(driver);
+        homePage = new HomePage(driver);
+        playlistPage = new PlaylistPage(driver);
         }
 
     @AfterMethod

@@ -6,7 +6,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class CreatePlaylist extends BasePage{
     public CreatePlaylist(WebDriver driver, WebDriverWait wait, Actions actions) {
-        super(driver, wait, actions);
+        super(driver);
     }
 
 }

@@ -1,44 +1,49 @@
 package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 import org.testng.annotations.Test;
-
-import java.time.Duration;
 
 public class LoginPage extends BasePage{
     //locators
-    By submitButtonLocator = By.cssSelector("[type='submit']");
-    By emailField = By.cssSelector("[type='email']");
-    By passwordField = By.cssSelector("[type='password']");
+   /* private By submitButtonLocator = By.cssSelector("[type='submit']");
+    private By emailField = By.cssSelector("[type='email']");
+    private By passwordField = By.cssSelector("[type='password']");*/
 
-    public LoginPage (WebDriver driver, WebDriverWait wait, Actions actions){
+    public LoginPage (WebDriver driver){
 
-        super(driver, wait, actions);
+        super(driver);
     }
+    @FindBy (css="input[type='email']")
+    WebElement emailField;
+    @FindBy (css="input[type='password']")
+    WebElement passwordField;
+    @FindBy (css ="[type='submit']")
+    WebElement submitButtonLocator;
 
-    public void castSubmit() {
-        driver.findElement(submitButtonLocator).click();
-    }
+
+
     public void castEmail(String email) {
-        WebElement emailElement = driver.findElement(emailField);
-        emailElement.sendKeys(email);
+        wait.until(ExpectedConditions.elementToBeClickable(emailField)).clear();
+        emailField.sendKeys(email);
     }
     public void castPassword(String password) {
-        WebElement passwordElement = driver.findElement(passwordField);
-        passwordElement.click();
-        passwordElement.sendKeys(password);
+        wait.until(ExpectedConditions.elementToBeClickable(passwordField)).clear();
+        passwordField.sendKeys(password);
+    }
+    public void castSubmit() {
+        wait.until(ExpectedConditions.elementToBeClickable(submitButtonLocator));
+        submitButtonLocator.click();
     }
     @Test
-    public void SuccessfulPortalTest (){
+    public void successfulPortalTest(){
 
-        LoginPage portalPage = new LoginPage(driver, wait, actions);
-        HomePage towerPage = new HomePage(driver, wait, actions);
+        LoginPage portalPage = new LoginPage(driver);
+        HomePage towerPage = new HomePage(driver);
 
         portalPage.castEmail("dirzo@gmail.com");
         portalPage.castPassword("Te$ter1234");

@@ -12,7 +12,7 @@ public class LoginTests extends BaseTest {
 
     @Test
     public void loginValidEmailPassword() {
-        loginPage.SuccessfulPortalTest();
+        loginPage.successfulPortalTest();
 
     }
 

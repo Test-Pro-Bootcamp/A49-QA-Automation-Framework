@@ -1,6 +1,5 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -8,7 +7,7 @@ public class Homework18 extends BaseTest{
 
     @Test
     public void playSong() {
-        loginPage.SuccessfulPortalTest();
+        loginPage.successfulPortalTest();
         castPlay();
         Assert.assertTrue(summonSong());
     }

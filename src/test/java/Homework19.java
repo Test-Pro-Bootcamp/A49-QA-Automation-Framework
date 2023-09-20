@@ -1,12 +1,9 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
-import java.util.List;
 
 public class Homework19 extends BaseTest{
     @Test
@@ -14,7 +11,7 @@ public class Homework19 extends BaseTest{
         String expectedBanishmentMessage = "Deleted playlist \"First in first out.\"";
         String expectedSummonTitle = "Created playlist \"First in first out.\"";
 
-        loginPage.SuccessfulPortalTest();
+        loginPage.successfulPortalTest();
         try {
             createScroll("First in first out");
             summonScroll();
@@ -58,4 +55,5 @@ public class Homework19 extends BaseTest{
         WebElement spellBanish = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(text(), 'Deleted playlist')]")));
         return spellBanish.getText();
     }
+
 }

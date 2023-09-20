@@ -7,13 +7,13 @@ public class Homework22 extends BaseTest{
 
     @Test
     public void castRename(){
-        String newScrollName ="Sword Dancer Battle Music";
-        String updatedScrollMsg = "Updated playlist \"Sword Dancer Battle Music.\"";
+        String newScrollName ="Sword Battle Music";
+        String updatedScrollMsg = "Updated playlist \"Sword Battle Music.\"";
 
-        LoginPage loginPage = new LoginPage(driver, wait, actions);
-        HomePage homePage = new HomePage(driver, wait, actions);
+        LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = new HomePage(driver);
 
-        loginPage.SuccessfulPortalTest();
+        loginPage.successfulPortalTest();
         homePage.doubleClickScrolllist();
         homePage.castRenameScroll(newScrollName);
         Assert.assertEquals(homePage.getRenamePlaylistSuccessMsg(), updatedScrollMsg);
