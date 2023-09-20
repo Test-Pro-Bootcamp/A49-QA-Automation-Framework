@@ -26,8 +26,8 @@ public class LoginPage extends BasePage {
     WebElement submitBtn;
 
     public void loginCorrectCred() {
-        provideEmail("demo@class.com");
-        providePassword("te$t$tudent");
+        provideEmail("eric.stetson@testpro.io");
+        providePassword("Testpro@2023");
         clickSubmit();
     }
 

@@ -8,8 +8,8 @@ public class InvalidLoginTests extends BaseTest{
     LoginPage loginPage;
     @BeforeMethod
     void setup(){
-        loginPage = new LoginPage(driver);
-        driver.get(url);
+        loginPage= new LoginPage(getThreadDriver());
+        getThreadDriver().get(url);
     }
     @Test
     public void invalidPasswordEmail(){
