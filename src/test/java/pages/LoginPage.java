@@ -10,10 +10,11 @@ public class LoginPage extends BasePage{
     public LoginPage(WebDriver givenDriver) {
         super(givenDriver);
     }
-    @FindBy(css = "[type='email']")
-            WebElement emailField;
     @FindBy(css = "[type='password']")
             WebElement passwordField;
+    @FindBy(css = "[type='email']")
+            WebElement emailField;
+
     @FindBy(css="button[type='submit']")
             WebElement submitBtn;
 

@@ -8,7 +8,7 @@ import pages.*;
 public class LoginTest extends BaseTest {
     LoginPage loginPage;
     @BeforeMethod
-    void setup() {
+    void setupClass() {
         loginPage = new LoginPage(theDriver);
         theDriver.get(baseUrl);
     }
