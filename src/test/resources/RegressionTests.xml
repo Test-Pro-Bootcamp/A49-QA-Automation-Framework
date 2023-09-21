@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="RegressionTests" parallel="methods" thread-count="4">
+    <test name="Regression" preserve-order="false">
+        <parameter name="baseURL" value="https://qa.koel.app/"/>
+        <classes>
+            <class name="tests.LoginNegativeTests"/>
+        </classes>
+    </test>
+</suite>

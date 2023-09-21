@@ -1,13 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<!--<?xml version="1.0" encoding="UTF-8"?>-->
+<!--<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >-->
 
-<suite name="TestNG">
+<!--<suite name="TestNG">-->
 
-    <test name="tests.LoginTests" preserve-order="false">
-        <classes>
-            <class name="tests.LoginTests"/>
-            <class name="tests.BaseTest"/>
-            <class name="CucumberRunner"/>
-        </classes>
-    </test>
-</suite>
+<!--    <test name="tests.LoginTests" preserve-order="false">-->
+<!--        <classes>-->
+<!--            <class name="tests.LoginTests"/>-->
+<!--&lt;!&ndash;            <class name="tests.BaseTest"/>&ndash;&gt;-->
+<!--&lt;!&ndash;            <class name="CucumberRunner"/>&ndash;&gt;-->
+<!--        </classes>-->
+<!--    </test>-->
+<!--</suite>-->

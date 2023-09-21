@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="SmokeTests">
-
-    <test name="tests.LoginTests" preserve-order="false">
+<suite name="SmokeTests" parallel="methods">
+    <test name="Smoke" preserve-order="false">
+        <parameter name="baseURL" value="https://qa.koel.app/"/>
         <classes>
             <class name="tests.LoginTests"/>
+            <class name="tests.ProfileTests"/>
+            <class name="tests.RegistrationTests"/>
+            <class name="tests.SearchTests"/>
+<!--            <class name="tests.PlaylistTests"/>-->
+            <class name="tests.SongsTests"/>
         </classes>
     </test>
 </suite>

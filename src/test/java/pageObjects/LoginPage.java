@@ -1,40 +1,77 @@
 package pageObjects;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import java.time.Duration;
-public class LoginPage {
-    static WebDriver driver;
-    static WebDriverWait wait;
-    public static void iOpenLogin() {
-        WebDriverManager.chromedriver().setup();
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--disable-notifications");
-        options.addArguments("--remote-allow-origins=*");
-        driver = new ChromeDriver(options);
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
-        driver.get("https://qa.koel.app/");
+    public class LoginPage extends BasePage {
+        public LoginPage(WebDriver driver) {
+            super(driver);
+        }
+        private By enterEmail = By.cssSelector("input[type='email']");
+        private By enterPassword = By.cssSelector("input[type='password']");
+        private By clickSubmit = By.cssSelector("button[type='submit']");
+        public void enterEmail(String email) {
+            wait.until(ExpectedConditions.visibilityOfElementLocated(enterEmail)).sendKeys(email);
+        }
+        public void enterPassword(String password) {
+            wait.until(ExpectedConditions.visibilityOfElementLocated(enterPassword)).sendKeys(password);
+        }
+        public void clickSubmit() {
+            wait.until(ExpectedConditions.elementToBeClickable(clickSubmit)).click();
+        }
+        public LoginPage loginWithCorrectCred() {
+            enterEmail("emiliano.castillo@testpro.io");
+            enterPassword("te$t$tudent");
+            clickSubmit();
+            return this;
+        }
+        public LoginPage loginWithIncorrectCred() {
+            enterEmail("dlkfjglj@class.com");
+            enterPassword("te$t$tudent");
+            clickSubmit();
+            return this;
+        }
+        public LoginPage loginEmptyEmailField() {
+            enterEmail("");
+            enterPassword("te$t$tudent");
+            clickSubmit();
+            return this;
+        }
+        public LoginPage loginEmptyPasswordField() {
+            enterEmail("emiliano.castillo@testpro.io");
+            enterPassword("");
+            clickSubmit();
+            return this;
+        }
+        public void checkAvatarDisplay() {
+            WebElement avatar = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("img.avatar")));
+            Assert.assertTrue(avatar.isDisplayed());
+        }
+        public void checkUrlIsTheSame(){
+            Assert.assertEquals(driver.getCurrentUrl(), "https://qa.koel.app/");
+        }
     }
-    public static void closeBrowser(){
-        driver.quit();
-    }
-    public static void iEnterEmail(String email) {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[type='email']"))).sendKeys(email);
-    }
-    public static  void iEnterPassword(String password) {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[type='password']"))).sendKeys(password);
-    }
-    public static void iSubmit() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[type='submit']"))).click();
-    }
-    public static void iAamLoggedIn() {
-        Assert.assertTrue(wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("img.avatar"))).isDisplayed());
-    }
-}
+// Using @FindBy annotation examples
+
+//        @FindBy (css = "input[type='email']")
+//        private WebElement emailField;
+
+//        @FindBy (css = "input[type='password']")
+//        private WebElement passwordField;
+
+//        @FindBy (css = "button[type='submit']")
+//        private WebElement submitBtn;
+
+//        public void enterEmail(String email) {
+//            wait.until(ExpectedConditions.elementToBeClickable(emailField)).clear();
+//            emailField.sendKeys(email);
+//        }
+//        public void enterPassword(String password) {
+//            wait.until(ExpectedConditions.elementToBeClickable(passwordField)).clear();
+//            passwordField.sendKeys(password);
+//        }
+
+
