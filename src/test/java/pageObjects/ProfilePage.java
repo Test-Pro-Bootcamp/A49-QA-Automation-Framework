@@ -9,18 +9,13 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import java.time.Duration;
-
 public class ProfilePage extends BasePage {
-
-    WebDriverWait wait;
     public ProfilePage(WebDriver driver) {
         super(driver);
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
+    private By clickSaveBtn = By.cssSelector("button.btn-submit");
+    private By selectTheme = By.cssSelector("[data-testid='theme-card-mountains']");
 
-    @FindBy (css ="button.btn-submit")
-    private WebElement saveBtn;
-//    By clickSaveBtn = By.cssSelector("button.btn-submit");
     public ProfilePage provideCurrentPassword (String password){
         WebElement currentPassword = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[name='current_password']")));
         currentPassword.clear();
@@ -34,7 +29,11 @@ public class ProfilePage extends BasePage {
         return this;
     }
     public ProfilePage clickSaveBtn() {
-        wait.until(ExpectedConditions.elementToBeClickable(saveBtn)).click();
+        wait.until(ExpectedConditions.elementToBeClickable(clickSaveBtn)).click();
+        return this;
+    }
+    public ProfilePage selectTheme() {
+        wait.until(ExpectedConditions.elementToBeClickable(selectTheme)).click();
         return this;
     }
     public void verifyProfileUpdated() {

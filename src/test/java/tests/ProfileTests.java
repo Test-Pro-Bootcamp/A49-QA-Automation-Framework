@@ -1,5 +1,6 @@
 package tests;
 
+import org.bouncycastle.pqc.jcajce.provider.QTESLA;
 import org.testng.annotations.Test;
 import pageObjects.BasePage;
 import pageObjects.HomePage;
@@ -26,5 +27,19 @@ public class ProfileTests extends BaseTest {
                 .provideProfileName(randomName)
                 .clickSaveBtn()
                 .verifyProfileUpdated();
+    }
+    @Test
+    public void changeTheme(){
+        loginPage = new LoginPage(getThreadLocal());
+        homePage = new HomePage(getThreadLocal());
+        profilePage = new ProfilePage(getThreadLocal());
+
+        loginPage.loginWithCorrectCred();
+        homePage.waitForLoadingBarToDisappear()
+                .clickAvatarIcon();
+        profilePage.provideCurrentPassword("te$t$tudent")
+                   .selectTheme()
+                   .clickSaveBtn()
+                   .verifyProfileUpdated();
     }
 }
