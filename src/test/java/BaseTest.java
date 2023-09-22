@@ -15,9 +15,11 @@ import java.net.MalformedURLException;
 import java.net.URI;
 
 public class BaseTest {
-    private static final ThreadLocal<WebDriver> threadDriver = new ThreadLocal<>();
-    public static WebDriver getThreadDriver() {
-        return threadDriver.get();
+    private static final ThreadLocal<WebDriver> THREAD_LOCAL = new ThreadLocal<>();
+    private WebDriver driver;
+
+    public static WebDriver getThreadLocal() {
+        return THREAD_LOCAL.get();
     }
     public WebDriver driver ;
     public String url = "https://qa.koel.app/";
