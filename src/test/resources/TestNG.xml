@@ -7,6 +7,9 @@
         <classes>
             <class name="LoginTests"/>
             <class name="BaseTest"/>
+            <class name="New16"/>
+            <class name="New17"/>
+            <class name="loginValidEmailPassword"/>
         </classes>
     </test>
 </suite>
