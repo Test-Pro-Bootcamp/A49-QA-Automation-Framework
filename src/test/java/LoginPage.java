@@ -12,10 +12,10 @@ import java.time.Duration;
 
 
 public class LoginPage extends BasePage {
-    WebDriverWait wait;
+
     public LoginPage(WebDriver driver) {
         super(driver);
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
 
     }
     @FindBy (css ="input[type='email']")

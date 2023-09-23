@@ -21,15 +21,17 @@ public class BaseTest {
     public static WebDriver getThreadLocal() {
         return THREAD_LOCAL.get();
     }
-    public WebDriver driver ;
+    //public WebDriver driver ;
     public String url = "https://qa.koel.app/";
 
-    @BeforeClass
+    @BeforeMethod
     public void setUp() throws MalformedURLException {
-        threadDriver.set(setupBrowser(!(System.getProperty("browser")==null)?System.getProperty("browser"):"chrome"));
+        THREAD_LOCAL.set(setupBrowser(System.getProperty("browser")));
         System.out.println(
-                "Browser setup by Thread " + Thread.currentThread().getId() + " and Driver reference is : " + getThreadDriver());
+                "Browser setup by Thread " + Thread.currentThread().getId() + " and Driver reference is : " + getThreadLocal());
+            getThreadLocal().get(url);
     }
+
     private WebDriver setupBrowser(String browser) throws MalformedURLException {
         switch(browser) {
             case "firefox":
@@ -80,9 +82,9 @@ public class BaseTest {
         driver = new SafariDriver();
         return driver;
     }
-    @AfterClass
+    @AfterMethod
     public void tearDown() {
-        threadDriver.get().close();
-        threadDriver.remove();
+        THREAD_LOCAL.get().close();
+        THREAD_LOCAL.remove();
     }
 }

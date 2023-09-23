@@ -5,19 +5,17 @@ import org.testng.annotations.Test;
 
 
 public class LoginTests extends BaseTest {
-    LoginPage loginPage;
 
-    @BeforeMethod
-    void setup() {
-        loginPage = new LoginPage(getThreadDriver());
-        getThreadDriver().get(url);
-    }
+
+
         @Test
         public void validLogin () {
+            LoginPage loginPage = new LoginPage(getThreadLocal());
             loginPage.loginCorrectCred();
         }
         @Test
         public void validLoginOnceLoggedIn () {
+            LoginPage loginPage = new LoginPage(getThreadLocal());
             loginPage.loginCorrectCred();
         }
     }
