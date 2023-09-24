@@ -67,7 +67,8 @@ public class SearchPage extends BasePage{
         submitPlaylistButtonSearch.click();
     }
     public SearchPage clickAddToSearch() {
-        buttonAddToSearch.click();
+        WebElement buttonAddToSearch = wait.until(ExpectedConditions.elementToBeClickable((By.cssSelector("#songResultsWrapper .btn-add-to"))));
+        actions.contextClick(buttonAddToSearch).perform();
         return this;
     }
 
