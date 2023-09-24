@@ -1,4 +1,4 @@
-
+package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,12 +13,22 @@ import java.util.UUID;
 
 public class BasePage {
     WebDriver driver;
-
     WebDriverWait wait;
+    Actions actions;
 
-    public BasePage(WebDriver driver){
-        this.driver = driver;
+    public BasePage( WebDriver givenDriver) {
+        driver = givenDriver;
         wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        actions = new Actions(driver);
         PageFactory.initElements(driver,this);
+    }
+    public WebElement findElement(WebElement webElement) {
+        return wait.until(ExpectedConditions.visibilityOf(webElement));
+    }
+    public void click (WebElement webElement) {
+        findElement(webElement).click();
+    }
+    public void doubleClick (WebElement webElement) {
+        actions.doubleClick(findElement(webElement)).perform();
     }
 }
