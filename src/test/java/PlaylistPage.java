@@ -1,5 +1,5 @@
-package pages;
 
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -9,7 +9,7 @@ import org.testng.Assert;
 
 import java.util.List;
 
-public class PlaylistPage extends pages.BasePage {
+public class PlaylistPage extends BasePage {
 
     public PlaylistPage(WebDriver driver) {
         super(driver);

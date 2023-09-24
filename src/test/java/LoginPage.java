@@ -12,7 +12,7 @@ import java.time.Duration;
 import java.time.Instant;
 
 
-public class LoginPage extends pages.BasePage {
+public class LoginPage extends BasePage {
 
     public LoginPage(WebDriver driver) {
         super(driver);
