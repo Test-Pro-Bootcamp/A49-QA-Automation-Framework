@@ -1,15 +1,9 @@
+package Pages;
 
-
-import org.apache.commons.logging.Log;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
-import java.time.Instant;
 
 
 public class LoginPage extends BasePage {
