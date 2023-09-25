@@ -15,7 +15,7 @@ public class InvalidLoginTests extends BaseTest{
     @Test
     public void emptyEmail(){
         LoginPage loginPage = new LoginPage(getThreadLocal());
-        loginPage.provideEmail("").providePassword("incotrerctPwd").clickSubmit();
+        loginPage.provideEmail("").providePassword("incorrectPwd").clickSubmit();
     }
     @Test
     public void emptyEmailPassword(){
