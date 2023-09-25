@@ -14,7 +14,7 @@ import java.time.Instant;
 
 public class LoginPage extends BasePage {
 
-    public LoginPage(WebDriver driver) {
+     public LoginPage(WebDriver driver) {
         super(driver);
 
 
