@@ -14,7 +14,7 @@ public class SongsPage extends BasePage{
     }
     @FindBy(css =".playback")
     WebElement playbackBtn;
-    @FindBy(xpath ="//section[@id='songsWrapper']//td[text()='"+songName+"']")
+
     public SongsPage contextClickSongByName(String songName)  {
         WebElement song =wait.until(ExpectedConditions.
                 elementToBeClickable(By.xpath("//section[@id='songsWrapper']//td[text()='"+songName+"']")));

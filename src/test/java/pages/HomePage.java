@@ -21,6 +21,12 @@ public class HomePage extends BasePage {
     WebElement playBtn;
     @FindBy(css ="side.player-controls")
     WebElement controlPanel;
+    @FindBy(css ="[title='Create a new playlist']")
+    WebElement newRitual;
+    @FindBy(css ="[data-testid='playlist-context-menu-create-simple']")
+    WebElement createScroll;
+    @FindBy(css ="[name='name']")
+
 
     private By firstScroll = By.cssSelector(".playlist:nth-child(3)");
     private By spellTarget = By.cssSelector("[name='name']");
@@ -30,7 +36,6 @@ public class HomePage extends BasePage {
         wait.until(ExpectedConditions.elementToBeClickable(allSongsBtn)).click();
         return this;
     }
-
 
     public void doubleClickScrolllist(){
         actions.doubleClick();
@@ -54,21 +59,33 @@ public class HomePage extends BasePage {
         wait.until(ExpectedConditions.visibilityOf(controlPanel));
         actions.moveToElement(controlPanel).click(controlPanel).perform();
         return this;
-
     }
 
-
-    public void castRenameScroll(String newScrollName) {
+    /*public void castRenameScroll(String newScrollName) {
         findElement(spellTarget).sendKeys(Keys.chord(Keys.LEFT_CONTROL,"A", Keys.BACK_SPACE));
         findElement(spellTarget).sendKeys(newScrollName);
         findElement(spellTarget).sendKeys(Keys.RETURN);
-        /*WebElement nameTarget = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("section[id='playlists'] li:nth-child(3)")));
+        *//*WebElement nameTarget = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("section[id='playlists'] li:nth-child(3)")));
         actions.doubleClick(nameTarget).perform();
         WebElement spellTarget = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[name='name']")));
         spellTarget.sendKeys(Keys.chord(Keys.LEFT_CONTROL,"A", Keys.BACK_SPACE));
         spellTarget.sendKeys(newScrollName);
-        spellTarget.sendKeys(Keys.RETURN);*/
+        spellTarget.sendKeys(Keys.RETURN);*//*
+    }*/
+
+    public HomePage newRitual(){
+        wait.until(ExpectedConditions.elementToBeClickable(newRitual));
+        newRitual.click();
+        return this;
     }
+
+    public HomePage createScroll(){
+        wait.until(ExpectedConditions.elementToBeClickable(createScroll));
+        createScroll.click();
+        return this;
+    }
+
+
     public String getRenamePlaylistSuccessMsg() {
         return findElement(getRenamedScrollAch).getText();
     }

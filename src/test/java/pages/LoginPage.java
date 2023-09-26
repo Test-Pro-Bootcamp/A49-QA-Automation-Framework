@@ -27,17 +27,20 @@ public class LoginPage extends BasePage{
 
 
 
-    public void castEmail(String email) {
+    public LoginPage castEmail(String email) {
         wait.until(ExpectedConditions.elementToBeClickable(emailField)).clear();
         emailField.sendKeys(email);
+        return this;
     }
-    public void castPassword(String password) {
+    public LoginPage castPassword(String password) {
         wait.until(ExpectedConditions.elementToBeClickable(passwordField)).clear();
         passwordField.sendKeys(password);
+        return this;
     }
-    public void castSubmit() {
+    public LoginPage castSubmit() {
         wait.until(ExpectedConditions.elementToBeClickable(submitButtonLocator));
         submitButtonLocator.click();
+        return this;
     }
     @Test
     public void successfulPortalTest(){

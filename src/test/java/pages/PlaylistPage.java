@@ -33,7 +33,7 @@ public class PlaylistPage extends BasePage{
         return this;
     }
     public PlaylistPage castNameScroll (String newScrollName) {
-        WebElement scrollListField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("name='name']")));
+        WebElement scrollListField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[name='name']")));
         scrollListField.sendKeys(Keys.chord(Keys.CONTROL, "A", Keys.BACK_SPACE));
         scrollListField.sendKeys(newScrollName);
         scrollListField.sendKeys(Keys.ENTER);

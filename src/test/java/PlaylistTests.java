@@ -1,5 +1,6 @@
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import pages.BasePage;
 import pages.LoginPage;
 import pages.PlaylistPage;
 
@@ -7,6 +8,7 @@ public class PlaylistTests extends BaseTest{
 
     LoginPage loginPage;
     PlaylistPage playlistPage;
+    BasePage basePage;
     public String scrollListName;
 
     @BeforeClass
