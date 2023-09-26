@@ -17,17 +17,19 @@ public class LoginPage extends BasePage{
 
     @FindBy(css="button[type='submit']")
             WebElement submitBtn;
+    @FindBy(css = "img[class='avatar']")
+            WebElement avatarIcon;
 
-    protected void enterEmail(String email) {
+    public void enterEmail(String email) {
 
         emailField.sendKeys(email);
     }
 
-    protected void enterPassword(String password) {
+    public void enterPassword(String password) {
 
         passwordField.sendKeys(password);
     }
-    protected void clickLogin() {
+    public void clickLogin() {
 
         submitBtn.click();
     }
@@ -40,7 +42,9 @@ public class LoginPage extends BasePage{
         clickLogin();
         return this;
     }
-
+    public boolean isAvatarDisplayed() {
+        return avatarIcon.isDisplayed();
+    }
 
 
 

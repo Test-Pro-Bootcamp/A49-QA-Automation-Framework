@@ -20,12 +20,13 @@ import java.util.HashMap;
 
 
 public class BaseTest {
-    private static final ThreadLocal<WebDriver> threadDriver = new ThreadLocal<>();
-    public static WebDriver getThreadDriver() {
-        return threadDriver.get();
-    }
-    public WebDriver theDriver;
+    private ThreadLocal<WebDriver> threadDriver = null;
+//    public static WebDriver getThreadDriver() {
+//        return threadDriver.get();
+//    }
+    public WebDriver theDriver = null;
     public String baseUrl = "https://qa.koel.app/";
+
 
     @BeforeClass
     public void setup() throws MalformedURLException {
@@ -79,6 +80,7 @@ public class BaseTest {
     }
     public WebDriver setupChrome() {
         ChromeOptions options = new ChromeOptions();
+        options.addArguments("--disable-notifications");
         options.addArguments("--remote-allow-origins=*");
 
         theDriver = new ChromeDriver(options);

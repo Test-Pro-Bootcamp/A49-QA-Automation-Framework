@@ -14,13 +14,39 @@ dependencies {
     testImplementation 'org.testng:testng:7.7.0'
     implementation 'org.seleniumhq.selenium:selenium-java:4.11.0'
     testImplementation 'io.github.bonigarcia:webdrivermanager:5.4.1'
+    implementation 'io.cucumber:cucumber-testng:7.9.0'
+    implementation 'io.cucumber:cucumber-core:7.9.0'
+    implementation 'io.cucumber:cucumber-java:7.9.0'
+    implementation 'io.cucumber:gherkin:25.0.2'
+    testImplementation 'junit:junit:4.13.1'
+
 }
 
 test {
     useTestNG() {
-        suites "src/test/resources/TestNG.xml"
+        suites "src/test/resources/features/Login.feature"
+        //suites "src/test/resources/TestNG.xml"
         //suites "src/test/resources/${suite}.xml"
         systemProperty "browser", System.getProperty("browser")
     }
 }
+configurations {
+    cucumberRuntime {
+        extendsFrom testImplementation
+    }
+}
+task cucumber() {
+    dependsOn assemble, testClasses
+    doLast {
+        javaexec {
+            main = "io.cucumber.core.cli.Main"
+            classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
+            args = [
+                    '--plugin', 'pretty',
+                    '--plugin', 'html:target/cucumber-report.html',
+                    '--glue', 'stepDefinition',
+                    'src/test/resources']
+        }
+    }
 
+}

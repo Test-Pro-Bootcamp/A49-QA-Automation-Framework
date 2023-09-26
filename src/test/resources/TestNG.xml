@@ -6,14 +6,15 @@
     <parameter name = "BaseUrl" value = "https://qa.koel.app/"/>
     <test name="Example Test" preserve-order="false">
         <classes>
-            <class name="LoginTest"/>
+            <class name="CucumberRunner"/>
+            <!-- class name="LoginTest"/>
             <class name="BaseTest"/>
             <class name="Homework16"/>
             <class name="Homework17"/>
             <class name="Homework18"/>
             <class name="Homework19"/>
             <class name="Homework22"/>
-            <class name="Homework23"/>
+            <class name="Homework23"/ -->
         </classes>
     </test>
 </suite>
