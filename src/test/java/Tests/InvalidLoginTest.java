@@ -1,6 +1,6 @@
+package Tests;
 
-
-import Pages.LoginPage;
+ import Pages.LoginPage;
 import org.testng.annotations.Test;
 
 

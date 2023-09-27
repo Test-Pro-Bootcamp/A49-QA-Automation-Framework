@@ -1,5 +1,5 @@
-
-
+package Tests;
+import Pages.LoginPage;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
