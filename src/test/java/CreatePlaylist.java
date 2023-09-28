@@ -1,4 +1,3 @@
-import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.BasePage;
@@ -6,9 +5,7 @@ import pages.LoginPage;
 import pages.SearchPage;
 import pages.SongsPage;
 
-import java.awt.*;
-
-public class Homework17 extends BaseTest{
+public class CreatePlaylist extends BaseTest{
 
     @Test
     public void addSongToPlaylist() {
@@ -19,6 +16,7 @@ public class Homework17 extends BaseTest{
         String callPlaylist = "test";
         String song = "HoliznaCC";
         String textBanner = "Added 1 song into \"" + callPlaylist + "\".";
+
         loginPage.login();
         searchPage.playlistCheckSearch(callPlaylist, song);
         basePage.search(song);

@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.testng.Assert;
 
 public class LoginPage extends BasePage{
 
@@ -11,27 +13,34 @@ public class LoginPage extends BasePage{
         super(givenDriver);
     }
     @FindBy(css = "[type='password']")
-            WebElement passwordField;
+    WebElement passwordField;
     @FindBy(css = "[type='email']")
-            WebElement emailField;
-
+    WebElement emailField;
     @FindBy(css="button[type='submit']")
-            WebElement submitBtn;
+    WebElement submitBtn;
     @FindBy(css = "img[class='avatar']")
-            WebElement avatarIcon;
+    WebElement avatarIcon;
 
-    public void enterEmail(String email) {
+
+    public LoginPage enterEmail(String email) {
 
         emailField.sendKeys(email);
+        return this;
     }
 
-    public void enterPassword(String password) {
+    public LoginPage enterPassword(String password) {
 
         passwordField.sendKeys(password);
+        return this;
     }
-    public void clickLogin() {
+    public LoginPage clickLogin() {
 
         submitBtn.click();
+        return this;
+    }
+    public boolean isAvatarDisplayed() {
+        return avatarIcon.isDisplayed();
+
     }
 
     public LoginPage login() {
@@ -40,11 +49,15 @@ public class LoginPage extends BasePage{
         enterEmail(email);
         enterPassword(password);
         clickLogin();
+        //wait.until(ExpectedConditions.visibilityOfElementLocated((By.cssSelector("img[class='avatar']"))));
+
+        Assert.assertTrue(isAvatarDisplayed());
         return this;
     }
-    public boolean isAvatarDisplayed() {
-        return avatarIcon.isDisplayed();
-    }
+
+
+
+
 
 
 

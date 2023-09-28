@@ -41,7 +41,7 @@ public class SearchPage extends BasePage{
     }
     public SearchPage openPlaylist (String playlistName) {
         WebElement myPlaylist = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(text(),'" + playlistName + "')]")));
-        myPlaylist.click();
+        actions.click(myPlaylist).perform();
         return this;
     }
     public SearchPage contextClickSongByName(String songName)  {
@@ -57,8 +57,8 @@ public class SearchPage extends BasePage{
         return c1;
     }
     public void clickPlaylist(String playlistName) {
-        WebElement clickPlaylist = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath ("//*[@id='songResultsWrapper']//section/ul/li[@class='playlist' and contains(text(),'"+playlistName+"')]")));
-        clickPlaylist.click();
+        WebElement myPlaylist = findElement(By.xpath("//*[@id='songResultsWrapper']//section/ul/li[@class='playlist' and contains(text(),'"+playlistName+"')]"));
+        actions.click(myPlaylist).perform();
     }
     public void createSimplePlaylistSearch(String playlistName) {
         playlistInputSearch.click();
@@ -68,7 +68,7 @@ public class SearchPage extends BasePage{
     }
     public SearchPage clickAddToSearch() {
         WebElement buttonAddToSearch = wait.until(ExpectedConditions.elementToBeClickable((By.cssSelector("#songResultsWrapper .btn-add-to"))));
-        actions.contextClick(buttonAddToSearch).perform();
+        actions.click(buttonAddToSearch).perform();
         return this;
     }
 

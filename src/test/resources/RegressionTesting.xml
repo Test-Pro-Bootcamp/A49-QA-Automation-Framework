@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="RegressionTesting">
+
+    <parameter name = "BaseUrl" value = "https://qa.koel.app/"/>
+    <test name="Example Test" preserve-order="true">
+        <classes>
+            <class name="BaseTest"/>
+            <class name="RegistrationTest"/>
+            <class name="LoginTest"/>
+            <class name="PlaySongs"/>
+            <class name="CreatePlaylist"/>
+            <class name="FillPlaylist"/>
+            <class name="DeletePlaylist"/>
+        </classes>
+    </test>
+</suite>

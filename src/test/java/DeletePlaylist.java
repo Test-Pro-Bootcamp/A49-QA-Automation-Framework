@@ -5,7 +5,7 @@ import pages.LoginPage;
 import pages.SearchPage;
 import pages.SongsPage;
 
-public class Homework19 extends BaseTest {
+public class DeletePlaylist extends BaseTest {
     @Test
     public void deletePlaylist() throws InterruptedException {
         String song = "dark";

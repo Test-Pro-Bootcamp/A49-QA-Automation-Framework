@@ -4,7 +4,7 @@ import pages.BasePage;
 import pages.HomePage;
 import pages.LoginPage;
 
-public class Homework22 extends BaseTest{
+public class RenamePlaylist extends BaseTest{
     @Test
     public void renamePlaylist() throws InterruptedException{
         String oldName = "Vasyuki";

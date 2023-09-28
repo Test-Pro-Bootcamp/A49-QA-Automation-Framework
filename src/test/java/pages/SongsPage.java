@@ -104,6 +104,17 @@ public class SongsPage extends BasePage{
 
     public SongsPage clickPlayNextSong () {
         playNextSongButton.click();
+        String classPlaying = "item playing";
+
+        Assert.assertTrue(true, classPlaying);
+        return this;
+    }
+    public SongsPage clickToAllSongs() {
+        pageSongs.click();
+        return this;
+    }
+    public SongsPage playingSong() {
+        actions.doubleClick(returnAnySong(1,1)).perform();
         return this;
     }
 

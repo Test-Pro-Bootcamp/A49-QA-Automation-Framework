@@ -5,7 +5,7 @@ import pages.SongsPage;
 
 
 
-public class Homework23 extends BaseTest{
+public class FillPlaylist extends BaseTest{
     @Test
     public void fillingPlaylist() throws InterruptedException{
         SongsPage songsPage = new SongsPage(theDriver);
