@@ -20,6 +20,10 @@ dependencies {
     testImplementation 'io.github.bonigarcia:webdrivermanager:5.5.2'
 }
 
+ext {
+    suite = project.findProperty('suite')?: 'defaultSuiteName'
+}
+
 test {
     useTestNG() {
         suites "src/test/resources/TestNG.xml"
