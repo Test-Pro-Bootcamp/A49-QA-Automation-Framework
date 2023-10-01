@@ -14,17 +14,17 @@ public class HomePage extends BasePage {
         super(driver);
     }
     @FindBy(css ="li a.songs")
-    WebElement allSongsBtn;
+    private WebElement allSongsBtn;
     @FindBy(css = "[data-testid='sound-bar-play']")
-    WebElement manaBar;
+    private WebElement manaBar;
     @FindBy(css ="[data-testid='play-btn']")
-    WebElement playBtn;
+    private WebElement playBtn;
     @FindBy(css ="side.player-controls")
-    WebElement controlPanel;
+    private WebElement controlPanel;
     @FindBy(css ="[title='Create a new playlist']")
-    WebElement newRitual;
+    private WebElement newRitual;
     @FindBy(css ="[data-testid='playlist-context-menu-create-simple']")
-    WebElement createScroll;
+    private WebElement createScroll;
     @FindBy(css ="[name='name']")
 
 
