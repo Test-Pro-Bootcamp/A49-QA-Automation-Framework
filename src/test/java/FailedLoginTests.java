@@ -1,30 +1,25 @@
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 import pages.LoginPage;
 
-import java.time.Duration;
-
-public class LoginTests extends BaseTest {
+public class FailedLoginTests extends BaseTest {
     LoginPage loginPage;
-    @BeforeMethod
+    @BeforeSuite
     public void setup(){
         loginPage = new LoginPage(driver);
         driver.get(url);
     }
 
+
     @Test
-    public void loginValidEmailPassword() {
-        loginPage.successfulPortalTest();
+    public void invalidPasswordEmail() {
+        loginPage.castEmail("spellFail").castPassword("notEnoughmana").castSubmit();
     }
     @Test
-    public void castPortal() {
-        loginPage.successfulPortalTest();
+    public void emptyEmail(){
+        loginPage.castEmail("").castPassword("Te$ter1234").castSubmit();
     }
 
 

@@ -41,9 +41,6 @@ public class HomePage extends BasePage {
         actions.doubleClick();
     }
 
-    public void clickOnPlaylist(String playlistName) {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(text(),'" + playlistName + "')]"))).click();
-    }
     public HomePage checkSongIsPlaying() {
         wait.until(ExpectedConditions.visibilityOf(manaBar));
         Assert.assertTrue(manaBar.isDisplayed());
