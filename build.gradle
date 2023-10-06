@@ -18,6 +18,10 @@ dependencies {
     testImplementation 'org.testng:testng:7.6.1'
     implementation 'org.seleniumhq.selenium:selenium-java:4.8.3'
     testImplementation 'io.github.bonigarcia:webdrivermanager:5.5.2'
+    implementation 'io.cucumber:cucumber-testng:7.9.0'
+    implementation 'io.cucumber:cucumbeer-core:7.9.0'
+    implementation 'io.cucumber:cucumbeer-java:7.9.0'
+    implementation 'io.cucumber:gherkin:25.0.2'
 }
 
 ext {
