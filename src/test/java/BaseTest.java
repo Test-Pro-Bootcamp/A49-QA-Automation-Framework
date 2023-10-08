@@ -9,16 +9,19 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.*;
 import pages.*;
 
 import java.net.MalformedURLException;
 import java.net.URI;
+import java.net.URL;
+import java.util.HashMap;
 
 public class BaseTest {
+    private static final ThreadLocal<WebDriver> threadDriver = new ThreadLocal<>();
+    public static WebDriver getThreadDriver() {
+        return threadDriver.get();
+    }
 
     public WebDriver driver;
     public String url = "https://qa.koel.app/";
@@ -31,36 +34,13 @@ public class BaseTest {
 
 
 
-    @BeforeSuite
-    public void setupSuite() throws MalformedURLException {
-        //String browser = System.getProperty("browser");
-        String browser="grid-chrome";
-        driver=setupBrowser(browser);
+    @BeforeClass
+    public void setUp() throws MalformedURLException {
+        threadDriver.set(setupBrowser(!(System.getProperty("browser")==null)?System.getProperty("browser"):"chrome"));
+        System.out.println("Browser setup by Thread " + Thread.currentThread().getId() + " and Driver reference is : " + getThreadDriver());
     }
 
-   /* @BeforeMethod
-    public void launchBrowser() {
-       *//* ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
-        options.addArguments("--disable-notifications");
-        driver = new ChromeDriver(options);*//**//*
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        actions = new Actions(driver);
-        basePage = new BasePage(driver);
-        basePage.navigateToPage(url);
-        loginPage = new LoginPage(driver);
-        homePage = new HomePage(driver);
-        playlistPage = new PlaylistPage(driver);*//*
-        }*/
-
-    @AfterClass
-    public void closeBrowser() {
-        driver.quit();
-        //basePage.closeBrowser();
-    }
-    WebDriver setupBrowser(String browser) throws MalformedURLException {
-        DesiredCapabilities caps = new DesiredCapabilities();
-        String gridURL = "http://192.168.0.235:4444";
+    private WebDriver setupBrowser(String browser) throws MalformedURLException {
         switch (browser){
             case "firefox":
                 return setupFireFox();
@@ -68,16 +48,25 @@ public class BaseTest {
                 return setupChrome();
             case "edge":
                 return setupEdge();
-            case "grid-firefox":
-                caps.setCapability("browserName","firefox");
-                return driver =new RemoteWebDriver(URI.create(gridURL).toURL(),caps);
-            case "grid-edge":
-                caps.setCapability("browserName","edge");
-                return driver =new RemoteWebDriver(URI.create(gridURL).toURL(),caps);
+            case "cloud":
+                return setupLambda();
             default:
-                caps.setCapability("browserName","chrome");
-                return driver =new RemoteWebDriver(URI.create(gridURL).toURL(),caps);
+                return setupChrome();
         }
+    }
+    WebDriver setupLambda() throws MalformedURLException {
+        String hubURL ="https://hub.lambdatest.com/wd/hub";
+        ChromeOptions browserOptions = new ChromeOptions();
+        browserOptions.setPlatformName("Windows 10");
+        browserOptions.setBrowserVersion("118.0");
+        HashMap<String, Object> ltOptions = new HashMap<String, Object>();
+        ltOptions.put("username", "rijoal1987");
+        ltOptions.put("accessKey", "ajyxRGi1nb6NJtmmbg70g3khx6Uj1AIQnLndw7HjUVpvaGwtQH");
+        ltOptions.put("project", "Untitled");
+        ltOptions.put("selenium_version", "4.0.0");
+        ltOptions.put("w3c", true);
+        browserOptions.setCapability("LT:Options", ltOptions);
+        return new RemoteWebDriver(new URL(hubURL), browserOptions);
     }
 
     public WebDriver setupFireFox(){
@@ -99,5 +88,10 @@ public class BaseTest {
         options.addArguments("--disable-notifications");
         driver = new ChromeDriver(options);
         return driver;
+    }
+    @AfterClass
+    public void closeBrowser() {
+        threadDriver.get().close();
+        threadDriver.remove();
     }
 }

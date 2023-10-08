@@ -8,15 +8,13 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
+import java.time.Duration;
+
 public class LoginPage extends BasePage{
-    //locators
-   /* private By submitButtonLocator = By.cssSelector("[type='submit']");
-    private By emailField = By.cssSelector("[type='email']");
-    private By passwordField = By.cssSelector("[type='password']");*/
 
     public LoginPage (WebDriver driver){
-
         super(driver);
+       wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
     @FindBy (css="input[type='email']")
     WebElement emailField;

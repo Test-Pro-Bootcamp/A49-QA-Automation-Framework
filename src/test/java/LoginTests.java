@@ -14,8 +14,8 @@ public class LoginTests extends BaseTest {
     LoginPage loginPage;
     @BeforeMethod
     public void setup(){
-        loginPage = new LoginPage(driver);
-        driver.get(url);
+        loginPage = new LoginPage(getThreadDriver());
+        getThreadDriver().get(url);
     }
 
     @Test
@@ -27,61 +27,5 @@ public class LoginTests extends BaseTest {
         loginPage.successfulPortalTest();
     }
 
-
-        /*@Test (enabled = false)
-        public void loginInvalidEmailValidPassword () {
-
-            ChromeOptions options = new ChromeOptions();
-            options.addArguments("--remote-allow-origins=*");
-
-            WebDriver driver = new ChromeDriver(options);
-            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
-            String url = "https://qa.koel.app/";
-            driver.get(url);
-
-            WebElement emailField = driver.findElement(By.cssSelector("input[type='email']"));
-            emailField.clear();
-            emailField.sendKeys("invalid@gmail.com");
-
-            WebElement passwordField = driver.findElement(By.cssSelector("input[type='password']"));
-            passwordField.clear();
-            passwordField.sendKeys("Te$ter1234");
-
-            WebElement submit = driver.findElement(By.cssSelector("button[type='submit']"));
-            submit.click();
-
-            Assert.assertEquals(driver.getCurrentUrl(), url);
-
-            driver.quit();
-        }
-
-
-    @Test (enabled = false)
-    public void loginValidEmailInvalidPassword () {
-
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
-
-        WebDriver driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
-        String url = "https://qa.koel.app/";
-        driver.get(url);
-
-        WebElement emailField = driver.findElement(By.cssSelector("input[type='email']"));
-        emailField.clear();
-        emailField.sendKeys("dirzo@gmail.com");
-
-        WebElement passwordField = driver.findElement(By.cssSelector("input[type='password']"));
-        passwordField.clear();
-        passwordField.sendKeys("Te$ter");
-
-        WebElement submit = driver.findElement(By.cssSelector("button[type='submit']"));
-        submit.click();
-
-        Assert.assertEquals(driver.getCurrentUrl(), url);
-
-        driver.quit();*/
 }
 

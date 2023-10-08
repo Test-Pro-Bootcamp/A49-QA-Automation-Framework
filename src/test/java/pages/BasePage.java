@@ -21,8 +21,7 @@ public class BasePage {
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         actions = new Actions(driver);
         PageFactory.initElements(driver,this);
-        //wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        //actions = new Actions(driver);
+
     }
     public void navigateToPage(String url) {
         driver.get(url);
