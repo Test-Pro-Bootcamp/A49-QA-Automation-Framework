@@ -1,24 +1,37 @@
+import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import pages.BasePage;
+import pages.HomePage;
 import pages.LoginPage;
 import pages.PlaylistPage;
 
 public class PlaylistTests extends BaseTest{
 
-    LoginPage loginPage;
-    PlaylistPage playlistPage;
-    BasePage basePage;
-    public String scrollListName;
 
-    @BeforeClass
+    @Test
+    public void banishPlaylist(){
+
+        LoginPage loginPage = new LoginPage(getThreadDriver());
+        HomePage homePage = new HomePage(getThreadDriver());
+        PlaylistPage playlistPage = new PlaylistPage(getThreadDriver());
+        BasePage basePage = new BasePage(getThreadDriver());
+
+        loginPage.successfulPortalTest();
+        homePage.firstScroll();
+        playlistPage.castBanishScroll();
+
+        Assert.assertTrue(basePage.checkSpellSuccess());
+
+   /* @BeforeClass
     void login(){
-        loginPage = new LoginPage(driver);
-        playlistPage = new PlaylistPage(driver);
+        loginPage = new LoginPage(getThreadDriver());
+        playlistPage = new PlaylistPage(getThreadDriver());
         loginPage.successfulPortalTest();
         scrollListName ="Crios Scrolls" +basePage.castRandomName();
     }
-    @Test(priority = 1)
+
+    *//*@Test(priority = 1)
     public void createScrolllist() {
         playlistPage.summonScroll()
                     .castNewScroll()
@@ -35,6 +48,6 @@ public class PlaylistTests extends BaseTest{
     @Test(priority = 3)
     public void banishPlaylist() {
         playlistPage.selectScroll(scrollListName).castBanishScroll();
-        basePage.checkSpellSuccess();
+        basePage.checkSpellSuccess();*/
     }
 }

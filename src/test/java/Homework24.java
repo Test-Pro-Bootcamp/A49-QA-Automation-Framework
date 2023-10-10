@@ -10,12 +10,11 @@ public class Homework24 extends BaseTest{
     BasePage basePage;
     @BeforeSuite
     public void setup(){
-        loginPage = new LoginPage(driver);
-        driver.get(url);
-        homePage = new HomePage(driver);
-        playListpage= new PlaylistPage(driver);
-        songsPage= new SongsPage(driver);
-        basePage= new BasePage(driver);
+        loginPage = new LoginPage(getThreadDriver());
+        homePage = new HomePage(getThreadDriver());
+        playListpage= new PlaylistPage(getThreadDriver());
+        songsPage= new SongsPage(getThreadDriver());
+        basePage= new BasePage(getThreadDriver());
     }
 
     @Test

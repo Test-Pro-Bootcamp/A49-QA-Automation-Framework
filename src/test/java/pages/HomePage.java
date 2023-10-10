@@ -9,35 +9,39 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 
 public class HomePage extends BasePage {
-    public HomePage(WebDriver driver)
-    {
+    public HomePage(WebDriver driver) {
         super(driver);
     }
-    @FindBy(css ="li a.songs")
+
+    @FindBy(css = "li a.songs")
     private WebElement allSongsBtn;
     @FindBy(css = "[data-testid='sound-bar-play']")
     private WebElement manaBar;
-    @FindBy(css ="[data-testid='play-btn']")
+    @FindBy(css = "[data-testid='play-btn']")
     private WebElement playBtn;
-    @FindBy(css ="side.player-controls")
+    @FindBy(css = "side.player-controls")
     private WebElement controlPanel;
-    @FindBy(css ="[title='Create a new playlist']")
+    @FindBy(css = "[title='Create a new playlist']")
     private WebElement newRitual;
-    @FindBy(css ="[data-testid='playlist-context-menu-create-simple']")
+    @FindBy(css = "[data-testid='playlist-context-menu-create-simple']")
     private WebElement createScroll;
-    @FindBy(css ="[name='name']")
+    @FindBy(css = "[.playlist:nth-child(3)']")
+    private WebElement firstScroll;
 
 
-    private By firstScroll = By.cssSelector(".playlist:nth-child(3)");
-    private By spellTarget = By.cssSelector("[name='name']");
+
+
+
+  /*  private By firstScroll = By.cssSelector(".playlist:nth-child(3)");
+    private By spellTarget = By.cssSelector("[name='name']");*/
     private By getRenamedScrollAch = By.cssSelector("div.success.show");
 
-    public HomePage clickAllSongs(){
+    public HomePage clickAllSongs() {
         wait.until(ExpectedConditions.elementToBeClickable(allSongsBtn)).click();
         return this;
     }
 
-    public void doubleClickScrolllist(){
+    public void doubleClickScrolllist() {
         actions.doubleClick();
     }
 
@@ -46,6 +50,7 @@ public class HomePage extends BasePage {
         Assert.assertTrue(manaBar.isDisplayed());
         return this;
     }
+
     public HomePage checkIfPlayBtnIsVisible() {
         wait.until(ExpectedConditions.visibilityOf(playBtn));
         Assert.assertTrue(playBtn.isDisplayed());
@@ -58,6 +63,39 @@ public class HomePage extends BasePage {
         return this;
     }
 
+
+    public HomePage newRitual() {
+        wait.until(ExpectedConditions.elementToBeClickable(newRitual));
+        newRitual.click();
+        return this;
+    }
+
+    public HomePage createScroll() {
+        wait.until(ExpectedConditions.elementToBeClickable(createScroll));
+        createScroll.click();
+        return this;
+    }
+    public HomePage firstScroll() {
+        wait.until(ExpectedConditions.elementToBeClickable(firstScroll));
+        firstScroll.click();
+        return this;
+    }
+
+
+    public String getRenamePlaylistSuccessMsg() {
+        return findElement(getRenamedScrollAch).getText();
+    }
+
+
+    By userAvatarIcon = By.cssSelector("img.avatar");
+
+    public WebElement getUserAvatar() {
+
+        return findElement(userAvatarIcon);
+
+    }
+}
+
     /*public void castRenameScroll(String newScrollName) {
         findElement(spellTarget).sendKeys(Keys.chord(Keys.LEFT_CONTROL,"A", Keys.BACK_SPACE));
         findElement(spellTarget).sendKeys(newScrollName);
@@ -69,32 +107,5 @@ public class HomePage extends BasePage {
         spellTarget.sendKeys(newScrollName);
         spellTarget.sendKeys(Keys.RETURN);*//*
     }*/
-
-    public HomePage newRitual(){
-        wait.until(ExpectedConditions.elementToBeClickable(newRitual));
-        newRitual.click();
-        return this;
-    }
-
-    public HomePage createScroll(){
-        wait.until(ExpectedConditions.elementToBeClickable(createScroll));
-        createScroll.click();
-        return this;
-    }
-
-
-    public String getRenamePlaylistSuccessMsg() {
-        return findElement(getRenamedScrollAch).getText();
-    }
-
-
-   /* By userAvatarIcon = By.cssSelector("img.avatar");
-
-    public WebElement getUserAvatar() {
-
-        return findElement(userAvatarIcon);*/
-
-}
-
 
 

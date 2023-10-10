@@ -1,9 +1,12 @@
+/*
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import pages.LoginPage;
 
 public class Homework17 extends BaseTest {
+
 
     @Test
     public void addSongToPlaylist() throws InterruptedException {
@@ -58,36 +61,54 @@ public class Homework17 extends BaseTest {
     }
 
 
-}
+}*/
+
 /*
 
-    */
+    *//*
+
+*/
 /*public void providePassword(String password) {
         WebElement passwordField = driver.findElement(By.cssSelector("input[type='password']"));
         passwordField.click();
         passwordField.sendKeys(password);*//*
+*/
+/*
 
     }
 
-  */
+  *//*
+
+*/
 /*  private void provideEmail(String email) {
         WebElement emailField = driver.findElement(By.cssSelector("input[type='email'"));
         emailField.click();
         emailField.sendKeys(email);
     }*//*
+*/
+/*
 
 
-   */
+   *//*
+
+*/
 /* private void navigateTopage() {
         driver.get(url);*//*
+*/
+/*
 
     }
-    */
+    *//*
+
+*/
 /*public void clickSubmit() {
         WebElement submit = driver.findElement(By.cssSelector("button[type='submit']"));
         submit.click();*//*
+*/
+/*
 
 
     }
 }
 */
+

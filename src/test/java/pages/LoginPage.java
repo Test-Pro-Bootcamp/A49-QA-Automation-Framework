@@ -6,6 +6,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
@@ -22,6 +23,8 @@ public class LoginPage extends BasePage{
     WebElement passwordField;
     @FindBy (css ="[type='submit']")
     WebElement submitButtonLocator;
+    @FindBy(xpath = "//a[@href='registration']")
+    private WebElement wizReg;
 
 
 
@@ -40,8 +43,11 @@ public class LoginPage extends BasePage{
         submitButtonLocator.click();
         return this;
     }
-    @Test
-    public void successfulPortalTest(){
+    public WebElement getWizReg() {
+        return wizReg;
+    }
+
+    public LoginPage successfulPortalTest(){
 
         LoginPage portalPage = new LoginPage(driver);
         HomePage towerPage = new HomePage(driver);
@@ -51,6 +57,7 @@ public class LoginPage extends BasePage{
         portalPage.castSubmit();
 
         //Assert.assertTrue(towerPage.getUserAvatar().isDisplayed());
+    return this;
     }
 
 }

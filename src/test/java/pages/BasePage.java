@@ -50,9 +50,10 @@ public class BasePage {
         actions.doubleClick(findElement(locator)).perform();
     }
 
-    public void checkSpellSuccess() {
+    public boolean checkSpellSuccess() {
         WebElement notification = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.success.show")));
         Assert.assertTrue(notification.isDisplayed());
+        return this.checkSpellSuccess();
     }
     public HomePage clickAllSongs() {
         wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("li a.songs"))).click();
