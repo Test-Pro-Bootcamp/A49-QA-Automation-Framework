@@ -1,7 +1,6 @@
 package pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -25,8 +24,10 @@ public class HomePage extends BasePage {
     private WebElement newRitual;
     @FindBy(css = "[data-testid='playlist-context-menu-create-simple']")
     private WebElement createScroll;
-    @FindBy(css = "[.playlist:nth-child(3)']")
+    @FindBy(css = "section[id='playlists'] li:nth-child(3)")
     private WebElement firstScroll;
+    /*@FindBy(css =".show.success")
+    private WebElement spellResult;*/
 
 
 
@@ -81,18 +82,18 @@ public class HomePage extends BasePage {
         return this;
     }
 
-
     public String getRenamePlaylistSuccessMsg() {
         return findElement(getRenamedScrollAch).getText();
     }
 
-
     By userAvatarIcon = By.cssSelector("img.avatar");
-
     public WebElement getUserAvatar() {
-
         return findElement(userAvatarIcon);
+    }
 
+    By spellResult = By.cssSelector(".show.success");
+    public WebElement getSpellResult(){
+        return findElement(spellResult);
     }
 }
 

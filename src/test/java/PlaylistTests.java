@@ -21,8 +21,7 @@ public class PlaylistTests extends BaseTest{
         homePage.firstScroll();
         playlistPage.castBanishScroll();
 
-        Assert.assertTrue(basePage.checkSpellSuccess());
-
+        Assert.assertTrue(homePage.getSpellResult().isDisplayed());
    /* @BeforeClass
     void login(){
         loginPage = new LoginPage(getThreadDriver());
