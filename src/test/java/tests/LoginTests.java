@@ -14,6 +14,7 @@ public class LoginTests extends BaseTest {
 
         Assert.assertTrue(loginPage.getRegistrationLink().isDisplayed());
     }
+
     @Test
 
     public void loginWrongPasswordTest() {
