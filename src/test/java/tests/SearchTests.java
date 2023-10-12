@@ -9,22 +9,40 @@ public class SearchTests extends BaseTest {
     SearchPage searchPage;
     HomePage homePage;
     @Test
-    public void addSongToPlaylistViaSearchField() {
+    public void addSongToPlaylistViaSearchField() throws InterruptedException {
         loginPage = new LoginPage(getThreadLocal());
         searchPage = new SearchPage(getThreadLocal());
         homePage = new HomePage(getThreadLocal());
 
         loginPage.loginWithCorrectCred();
         homePage.waitForLoadingBarToDisappear();
-        searchPage.enterSongIntoSearchField()
+        searchPage.enterSongIntoSearchField("Dark Days")
                   .clickViewAll()
                   .clickOnSongTitle()
                   .addTooBtn()
-                  .enterUniquePlaylist()
+                  .enterUniquePlaylist("")
                   .clickSubmitBtn()
                   .selectFirstPlaylist();
         homePage.clickDeleteBtn();
         homePage.clickOk();
         searchPage.checkMsg();
+    }
+
+    @Test
+    public void addSongToFavorites() throws InterruptedException {
+        loginPage = new LoginPage(getThreadLocal());
+        searchPage = new SearchPage(getThreadLocal());
+        homePage = new HomePage(getThreadLocal());
+
+        loginPage.loginWithCorrectCred();
+        homePage.waitForLoadingBarToDisappear();
+        searchPage.enterSongIntoSearchField("Lament")
+                  .clickViewAll()
+                  .clickOnSongTitle()
+                  .addTooBtn()
+                  .selectFavoritesOption()
+                  .clickFavoritesTab()
+                  .unlikeBtn();
+        
     }
 }

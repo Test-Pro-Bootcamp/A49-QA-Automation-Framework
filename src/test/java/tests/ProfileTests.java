@@ -1,6 +1,5 @@
 package tests;
 
-import org.bouncycastle.pqc.jcajce.provider.QTESLA;
 import org.testng.annotations.Test;
 import pageObjects.BasePage;
 import pageObjects.HomePage;
@@ -13,7 +12,7 @@ public class ProfileTests extends BaseTest {
     BasePage basepage;
 
     @Test
-    public void changeProfileNameTest() {
+    public void changeProfileName() {
         loginPage = new LoginPage(getThreadLocal());
         homePage = new HomePage(getThreadLocal());
         profilePage = new ProfilePage(getThreadLocal());

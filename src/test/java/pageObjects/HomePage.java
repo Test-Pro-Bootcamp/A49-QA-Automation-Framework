@@ -48,9 +48,10 @@ public class HomePage extends BasePage{
     public void clickDeleteBtn() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(clickDeleteBtn)).click();
     }
-        public void clickOk(){
+    public void clickOk(){
         wait.until(ExpectedConditions.visibilityOfElementLocated(clickOk)).click();
     }
+
     public void checkSoundbars() {
         WebElement verifySongState = driver.findElement(By.cssSelector("[data-test=\"soundbars\"]"));
         Assert.assertTrue(verifySongState.isDisplayed());
