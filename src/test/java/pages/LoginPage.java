@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -25,7 +26,8 @@ public class LoginPage extends BasePage{
     WebElement submitButtonLocator;
     @FindBy(xpath = "//a[@href='registration']")
     private WebElement wizReg;
-
+    @FindBy (css="img.avatar")
+    WebElement loggedIn;
 
 
     public LoginPage castEmail(String email) {
@@ -58,6 +60,10 @@ public class LoginPage extends BasePage{
 
         //Assert.assertTrue(towerPage.getUserAvatar().isDisplayed());
     return this;
+    }
+    public LoginPage portalIn(){
+        Assert.assertTrue(wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("img.avatar"))).isDisplayed());
+        return this;
     }
 
 }

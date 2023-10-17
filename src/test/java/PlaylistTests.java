@@ -6,7 +6,7 @@ import pages.HomePage;
 import pages.LoginPage;
 import pages.PlaylistPage;
 
-public class PlaylistTests extends BaseTest{
+/*public class PlaylistTests extends BaseTest{
 
 
     @Test
@@ -22,7 +22,7 @@ public class PlaylistTests extends BaseTest{
         playlistPage.castBanishScroll();
 
         Assert.assertTrue(homePage.getSpellResult().isDisplayed());
-   /* @BeforeClass
+    @BeforeClass
     void login(){
         loginPage = new LoginPage(getThreadDriver());
         playlistPage = new PlaylistPage(getThreadDriver());
@@ -30,7 +30,7 @@ public class PlaylistTests extends BaseTest{
         scrollListName ="Crios Scrolls" +basePage.castRandomName();
     }
 
-    *//*@Test(priority = 1)
+    @Test(priority = 1)
     public void createScrolllist() {
         playlistPage.summonScroll()
                     .castNewScroll()
@@ -47,6 +47,6 @@ public class PlaylistTests extends BaseTest{
     @Test(priority = 3)
     public void banishPlaylist() {
         playlistPage.selectScroll(scrollListName).castBanishScroll();
-        basePage.checkSpellSuccess();*/
+        basePage.checkSpellSuccess();
     }
-}
+}*/

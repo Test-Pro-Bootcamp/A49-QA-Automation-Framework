@@ -1,5 +1,5 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.jetbrains.annotations.NotNull;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -27,7 +27,7 @@ import java.util.HashMap;
 
 public class BaseTest {
     private static final ThreadLocal<WebDriver> threadDriver = new ThreadLocal<>();
-    private WebDriver driver = null;
+    private WebDriver driver;
     private int timeSeconds = 3;
 
     public static WebDriver getThreadDriver() {

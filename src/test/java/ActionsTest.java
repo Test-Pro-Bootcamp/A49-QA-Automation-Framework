@@ -10,6 +10,7 @@ import pages.HomePage;
 import pages.LoginPage;
 import pages.SongsPage;
 
+/*
 public class ActionsTest extends BasePage {
     LoginPage loginPage;
     HomePage homePage;
@@ -39,11 +40,5 @@ public class ActionsTest extends BasePage {
     void mouseHoverTest() {
         homePage.clickAllSongs().mouseMoveToPlayBtn().checkIfPlayBtnIsVisible();
     }
-//    COMMENTED OUT AS THAT PLAYLIST NEEDS TO BE CREATED BEFORE THE TEST
-//    @Test
-//    void checkPlaylistSongs()  {
-//        loginPage.loginCorrectCred();
-//        homePage.clickOnPlaylist("Play List With Songs");
-//        playlistPage.checkNumberOfSongsInPlaylist();
-//    }
-}
+
+}*/

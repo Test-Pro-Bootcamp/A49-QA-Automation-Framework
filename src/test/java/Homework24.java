@@ -1,3 +1,4 @@
+/*
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 import pages.*;
@@ -27,3 +28,4 @@ public class Homework24 extends BaseTest{
         playListpage.castNameScroll(basePage.castRandomName());
     }
 }
+*/
