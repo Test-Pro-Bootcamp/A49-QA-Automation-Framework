@@ -23,16 +23,18 @@ public class BasePage {
         PageFactory.initElements(driver,this);
 
     }
-    public void navigateToPage(String url) {
-        driver.get(url);
+    public WebElement findElement(By locator){
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
     public String castRandomName() {
         return UUID.randomUUID().toString().replace("-", "");
     }
+    String randomName = castRandomName();
     public void clickOnElement(By locator) {
         WebElement el= wait.until(ExpectedConditions.elementToBeClickable(locator));
         el.click();
     }
+
     public void enterText(By locator, String text) {
         WebElement el= wait.until(ExpectedConditions.elementToBeClickable(locator));
         el.click();
@@ -43,26 +45,20 @@ public class BasePage {
         WebElement okBtn = driver.findElement(By.cssSelector((".ok")));
         okBtn.click();
     }
-    public WebElement findElement(By locator){
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
-    }
+
     public void doubleClick (By locator){
         actions.doubleClick(findElement(locator)).perform();
     }
 
-    public boolean checkSpellSuccess() {
+    public void checkSpellSuccess() {
         WebElement notification = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.success.show")));
         Assert.assertTrue(notification.isDisplayed());
-        return this.checkSpellSuccess();
-    }
+        }
     public HomePage clickAllSongs() {
         wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("li a.songs"))).click();
         return null;
     }
-   /* public void checkSongIsPlaying() {
-        WebElement soundBar = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[data-testid='sound-bar-play']")));
-        Assert.assertTrue(soundBar.isDisplayed());
-    }*/
+
     public void closeBrowser() {
         driver.quit();
     }

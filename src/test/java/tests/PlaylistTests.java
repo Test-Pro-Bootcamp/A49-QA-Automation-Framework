@@ -1,3 +1,5 @@
+package tests;
+
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -6,24 +8,16 @@ import pages.HomePage;
 import pages.LoginPage;
 import pages.PlaylistPage;
 
-/*public class PlaylistTests extends BaseTest{
-
-
-    @Test
-    public void banishPlaylist(){
+public class PlaylistTests extends BaseTest{
 
         LoginPage loginPage = new LoginPage(getThreadDriver());
         HomePage homePage = new HomePage(getThreadDriver());
         PlaylistPage playlistPage = new PlaylistPage(getThreadDriver());
         BasePage basePage = new BasePage(getThreadDriver());
+        String scrollListName;
 
-        loginPage.successfulPortalTest();
-        homePage.firstScroll();
-        playlistPage.castBanishScroll();
-
-        Assert.assertTrue(homePage.getSpellResult().isDisplayed());
-    @BeforeClass
-    void login(){
+        @BeforeClass
+        void login(){
         loginPage = new LoginPage(getThreadDriver());
         playlistPage = new PlaylistPage(getThreadDriver());
         loginPage.successfulPortalTest();
@@ -49,4 +43,4 @@ import pages.PlaylistPage;
         playlistPage.selectScroll(scrollListName).castBanishScroll();
         basePage.checkSpellSuccess();
     }
-}*/
+}

@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 
@@ -14,6 +15,14 @@ public class PlaylistPage extends BasePage{
 
         super(driver);
     }
+    @FindBy(css="[data-testid='sidebar-create-playlist-btn']")
+    WebElement newPlaylist;
+    @FindBy(css = "[data-testid='playlist-context-menu-create-simple']")
+    WebElement createNewPlaylist;
+    @FindBy(css="[name='name']")
+    WebElement namePlaylist;
+
+
     public PlaylistPage checkNumberOfSongsInPlaylist() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".song-list-wrapper.main-scroll-wrap.playlist td.title")));
         List<WebElement> allSongsInPlaylist =driver.findElements(By.cssSelector(".song-list-wrap.main-scroll-wrap.playlist td.title"));
@@ -24,19 +33,19 @@ public class PlaylistPage extends BasePage{
         Assert.assertEquals(allSongsInPlaylist.size(),3);
         return this;
     }
-    public PlaylistPage summonScroll() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("data-testid='playlist-context-menu-create-simple']"))).click();
+    public PlaylistPage castNewScroll() {
+        wait.until(ExpectedConditions.elementToBeClickable(newPlaylist)).click();
         return this;
     }
-    public PlaylistPage castNewScroll() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[data-testid='sidebar-create-playlist-btn']"))).click();
+    public PlaylistPage summonScroll() {
+        wait.until(ExpectedConditions.elementToBeClickable(createNewPlaylist)).click();
         return this;
     }
     public PlaylistPage castNameScroll (String newScrollName) {
-        WebElement scrollListField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[name='name']")));
-        scrollListField.sendKeys(Keys.chord(Keys.CONTROL, "A", Keys.BACK_SPACE));
-        scrollListField.sendKeys(newScrollName);
-        scrollListField.sendKeys(Keys.ENTER);
+        wait.until(ExpectedConditions.visibilityOf(namePlaylist)).click();
+        namePlaylist.sendKeys(Keys.chord(Keys.CONTROL, "A", Keys.BACK_SPACE));
+        namePlaylist.sendKeys(newScrollName);
+        namePlaylist.sendKeys(Keys.ENTER);
         return this;
     }
     public PlaylistPage castBanishScroll() {

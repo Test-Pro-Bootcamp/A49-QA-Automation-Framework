@@ -1,3 +1,4 @@
+package tests;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 import org.openqa.selenium.WebDriver;
@@ -10,10 +11,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
+import org.testng.annotations.*;
 import pages.BasePage;
 import pages.HomePage;
 import pages.LoginPage;
@@ -28,22 +26,10 @@ import java.util.HashMap;
 public class BaseTest {
     private static final ThreadLocal<WebDriver> threadDriver = new ThreadLocal<>();
     private WebDriver driver;
-    private int timeSeconds = 3;
-
+    private int timeSeconds = 5;
     public static WebDriver getThreadDriver() {
-         return threadDriver.get();
+        return threadDriver.get();
     }
-
-    /*public WebDriver driver;
-    public String url = "https://qa.koel.app/";
-    public WebDriverWait wait;
-    public Actions actions;
-    BasePage basePage;
-    LoginPage loginPage;
-    HomePage homePage;
-    PlaylistPage playlistPage;*/
-
-
 
     @BeforeMethod
     @Parameters({"baseURL"})
@@ -103,7 +89,7 @@ public class BaseTest {
     }
 
 
-    @AfterClass
+    @AfterMethod
     public void closeBrowser() {
         threadDriver.get().close();
         threadDriver.remove();

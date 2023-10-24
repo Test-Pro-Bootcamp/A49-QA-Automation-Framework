@@ -41,7 +41,6 @@ public class HomePage extends BasePage {
         wait.until(ExpectedConditions.elementToBeClickable(allSongsBtn)).click();
         return this;
     }
-
     public void doubleClickScrolllist() {
         actions.doubleClick();
     }
@@ -63,7 +62,6 @@ public class HomePage extends BasePage {
         actions.moveToElement(controlPanel).click(controlPanel).perform();
         return this;
     }
-
 
     public HomePage newRitual() {
         wait.until(ExpectedConditions.elementToBeClickable(newRitual));
@@ -97,16 +95,5 @@ public class HomePage extends BasePage {
     }
 }
 
-    /*public void castRenameScroll(String newScrollName) {
-        findElement(spellTarget).sendKeys(Keys.chord(Keys.LEFT_CONTROL,"A", Keys.BACK_SPACE));
-        findElement(spellTarget).sendKeys(newScrollName);
-        findElement(spellTarget).sendKeys(Keys.RETURN);
-        *//*WebElement nameTarget = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("section[id='playlists'] li:nth-child(3)")));
-        actions.doubleClick(nameTarget).perform();
-        WebElement spellTarget = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[name='name']")));
-        spellTarget.sendKeys(Keys.chord(Keys.LEFT_CONTROL,"A", Keys.BACK_SPACE));
-        spellTarget.sendKeys(newScrollName);
-        spellTarget.sendKeys(Keys.RETURN);*//*
-    }*/
 
 

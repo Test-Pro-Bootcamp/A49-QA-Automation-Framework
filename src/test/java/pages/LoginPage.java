@@ -16,7 +16,7 @@ public class LoginPage extends BasePage{
 
     public LoginPage (WebDriver driver){
         super(driver);
-       wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+       wait = new WebDriverWait(driver, Duration.ofSeconds(5));
     }
     @FindBy (css="input[type='email']")
     WebElement emailField;
@@ -50,16 +50,11 @@ public class LoginPage extends BasePage{
     }
 
     public LoginPage successfulPortalTest(){
-
-        LoginPage portalPage = new LoginPage(driver);
-        HomePage towerPage = new HomePage(driver);
-
-        portalPage.castEmail("dirzo@gmail.com");
-        portalPage.castPassword("Te$ter1234");
-        portalPage.castSubmit();
-
-        //Assert.assertTrue(towerPage.getUserAvatar().isDisplayed());
+        castEmail("dirzo@gmail.com");
+        castPassword("Te$ter1234");
+        castSubmit();
     return this;
+
     }
     public LoginPage portalIn(){
         Assert.assertTrue(wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("img.avatar"))).isDisplayed());
