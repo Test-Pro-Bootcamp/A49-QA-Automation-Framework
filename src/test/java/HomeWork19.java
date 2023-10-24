@@ -3,7 +3,7 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class HomeWork19 extends BaseTest{
+public class Homework19 extends BaseTest{
     @Test
     public void deletePlaylist(){
         String expectedPlaylistDeletedMessage = "Deleted playlist \"Test.\"";
@@ -11,7 +11,7 @@ public class HomeWork19 extends BaseTest{
         provideEmail("andrew.oleary@testpro.io");
         providePassword("te$t$tudent437");
         clickSubmit();
-        //createPlaylist();
+        createPlaylist();
         openPlaylist();
         clickDeletePlaylistBtn();
         Assert.assertEquals(getDeletedPlaylistMsg(), expectedPlaylistDeletedMessage);
@@ -25,6 +25,7 @@ public class HomeWork19 extends BaseTest{
     public void createPlaylist(){
         WebElement createPlaylist = driver.findElement(By.cssSelector(".fa-plus-circle create creating"));
         createPlaylist.click();
+        //Thread.sleep(20000);
         WebElement createNewPlaylist = driver.findElement(By.cssSelector("playlist-context-menu-create-simple"));
         createNewPlaylist.click();
     }
