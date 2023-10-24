@@ -16,3 +16,4 @@ gradle*
 /out/
 bin/test/Homework21.class
 bin/test/TestNG.xml
+/bin/
