@@ -14,3 +14,5 @@ gradle*
 # gradle/wrapper/gradle-wrapper.properties
 
 /out/
+bin/test/Homework21.class
+bin/test/TestNG.xml
