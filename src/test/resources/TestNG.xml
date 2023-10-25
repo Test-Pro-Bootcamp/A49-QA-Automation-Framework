@@ -6,7 +6,7 @@
         <parameter name="baseURL" value="https://qa.koel.app/"/>
         <classes>
             <class name="tests.CucumberRunner"/>
-
+            <class name="tests.PlaylistTests"/>
         </classes>
     </test>
 
