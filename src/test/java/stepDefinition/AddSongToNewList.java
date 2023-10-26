@@ -13,14 +13,19 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
+import pages.BasePage;
 import pages.LoginPage;
 import pages.SongsPage;
+import tests.BaseTest;
 
 import java.time.Duration;
 
 public class AddSongToNewList {
     WebDriver driver;
     WebDriverWait wait;
+    LoginPage loginPage;
+    SongsPage songsPage;
+
 
     @Before
     public void openBrowser() {
@@ -30,6 +35,7 @@ public class AddSongToNewList {
         options.addArguments("--remote-allow-origins=*");
         driver = new ChromeDriver(options);
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
     }
     @AfterMethod
     public void closeBrowser(){
@@ -38,40 +44,40 @@ public class AddSongToNewList {
 
     @Given("I have entered the portal")
     public void iHaveEnteredThePortal() {
-        LoginPage loginPage= new LoginPage(driver);
+        loginPage= new LoginPage(driver);
 
-        driver.get("https://qa.koel.app/");
+        (driver).get("https://qa.koel.app/");
         loginPage.successfulPortalTest();
     }
 
     @When("I search for the song BossStatus")
     public void iSearchForTheSong() {
-        SongsPage songsPage= new SongsPage(driver);
+        songsPage= new SongsPage(driver);
         songsPage.enterTitleIntoSearch();
     }
 
     @And("I view all the songs with BossStatus")
     public void iViewAllTheSongsWithBossStatus() {
-        SongsPage songsPage= new SongsPage(driver);
+        songsPage= new SongsPage(driver);
         songsPage.allResults();
 
     }
 
     @And("I select BossStatus")
     public void iSelectBossStatus() {
-        SongsPage songsPage= new SongsPage(driver);
+        songsPage= new SongsPage(driver);
         songsPage.songResult();
     }
 
     @And("I click add to...")
     public void iClickAddTo() {
-        SongsPage songsPage=new SongsPage(driver);
+        songsPage=new SongsPage(driver);
         songsPage.addButton();
     }
 
     @Then("I create a new Playlist")
     public void iCreateANewPlaylist() {
-        SongsPage songsPage = new SongsPage(driver);
+        songsPage = new SongsPage(driver);
         songsPage.createPlaylist();
     }
 }

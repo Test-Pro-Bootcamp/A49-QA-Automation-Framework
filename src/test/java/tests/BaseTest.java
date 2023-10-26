@@ -24,9 +24,10 @@ import java.time.Duration;
 import java.util.HashMap;
 
 public class BaseTest {
-    private static final ThreadLocal<WebDriver> threadDriver = new ThreadLocal<>();
-    private WebDriver driver;
+
+    public WebDriver driver;
     private int timeSeconds = 5;
+    public static final ThreadLocal<WebDriver> threadDriver = new ThreadLocal<>();
     public static WebDriver getThreadDriver() {
         return threadDriver.get();
     }
@@ -39,6 +40,7 @@ public class BaseTest {
         getThreadDriver().get(baseURL);
         System.out.println("Browser setup by Thread " + Thread.currentThread().getId() + " and Driver reference is : " + getThreadDriver());
     }
+
 
     public WebDriver lambdaTest() throws MalformedURLException {
         String username ="rijoal1987";
