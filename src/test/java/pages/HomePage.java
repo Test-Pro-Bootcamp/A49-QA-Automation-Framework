@@ -7,8 +7,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 
-import java.beans.Visibility;
-
 public class HomePage extends BasePage {
     public HomePage(WebDriver driver) {
         super(driver);
@@ -28,8 +26,8 @@ public class HomePage extends BasePage {
     private WebElement createScroll;
     @FindBy(css = "section[id='playlists'] li:nth-child(3)")
     private WebElement firstScroll;
-    @FindBy(css =".show.success")
-    private WebElement spellResult;
+    /*@FindBy(css =".show.success")
+    private WebElement spellResult;*/
 
 
 
@@ -91,10 +89,9 @@ public class HomePage extends BasePage {
         return findElement(userAvatarIcon);
     }
 
-    public HomePage popUp(){
-        wait.until(ExpectedConditions.visibilityOfElementLocated((By) spellResult)).isDisplayed();
-        Assert.assertTrue(spellResult.isDisplayed());
-        return this;
+    By spellResult = By.cssSelector(".show.success");
+    public WebElement getSpellResult(){
+        return findElement(spellResult);
     }
 }
 

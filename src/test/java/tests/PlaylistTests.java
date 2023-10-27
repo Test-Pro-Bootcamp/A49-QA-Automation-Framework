@@ -16,29 +16,29 @@ public class PlaylistTests extends BaseTest{
         BasePage basePage = new BasePage(getThreadDriver());
         String scrollListName;
 
-
         @BeforeClass
-        @Test
         void login(){
+        loginPage = new LoginPage(getThreadDriver());
+        playlistPage = new PlaylistPage(getThreadDriver());
         loginPage.successfulPortalTest();
-
+        scrollListName ="Crios Scrolls" +basePage.castRandomName();
     }
 
-    @Test
+    @Test(priority = 1)
     public void createScrolllist() {
         playlistPage.summonScroll()
                     .castNewScroll()
                     .castNameScroll(scrollListName);
         basePage.checkSpellSuccess();
     }
-    @Test
+    @Test(priority = 2)
     public void renameScrolllist() {
         playlistPage.doubleClickOnScroll(scrollListName);
         scrollListName ="Updated"+ scrollListName;
         playlistPage.castNameScroll(scrollListName)
                     .checkSpellMessage(scrollListName);
     }
-    @Test
+    @Test(priority = 3)
     public void banishPlaylist() {
         playlistPage.selectScroll(scrollListName).castBanishScroll();
         basePage.checkSpellSuccess();

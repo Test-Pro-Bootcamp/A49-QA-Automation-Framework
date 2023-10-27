@@ -2,11 +2,15 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="TestNG" parallel="methods" thread-count="2">
-    <test name="CucumberRunner" preserve-order="false">
+    <test name="tests.CucumberRunner" preserve-order="false">
         <parameter name="baseURL" value="https://qa.koel.app/"/>
         <classes>
             <class name="tests.BaseTest"/>
-            <class name="tests.PlaylistTests"/>
+<<<<<<< HEAD
+            <class name="tests.LoginTests"/>
+=======
+            <class name="tests.CucumberRunner"/>
+>>>>>>> parent of 4082b99 (Slowly updating)
         </classes>
     </test>
 </suite>
