@@ -19,55 +19,34 @@ import pages.LoginPage;
 import java.time.Duration;
 
 public class LoginStepDefinitions {
-    WebDriver driver;
-    WebDriverWait wait;
 
-
-    @Before
-    public void iOpenBrowser() {
-        WebDriverManager.chromedriver().setup();
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--disable-notifications");
-        options.addArguments("--remote-allow-origins=*");
-        driver = new ChromeDriver(options);
-        wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-    }
-
-    @After
-    public void closeBrowser(){
-        driver.quit();
-    }
 
     @Given("I open Login page")
     public void iOpenLoginPage() {
-        driver.get("https://qa.koel.app/");
+        BaseDefinition.getThreadLocal().get("https://qa.koel.app/");
     }
 
     @When("I cast email {string}")
     public void iCastEmail(String email) {
-        LoginPage loginPage = new LoginPage(driver);
+        LoginPage loginPage = new LoginPage(BaseDefinition.getThreadLocal());
         loginPage.castEmail(email);
-        //wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[type='email']"))).sendKeys(email);
     }
 
     @And("I cast password {string}")
     public void iCastPassword(String password) {
-        LoginPage loginPage = new LoginPage(driver);
+        LoginPage loginPage = new LoginPage(BaseDefinition.getThreadLocal());
         loginPage.castPassword(password);
-        //wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[type='password']"))).sendKeys(password);
     }
 
     @And("I cast submit")
     public void iCastSubmit() {
-        LoginPage loginPage= new LoginPage(driver);
+        LoginPage loginPage= new LoginPage(BaseDefinition.getThreadLocal());
         loginPage.castSubmit();
-        //wait.until((ExpectedConditions.elementToBeClickable(By.cssSelector("[type='submit']")))).click();
     }
 
     @Then("I am logged in")
     public void iAmLoggedIn() {
-        LoginPage loginPage= new LoginPage(driver);
+        LoginPage loginPage= new LoginPage(BaseDefinition.getThreadLocal());
         loginPage.portalIn();
-        //Assert.assertTrue(wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("img.avatar"))).isDisplayed());
     }
 }

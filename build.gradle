@@ -26,4 +26,24 @@ test {
     }
 
 }
+configurations {
+    cucumberRuntime {
+        extendsFrom testImplementation
+    }
+}
+task cucumber() {
+    dependsOn assemble, testClasses
+    doLast {
+        javaexec {
+            main = "io.cucumber.core.cli.Main"
+            classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
+            if (setParallel == "true") cucumberOptions.addAll(cuc)
+            args = [
+                    '--plugin', 'pretty',
+                    '--plugin', 'html:target/cucumber-report.html',
+                    '--glue', 'stepDefinition',
+                    'src/test/resources']
+        }
+    }
+}
 

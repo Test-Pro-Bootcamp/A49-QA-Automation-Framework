@@ -1,19 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="TestNG" parallel="methods" thread-count="1">
-    <test name="Cucumber Tests" preserve-order="false">
+<suite name="TestNG" parallel="methods" thread-count="2">
+    <test name="tests.CucumberRunner" preserve-order="false">
         <parameter name="baseURL" value="https://qa.koel.app/"/>
         <classes>
+            <class name="tests.BaseTest"/>
             <class name="tests.CucumberRunner"/>
-            <class name="tests.PlaylistTests"/>
-        </classes>
-    </test>
-
-    <test name="CucumberPlaylist">
-        <parameter name="baseURL" value="https://qa.koel.app/"/>
-        <classes>
-            <class name="tests.CucumberPlaylist"/>
         </classes>
     </test>
 </suite>

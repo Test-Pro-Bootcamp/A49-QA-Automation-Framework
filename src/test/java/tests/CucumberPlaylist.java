@@ -1,3 +1,4 @@
+/*
 package tests;
 
 import io.cucumber.testng.AbstractTestNGCucumberTests;
@@ -8,7 +9,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 
 @CucumberOptions(
-        features = {"src/test/resources/features/AddToNewPlaylist.feature"}
+        features = {"src/test/resources/features/AddToNewPlaylist.feature"},glue = {"AddSongToNewList.java"}
 )
 public class CucumberPlaylist extends AbstractTestNGCucumberTests {
 
@@ -19,7 +20,7 @@ public class CucumberPlaylist extends AbstractTestNGCucumberTests {
         testNGCucumberRunner = new TestNGCucumberRunner(this.getClass());
     }
 
-    @DataProvider
+    @DataProvider(parallel = true)
     public Object[][] features(){
         return testNGCucumberRunner.provideScenarios();
     }
@@ -28,3 +29,4 @@ public class CucumberPlaylist extends AbstractTestNGCucumberTests {
         testNGCucumberRunner.finish();
     }
 }
+*/
