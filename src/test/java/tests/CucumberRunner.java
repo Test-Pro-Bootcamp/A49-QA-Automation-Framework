@@ -6,13 +6,14 @@ import io.cucumber.testng.TestNGCucumberRunner;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
-
+import org.testng.annotations.Test;
 
 
 @CucumberOptions(
-        features = {"src/test/resources/features/Login.feature","src/test/resources/features/AddToNewPlaylist.feature"}
+        features = {"src/test/resources/features"}
 
 )
+@Test
 public class CucumberRunner extends AbstractTestNGCucumberTests {
 
     private TestNGCucumberRunner testNGCucumberRunner;
