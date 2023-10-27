@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 
 
 @CucumberOptions(
-        features = {"src/test/resources/features"}
+        features = {"src/test/resources/features"},glue = {"AddSongToNewList.java","LoginStepDefinitions.java"}
 
 )
 @Test

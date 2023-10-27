@@ -5,7 +5,7 @@
     <test name="Smoke Tests" preserve-order="false">
         <parameter name="baseURL" value="https://qa.koel.app/"/>
         <classes>
-            <class name="tests.LoginTests"/>
+            <class name="tests.CucumberRunner"/>
         </classes>
     </test>
 </suite>

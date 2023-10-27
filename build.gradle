@@ -55,7 +55,7 @@ task cucumber() {
                     '--plugin', 'pretty',
                     '--plugin', 'html:target/cucumber-report.html',
                     '--glue', 'stepDefinition',
-                    'src/test/resources']
+                    'src/test/resources/features']
         }
     }
 }
