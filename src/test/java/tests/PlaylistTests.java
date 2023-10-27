@@ -10,10 +10,10 @@ import pages.PlaylistPage;
 
 public class PlaylistTests extends BaseTest{
 
-        LoginPage loginPage = new LoginPage(getThreadDriver());
-        HomePage homePage = new HomePage(getThreadDriver());
-        PlaylistPage playlistPage = new PlaylistPage(getThreadDriver());
-        BasePage basePage = new BasePage(getThreadDriver());
+        LoginPage loginPage;
+        HomePage homePage;
+        PlaylistPage playlistPage;
+        BasePage basePage;
         String scrollListName;
 
         @BeforeClass
