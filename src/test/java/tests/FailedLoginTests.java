@@ -6,10 +6,11 @@ import pages.HomePage;
 import pages.LoginPage;
 
 public class FailedLoginTests extends BaseTest {
+    LoginPage loginPage;
 
     @Test
-    public static void loginEmptyEmailPasswordTest() {
-        LoginPage loginPage = new LoginPage(BaseTest.getThreadDriver());
+    public void loginEmptyEmailPasswordTest() {
+       loginPage = new LoginPage(BaseTest.getThreadDriver());
 
         loginPage.castEmail("")
                 .castPassword("Te$ter1234")
@@ -19,8 +20,8 @@ public class FailedLoginTests extends BaseTest {
     }
 
     @Test
-    public static void loginWrongPasswordTest() {
-        LoginPage loginPage = new LoginPage(BaseTest.getThreadDriver());
+    public void loginWrongPasswordTest() {
+        loginPage = new LoginPage(BaseTest.getThreadDriver());
 
         loginPage.castEmail("demo@class.com")
                 .castPassword("te$t123")
@@ -30,8 +31,8 @@ public class FailedLoginTests extends BaseTest {
     }
 
     @Test
-    public static void loginEmptyPasswordTest() {
-        LoginPage loginPage = new LoginPage(BaseTest.getThreadDriver());
+    public void loginEmptyPasswordTest() {
+       loginPage = new LoginPage(BaseTest.getThreadDriver());
 
         loginPage.castEmail("demo@class.com")
                 .castPassword("")
@@ -41,8 +42,8 @@ public class FailedLoginTests extends BaseTest {
     }
 
     @Test
-    public static void loginWrongEmailTest() {
-        LoginPage loginPage = new LoginPage(BaseTest.getThreadDriver());
+    public void loginWrongEmailTest() {
+        loginPage = new LoginPage(BaseTest.getThreadDriver());
 
         loginPage.castEmail("demo@class.com")
                 .castPassword("te$t$tudent")

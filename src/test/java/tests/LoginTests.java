@@ -19,11 +19,9 @@ public class LoginTests extends BaseTest {
 
     @Test
     public void loginSucceedTest() {
-        LoginPage loginPage = new LoginPage(BaseTest.getThreadDriver());
-        HomePage homePage = new HomePage(BaseTest.getThreadDriver());
-
-        loginPage.successfulPortalTest();
-
+       loginPage = new LoginPage(BaseTest.getThreadDriver());
+       homePage = new HomePage(BaseTest.getThreadDriver());
+       loginPage.successfulPortalTest();
         Assert.assertTrue(homePage.getUserAvatar().isDisplayed());
     }
 }

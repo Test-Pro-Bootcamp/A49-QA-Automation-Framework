@@ -2,8 +2,9 @@
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 import pages.*;
+import tests.BaseTest;
 
-public class Homework24 extends BaseTest{
+public class Homework24 extends BaseTest {
     LoginPage loginPage;
     HomePage homePage;
     PlaylistPage playListpage;

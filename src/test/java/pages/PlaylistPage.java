@@ -21,6 +21,10 @@ public class PlaylistPage extends BasePage{
     WebElement createNewPlaylist;
     @FindBy(css="[name='name']")
     WebElement namePlaylist;
+    @FindBy(css = ".del.btn-delete-playlist")
+    WebElement deletePlaylist;
+    @FindBy(css = ".ok")
+    WebElement okToDelete;
 
 
     public PlaylistPage checkNumberOfSongsInPlaylist() {
@@ -49,8 +53,9 @@ public class PlaylistPage extends BasePage{
         return this;
     }
     public PlaylistPage castBanishScroll() {
-        WebElement banishScroll = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".del.btn-delete-playlist")));
-        actions.click(banishScroll).perform();
+        wait.until(ExpectedConditions.elementToBeClickable(deletePlaylist));
+        actions.click(deletePlaylist).perform();
+        //wait.until(ExpectedConditions.visibilityOf(okToDelete)).click();
         return this;
     }
     public PlaylistPage selectScroll (String scrollName) {

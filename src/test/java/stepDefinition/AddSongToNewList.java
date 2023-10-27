@@ -4,12 +4,16 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import pages.HomePage;
 import pages.LoginPage;
+import pages.PlaylistPage;
 import pages.SongsPage;
 
 public class AddSongToNewList {
     LoginPage loginPage= new LoginPage(BaseDefinition.getThreadLocal());
     SongsPage songsPage= new SongsPage(BaseDefinition.getThreadLocal());
+    HomePage homePage= new HomePage(BaseDefinition.getThreadLocal());
+    PlaylistPage playlistPage= new PlaylistPage(BaseDefinition.getThreadLocal());
 
     @Given("I have entered the portal")
     public void iHaveEnteredThePortal() {
@@ -43,25 +47,20 @@ public class AddSongToNewList {
     public void iCreateANewPlaylist() {
         songsPage.createPlaylist();
     }
-}
-/*
-    WebDriver driver;
-    WebDriverWait wait;
-    LoginPage loginPage;
-    SongsPage songsPage;
 
 
-    @Before
-    public void openBrowser() {
-        WebDriverManager.chromedriver().setup();
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--disable-notifications");
-        options.addArguments("--remote-allow-origins=*");
-        driver = new ChromeDriver(options);
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-
+    @When("I select the first playlist")
+    public void iSelectTheFirstPlaylist() {
+        homePage.firstScroll();
     }
-    @AfterMethod
-    public void closeBrowser(){
-        driver.quit();
-    }*/
+
+    @And("I click on the delete playlist")
+    public void iClickOnTheDeletePlaylist() {
+        playlistPage.castBanishScroll();
+    }
+
+    @Then("the playlist is deleted")
+    public void thePlaylistIsDeleted() {
+        homePage.popUp();
+    }
+}

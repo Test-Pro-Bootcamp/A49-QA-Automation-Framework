@@ -26,6 +26,19 @@ test {
     }
 
 }
+task regression(type: Test){
+    useTestNG(){
+        suites "src/test/resources/RegressionTests.xml"
+        systemProperty "browser", System.getProperty("browser")
+    }
+}
+
+task smoke(type: Test){
+    useTestNG(){
+        suites "src/test/resources/SmokeTests.xml"
+        systemProperty "browser", System.getProperty("browser")
+    }
+}
 configurations {
     cucumberRuntime {
         extendsFrom testImplementation
