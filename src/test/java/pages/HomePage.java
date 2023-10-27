@@ -1,8 +1,10 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
@@ -13,37 +15,121 @@ public class HomePage extends BasePage {
     }
 
     @FindBy(css = "li a.songs")
-    private WebElement allSongsBtn;
+    WebElement allSongsBtn;
     @FindBy(css = "[data-testid='sound-bar-play']")
-    private WebElement manaBar;
+    WebElement manaBar;
     @FindBy(css = "[data-testid='play-btn']")
-    private WebElement playBtn;
+    WebElement playBtn;
     @FindBy(css = "side.player-controls")
-    private WebElement controlPanel;
+    WebElement controlPanel;
     @FindBy(css = "[title='Create a new playlist']")
-    private WebElement newRitual;
+    WebElement newRitual;
     @FindBy(css = "[data-testid='playlist-context-menu-create-simple']")
-    private WebElement createScroll;
+    WebElement createScroll;
     @FindBy(css = "section[id='playlists'] li:nth-child(3)")
-    private WebElement firstScroll;
-    /*@FindBy(css =".show.success")
-    private WebElement spellResult;*/
+    WebElement firstScroll;
+    @FindBy(css ="div.show.success")
+    WebElement spellResult;
+    @FindBy(xpath = "//section[@id='playlists']//li[@class='playlist playlist']")
+    WebElement updatePlaylist;
+    @FindBy(xpath = "//section[@id='playlists']//li[@class='playlist playlist']")
+    WebElement deletePlaylist;
+    @FindBy(css = ".del.btn-delete-playlist")
+    WebElement banishPlaylist;
+    @FindBy (css = "body > div.alertify > div > div > nav > button.ok")
+    WebElement okButton;
+    @FindBy (css = "[type='search']")
+    WebElement ritualField;
+    @FindBy(css = "button[data-test='view-all-songs-btn']")
+    WebElement viewAll;
+    @FindBy (css = "section #songResultsWrapper section.existing-playlists li.playlist")
+    WebElement listButton;
+    @FindBy (xpath = "//*[@id='songResultsWrapper']//*[@class='song-list-controls']//*[@class='existing-playlists']//li[contains(text(), 'Crios Spellbook')]")
+    WebElement criosSpellBook;
+    @FindBy(css = ".search-results .song-item .title")
+    WebElement firstSong;
+    @FindBy(css = ".btn-add-to")
+    WebElement addTo;
+    @FindBy (css = ".menu .songs")
+    WebElement allSongsButton;
+    @FindBy(css = "input[name='name']")
+    WebElement spellbookTitle;
+    @FindBy(css = "img[class='avatar']")
+    WebElement wizardIcon;
 
-
-
-
-
-  /*  private By firstScroll = By.cssSelector(".playlist:nth-child(3)");
-    private By spellTarget = By.cssSelector("[name='name']");*/
-    private By getRenamedScrollAch = By.cssSelector("div.success.show");
-
+    public boolean isWizardDisplayed() {
+        wait.until(ExpectedConditions.visibilityOf(wizardIcon));
+        return wizardIcon.isDisplayed();
+    }
+    public HomePage searchForRitual(String name) {
+        wait.until(ExpectedConditions.visibilityOf(ritualField));
+        ritualField.clear();
+        ritualField.sendKeys(name);
+        return this;
+    }
+    public HomePage allResults() {
+        wait.until(ExpectedConditions.visibilityOf(viewAll));
+        viewAll.click();
+        return this;
+    }
+    public HomePage firstSongInList(){
+        wait.until(ExpectedConditions.visibilityOf(firstSong));
+        firstSong.click();
+        return this;
+    }
+    public HomePage clickAddToBtn(){
+        wait.until(ExpectedConditions.visibilityOf(addTo));
+        addTo.click();
+        return this;
+    }
+    public HomePage addSongToPlaylist() {
+        wait.until(ExpectedConditions.visibilityOf(listButton));
+        Actions action = new Actions(driver);
+        action.moveToElement(listButton);
+        listButton.click();
+        return this;
+    }
+    public HomePage addSongToCriosPlaylist() {
+        wait.until(ExpectedConditions.visibilityOf(listButton));
+        Actions action = new Actions(driver);
+        action.moveToElement(criosSpellBook);
+        criosSpellBook.click();
+        return this;
+    }
     public HomePage clickAllSongs() {
         wait.until(ExpectedConditions.elementToBeClickable(allSongsBtn)).click();
         return this;
     }
+    public HomePage createNewSpellBook(String myNewSpellbook){
+        String newSpellBook = "#playlists .fa.fa-plus-circle.create";
+        clickOnElement(By.cssSelector(newSpellBook));
+        wait.until(ExpectedConditions.visibilityOf(createScroll)).click();
+        spellbookTitle.sendKeys(myNewSpellbook);
+        spellbookTitle.sendKeys(Keys.RETURN);
+        return this;
+    }
+    public HomePage banishCreatedSpellbook() {
+        wait.until(ExpectedConditions.visibilityOf(deletePlaylist));
+        deletePlaylist.click();
+        wait.until(ExpectedConditions.visibilityOf(banishPlaylist));
+        banishPlaylist.click();
+        wait.until(ExpectedConditions.visibilityOf(okButton));
+        okButton.click();
+        return this;
+    }
+    public HomePage updateSpellBookTitle(String newSpellbookTitle) {
+        wait.until(ExpectedConditions.visibilityOf(spellbookTitle));
+        spellbookTitle.sendKeys(Keys.chord(Keys.CONTROL, "a"));
+        spellbookTitle.sendKeys(Keys.DELETE);
+        spellbookTitle.sendKeys(newSpellbookTitle);
+        spellbookTitle.sendKeys(Keys.ENTER);
+        return this;
+    }
+    public HomePage doubleClickSpellBook() {
+        wait.until(ExpectedConditions.visibilityOf(updatePlaylist));
+        actions.doubleClick(updatePlaylist).perform();
+        return this;
 
-    public void doubleClickScrolllist() {
-        actions.doubleClick();
     }
 
     public HomePage checkSongIsPlaying() {
@@ -65,9 +151,10 @@ public class HomePage extends BasePage {
     }
 
 
-    public HomePage newRitual() {
+    public HomePage newRitual(String name) {
         wait.until(ExpectedConditions.elementToBeClickable(newRitual));
-        newRitual.click();
+        newRitual.clear();
+        newRitual.sendKeys(name);
         return this;
     }
 
@@ -81,32 +168,13 @@ public class HomePage extends BasePage {
         firstScroll.click();
         return this;
     }
-
-    public String getRenamePlaylistSuccessMsg() {
-        return findElement(getRenamedScrollAch).getText();
+    public String verifySpellResult() {
+        wait.until(ExpectedConditions.visibilityOf(spellResult));
+        return spellResult.getText();
     }
 
-    By userAvatarIcon = By.cssSelector("img.avatar");
-    public WebElement getUserAvatar() {
-        return findElement(userAvatarIcon);
-    }
-
-    By spellResult = By.cssSelector(".show.success");
-    public WebElement getSpellResult(){
-        return findElement(spellResult);
-    }
 }
 
-    /*public void castRenameScroll(String newScrollName) {
-        findElement(spellTarget).sendKeys(Keys.chord(Keys.LEFT_CONTROL,"A", Keys.BACK_SPACE));
-        findElement(spellTarget).sendKeys(newScrollName);
-        findElement(spellTarget).sendKeys(Keys.RETURN);
-        *//*WebElement nameTarget = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("section[id='playlists'] li:nth-child(3)")));
-        actions.doubleClick(nameTarget).perform();
-        WebElement spellTarget = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[name='name']")));
-        spellTarget.sendKeys(Keys.chord(Keys.LEFT_CONTROL,"A", Keys.BACK_SPACE));
-        spellTarget.sendKeys(newScrollName);
-        spellTarget.sendKeys(Keys.RETURN);*//*
-    }*/
+
 
 

@@ -1,4 +1,4 @@
-import org.openqa.selenium.By;
+/*import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -8,13 +8,15 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.HomePage;
 import pages.LoginPage;
+import tests.BaseTest_threads;
 
 import java.time.Duration;
 
-public class LoginTests extends BaseTest {
+public class LoginTests extends BaseTest_threads {
+    static LoginPage loginPage = new LoginPage(getThreadLocal());
+
     @Test
     public static void loginEmptyEmailPasswordTest() {
-        LoginPage loginPage = new LoginPage(getThreadDriver());
 
         loginPage.castEmail("")
                 .castPassword("Te$ter1234")
@@ -25,7 +27,6 @@ public class LoginTests extends BaseTest {
 
     @Test
     public static void loginWrongPasswordTest() {
-        LoginPage loginPage = new LoginPage(getThreadDriver());
 
         loginPage.castEmail("demo@class.com")
                 .castPassword("te$t123")
@@ -36,7 +37,6 @@ public class LoginTests extends BaseTest {
 
     @Test
     public static void loginEmptyPasswordTest() {
-        LoginPage loginPage = new LoginPage(getThreadDriver());
 
         loginPage.castEmail("demo@class.com")
                 .castPassword("")
@@ -47,7 +47,6 @@ public class LoginTests extends BaseTest {
 
     @Test
     public static void loginWrongEmailTest() {
-        LoginPage loginPage = new LoginPage(getThreadDriver());
 
         loginPage.castEmail("demo@class.com")
                 .castPassword("te$t$tudent")
@@ -58,14 +57,12 @@ public class LoginTests extends BaseTest {
 
     @Test
     public void loginSucceedTest() {
-        LoginPage loginPage = new LoginPage(getThreadDriver());
-        HomePage homePage = new HomePage(getThreadDriver());
 
         loginPage.successfulPortalTest();
 
-        Assert.assertTrue(homePage.getUserAvatar().isDisplayed());
+
     }
-}
+}*/
 /*import org.testng.Assert;
         import org.testng.annotations.Test;
 

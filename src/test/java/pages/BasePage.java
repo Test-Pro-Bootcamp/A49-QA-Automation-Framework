@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -15,6 +16,8 @@ public class BasePage {
     protected WebDriver driver;
     protected WebDriverWait wait;
     protected Actions actions;
+    @FindBy(css = "div.success.show")
+    WebElement notification;
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
@@ -39,30 +42,17 @@ public class BasePage {
         el.clear();
         el.sendKeys(text);
     }
-    public void clickOnOk() {
-        WebElement okBtn = driver.findElement(By.cssSelector((".ok")));
-        okBtn.click();
+    public BasePage waitForSpellFade() {
+        wait.until(ExpectedConditions.invisibilityOf(notification));
+        return this;
     }
-    public WebElement findElement(By locator){
+
+    /*public WebElement findElement(By locator){
         return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
     public void doubleClick (By locator){
-        actions.doubleClick(findElement(locator)).perform();
-    }
+        actions.doubleClick(findElement(locator)).perform();*/
 
-    public boolean checkSpellSuccess() {
-        WebElement notification = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.success.show")));
-        Assert.assertTrue(notification.isDisplayed());
-        return this.checkSpellSuccess();
-    }
-    public HomePage clickAllSongs() {
-        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("li a.songs"))).click();
-        return null;
-    }
-   /* public void checkSongIsPlaying() {
-        WebElement soundBar = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[data-testid='sound-bar-play']")));
-        Assert.assertTrue(soundBar.isDisplayed());
-    }*/
     public void closeBrowser() {
         driver.quit();
     }
