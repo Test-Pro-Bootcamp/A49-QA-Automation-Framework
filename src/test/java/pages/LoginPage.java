@@ -26,9 +26,4 @@ public class LoginPage extends BasePage {
     public void clickSubmit () {
         findElement(submitBtn).click();
     }
-
-    /*public void login(){
-        provideEmail("gia.mitchell@testpro.io");
-        providePassword("Lovenoelle25");
-        clickSubmit(); */
-    }
+}
