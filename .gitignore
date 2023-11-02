@@ -18,3 +18,10 @@ bin/test/Homework22.class
 bin/test/pages/BasePage.class
 bin/test/pages/HomePage.class
 bin/test/pages/LoginPage.class
+bin/test/BaseTest.class
+bin/main/org/example/Main.class
+bin/test/BaseTest.class
+bin/test/Homework21.class
+bin/test/BaseTest.class
+bin/test/Homework23.class
+bin/test/pages/SongPage.class
