@@ -14,3 +14,7 @@ gradle*
 # gradle/wrapper/gradle-wrapper.properties
 
 /out/
+bin/test/Homework22.class
+bin/test/pages/BasePage.class
+bin/test/pages/HomePage.class
+bin/test/pages/LoginPage.class
