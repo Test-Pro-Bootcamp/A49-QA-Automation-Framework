@@ -1,29 +1,29 @@
 package pages;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 
 public class LoginPage extends BasePage {
 
-    public LoginPage(WebDriver driver) {
-        super(driver);
+    public LoginPage(WebDriver givenDriver) {
+        super(givenDriver);
     }
-    @FindBy (css ="input[type='email']")
-    WebElement emailField;
-    @FindBy (css ="input[type='password']")
-    WebElement passwordField;
-    @FindBy (css ="[type='submit']")
-    WebElement submitBtn;
 
-    public void loginCorrectCred() {
-        provideEmail("andrew.oleary@testpro.io");
-        providePassword("te$t$tudent437");
+    @FindBy (css ="input[type='email']")
+    private WebElement emailField;
+    @FindBy (css ="input[type='password']")
+    private WebElement passwordField;
+    @FindBy (css ="button[type='submit']")
+    private WebElement submitBtn;
+
+    public void login() {
+        provideEmail("demo@class.com");
+        providePassword("te$t$tudent");
         clickSubmit();
     }
-
 
     public LoginPage provideEmail(String email) {
         wait.until(ExpectedConditions.elementToBeClickable(emailField)).clear();
@@ -41,4 +41,6 @@ public class LoginPage extends BasePage {
         wait.until(ExpectedConditions.elementToBeClickable(submitBtn)).click();
         return this;
     }
+
 }
+

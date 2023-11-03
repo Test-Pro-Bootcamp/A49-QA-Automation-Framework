@@ -1,46 +1,41 @@
 package pages;
-
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.testng.Assert;
 
 
 public class HomePage extends BasePage {
-    public HomePage(WebDriver driver) {
-        super(driver);
+
+    public HomePage (WebDriver givenDriver) {
+
+        super(givenDriver);
     }
-    @FindBy(css = "li a.songs")
-    WebElement allSongsBtn;
-   @FindBy (css = "[data-testid='sound-bar-play']")
-   WebElement soundBar;
-   @FindBy (css = "[data-testid='play-btn']")
-   WebElement playBtn;
-    @FindBy (css = ".side.player-controls" )
-    WebElement controlPanel;
 
-   public HomePage clickAllSongs() {
-   wait.until(ExpectedConditions.elementToBeClickable(allSongsBtn)).click();
-    return this;
-   }
+    @FindBy (css = ".playlist:nth-child(3)")
+    private WebElement firstPlaylist;
+    @FindBy (css = "[name='name']")
+    private WebElement playlistNameField;
+    @FindBy (css = "div.success.show")
+    private WebElement renamePlaylistSuccessMsg;
 
-   public HomePage checkSongIsPlaying() {
-        wait.until(ExpectedConditions.visibilityOf(soundBar));
-        Assert.assertTrue(soundBar.isDisplayed());
+     public HomePage doubleClickPlaylist() {
+        WebElement playlistElement = wait.until(ExpectedConditions.elementToBeClickable(firstPlaylist));
+        actions.doubleClick(playlistElement).build().perform();
+        return this;
+     }
+
+    public HomePage enterNewPlaylistName (String playlistName) {
+        playlistNameField.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.BACK_SPACE));
+        playlistNameField.sendKeys(playlistName);
+        playlistNameField.sendKeys(Keys.ENTER);
         return this;
     }
 
-   public HomePage checkIfPlayBtnIsVisible() {
-        wait.until(ExpectedConditions.visibilityOf(playBtn));
-        Assert.assertTrue(playBtn.isDisplayed());
-        return this;
-    }
+    public String getRenamePlaylistSuccessMsg(){
+         findElement(renamePlaylistSuccessMsg);
+        return renamePlaylistSuccessMsg.getText();
 
-    public HomePage mouseMoveToPlayBtn() {
-        wait.until(ExpectedConditions.visibilityOf(controlPanel));
-        actions.moveToElement(controlPanel).click(controlPanel).perform();
-        return this;
     }
-
 }

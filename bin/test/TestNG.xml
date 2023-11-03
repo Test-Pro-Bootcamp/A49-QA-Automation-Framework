@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="TestNG">
-    <parameter name="BaseURL" value="https://qa.koel.app/"/>
-    <test name="Example Test" preserve-order="false">
+<suite name="TestNG"> <!-- Define the TestNG suite -->
+    <parameter name="BaseURL" value="https://qa.koel.app/"></parameter> <!-- Set the BaseURL parameter -->
+    <test name="Example Test" preserve-order="false"> <!-- Define the TestNG test -->
+        <parameter name="browser" value="grid-chrome"></parameter> <!-- Set the browser parameter -->
         <classes>
-            <class name="Homework23"/>
+            <class name="tests.HomeWork24"/> <!-- Specify the test class -->
         </classes>
     </test>
 </suite>
