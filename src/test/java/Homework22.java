@@ -10,7 +10,7 @@ public class Homework22 extends BaseTest {
 
     public void renamePlaylist(){
         String newPlaylistname = "Isisha Edited Playlist";
-        String updatedPlaylistMsg = "Isisha playlist \"Isisha Edited Playlist.\""
+        String updatedPlaylistMsg = "Isisha playlist \"Isisha Edited Playlist.\"";
 
         WebDriver driver;
         LoginPage loginPage = new LoginPage(driver);
