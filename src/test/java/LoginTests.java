@@ -10,17 +10,27 @@ import java.time.Duration;
 
 public class LoginTests extends BaseTest {
     @Test
-    public void loginEmptyEmailPassword() {
-//      Added ChromeOptions argument below to fix websocket error
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
-
-        WebDriver driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
-        String url = "https://qa.koel.app/";
-        driver.get(url);
+    public void loginValidEmailPassword(){
+        navigateToPage();
+        provideEmail("dagebeyehu@gmail.com");
+        providePassword("yozca5uQiLxb!");
+        clickSubmit();
+        isAvatarDisplayed();
+    }
+    @Test
+    public void loginInvalidEmailValidPassword(){
+        navigateToPage();
+        provideEmail("invalid@class.com");
+        providePassword("yozca5uQiLxb!");
+        clickSubmit();
         Assert.assertEquals(driver.getCurrentUrl(), url);
-        driver.quit();
+    }
+    @Test
+    public void loginValidEmailEmptyPassword(){
+        navigateToPage();
+        provideEmail("dagebeyehu@gmail.com");
+        providePassword("");
+        clickSubmit();
+        Assert.assertEquals(driver.getCurrentUrl(), url);
     }
 }
