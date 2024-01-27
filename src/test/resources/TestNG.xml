@@ -6,7 +6,10 @@
     <test name="Example Test" preserve-order="false">
         <classes>
             <class name="LoginTests"/>
-            <class name="BaseTest"/>
+            <class name="Tests.PlaylistTests"/>
+            <class name="ActionsTest"/>
+            <class name="Tests.BaseTest"/>
+            <class name="Tests.HW22"/>
         </classes>
     </test>
 </suite>
